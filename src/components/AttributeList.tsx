@@ -1,5 +1,6 @@
 import  {FC} from 'react';
 import {IHeroes} from "../types/IHeroes.ts";
+import HeroBlock from "./HeroBlock.tsx";
 
 interface AttributeListProps {
     heroList: IHeroes[],
@@ -8,14 +9,13 @@ interface AttributeListProps {
 
 const AttributeList: FC<AttributeListProps> = ({heroList, attribute,}) => {
 
+
     return (
         <div className='heroes-list__attribute'>
-            <h1 className='attribute__title'>{attribute}</h1>
+            <h1 className='attribute__title'>{attribute} </h1>
             <div className='attribute__list'>
                 {heroList.map(hero =>
-                    <div  className='attribute__image-container'>
-                        <img src={hero.image} className='image-container__image' alt={hero.name}/>
-                    </div>
+                    <HeroBlock hero={hero}/>
                 )}
             </div>
         </div>

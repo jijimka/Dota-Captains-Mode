@@ -9,6 +9,6 @@ export interface IHeroes {
     attribute_img:string
 }
 export interface IPickedHero {
-    hero:IHeroes | false;
+    hero:IHeroes;
     pick:number;
 }

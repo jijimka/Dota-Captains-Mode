@@ -1,9 +1,11 @@
 import {combineReducers, configureStore} from "@reduxjs/toolkit";
 import heroesSlice from "./slices/heroesSlice.ts";
+import pickedHeroSlice from "./slices/pickedHeroSlice.ts";
 
 
 const rootReducer = combineReducers({
-    heroes: heroesSlice
+    heroes: heroesSlice,
+    pickedHeroes: pickedHeroSlice,
 })
 export const setupStore = () => configureStore({
     reducer: rootReducer,
