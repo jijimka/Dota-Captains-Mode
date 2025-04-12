@@ -3,13 +3,11 @@ import {IHeroes, IPickedHero} from "../../types/IHeroes.ts";
 
 interface pickedHeroSliceProps {
     pickedHeroes: IPickedHero[];
-    pickNumber:number;
     disabledHeroes:number[];
     confirmHero:IHeroes | null;
 }
 const initialState:pickedHeroSliceProps = {
     pickedHeroes:[],
-    pickNumber:1,
     disabledHeroes:[],
     confirmHero:null
 }
@@ -20,8 +18,6 @@ export const pickedHeroSlice = createSlice({
         addPickedHero:(state:pickedHeroSliceProps,action:PayloadAction<IPickedHero>)=> {
             state.pickedHeroes.push(action.payload);
             state.disabledHeroes.push(action.payload.hero.id)
-            state.pickNumber = state.pickedHeroes.length
-            state.pickNumber += 1;
             state.confirmHero = null
         },
         addConfirmHero:(state:pickedHeroSliceProps,action:PayloadAction<IHeroes>)=>{
@@ -30,8 +26,11 @@ export const pickedHeroSlice = createSlice({
         clearPickedHeroes:(state:pickedHeroSliceProps,)=> {
             state.pickedHeroes = []
             state.confirmHero = null
-            state.pickNumber = 1
             state.disabledHeroes = []
+        },
+        removePickedHero:(state:pickedHeroSliceProps,action:PayloadAction<IHeroes>)=> {
+            state.pickedHeroes = state.pickedHeroes.filter((value) => value.hero.id !== action.payload.id)
+            state.disabledHeroes = state.disabledHeroes.filter((value) => value !== action.payload.id)
         }
     }
 })
