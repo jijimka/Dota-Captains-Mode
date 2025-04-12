@@ -206,6 +206,7 @@ body {
     border: 2px solid black;
     padding: 5px;
     cursor: pointer;
+    min-height: 124px;
 }
 .pick-confirm__text {
     font-size: 22px;
@@ -213,4 +214,13 @@ body {
 }
 .pick-block__active {
     border: 2px solid #00cece;
+}
+.clear-button {
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s ease all
+}
+.clear-button:hover {
+    color: #00bdbd;
 }

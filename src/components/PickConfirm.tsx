@@ -15,7 +15,7 @@ const PickConfirm:FC = () => {
         }
         dispatch(addPickedHero(pickedHero))
     }
-    if (confirmHero === null) return <></>
+    if (confirmHero === null) return <div className='pick-confirm'></div>
 
     return (
 

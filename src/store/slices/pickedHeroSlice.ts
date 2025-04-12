@@ -26,6 +26,12 @@ export const pickedHeroSlice = createSlice({
         },
         addConfirmHero:(state:pickedHeroSliceProps,action:PayloadAction<IHeroes>)=>{
             state.confirmHero = action.payload;
+        },
+        clearPickedHeroes:(state:pickedHeroSliceProps,)=> {
+            state.pickedHeroes = []
+            state.confirmHero = null
+            state.pickNumber = 1
+            state.disabledHeroes = []
         }
     }
 })
