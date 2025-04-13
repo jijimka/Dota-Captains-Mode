@@ -16,9 +16,9 @@ const HeroBlock:FC<HeroBlockProps> = ({hero}) => {
     }
 
     return (
-        <div onClick={() => heroClick(hero)} className='attribute__image-container'>
+        <div onClick={() => heroClick(hero)} className={disabledHeroes.includes(hero.id)?'heroDisabled': 'attribute__image-container'}>
             <img src={hero.image}
-                 className={disabledHeroes.includes(hero.id)?'image-container__image heroDisabled':'image-container__image'}
+                 className='image-container__image'
                  alt={hero.name}
             />
         </div>

@@ -25,6 +25,11 @@ export const pickOrderSlice = createSlice({
         clearAll: (state: pickOrderSliceProps) => {
             state.pickQueue = [];
             state.pickOrder = 1;
+        },
+        sortPickQueue: (state:pickOrderSliceProps) => {
+            state.pickQueue = state.pickQueue.sort((a,b) => {
+                return a-b
+            })
         }
     }
 })

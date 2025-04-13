@@ -16,7 +16,7 @@ const PickBlock:FC<PickBlockProps> = ({orderNumber}) => {
     const {pickQueue} = useTypedSelector(state => state.pickOrder)
     const blockClasses:string[] = []
     const {removePickedHero} = pickedHeroSlice.actions
-    const {heroRemoved} = pickOrderSlice.actions
+    const {heroRemoved,sortPickQueue} = pickOrderSlice.actions
 
     const displayPickedHero = useMemo(() => {
         for (let i = 0; i < pickedHeroes.length; i++) {
@@ -31,10 +31,13 @@ const PickBlock:FC<PickBlockProps> = ({orderNumber}) => {
         return <></>
 
     },[pickedHeroes])
+
     function deleteHero(hero:IPickedHero) {
         dispatch(removePickedHero(hero.hero))
         dispatch(heroRemoved(hero.pick))
+        dispatch(sortPickQueue())
     }
+
     if (!picks.includes(orderNumber)) {
         blockClasses.push('pick__block-ban')
     } else {
