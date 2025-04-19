@@ -19,8 +19,6 @@ const PickConfirm: FC = () => {
 
 
     }
-    console.log(pickQueue)
-
     function pickHero() {
         if (confirmHero === null) return
 

@@ -6,6 +6,7 @@ interface heroesSliceProps {
     uniHeroes: IHeroes[];
     strHeroes: IHeroes[];
     intHeroes: IHeroes[];
+    searchedHero: number[] | null;
 }
 
 const initialState:heroesSliceProps = {
@@ -13,6 +14,7 @@ const initialState:heroesSliceProps = {
     intHeroes:[],
     strHeroes:[],
     uniHeroes:[],
+    searchedHero:null,
 }
 export const heroesSlice = createSlice({
     name: 'heroesSlice',
@@ -30,6 +32,12 @@ export const heroesSlice = createSlice({
         addAgiHeroes(state, action:PayloadAction<IHeroes[]>) {
             state.agiHeroes = action.payload;
         },
+        setSearchedHero(state:heroesSliceProps,action:PayloadAction<number[]>) {
+            state.searchedHero = action.payload;
+        },
+        clearSearchedHero(state:heroesSliceProps) {
+            state.searchedHero = null
+        }
     }
 })
 export default heroesSlice.reducer
