@@ -23,7 +23,7 @@ const PickBlock:FC<PickBlockProps> = ({orderNumber}) => {
             if (pickedHeroes[i].pick === orderNumber) {
                 return (
                     <>
-                        <img onClick={() => deleteHero(pickedHeroes[i])} className='pick__block-image' src={pickedHeroes[i].hero.image} />
+                        <img onClick={() => deleteHero(pickedHeroes[i])} draggable={false} className='pick__block-image' src={pickedHeroes[i].hero.image} />
                     </>
                 )
             }

@@ -17,7 +17,7 @@ const options = {
         'x-rapidapi-host': 'dota2-heroes.p.rapidapi.com'
     }
 };
-
+// не, я крутой же
 // export async function fetchHeroes() {
 //     try {
 //         const response = await axios.get('https://api.opendota.com/api/heroes');

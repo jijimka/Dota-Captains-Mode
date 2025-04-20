@@ -4,7 +4,7 @@ import {pickedHeroSlice} from "../store/slices/pickedHeroSlice.ts";
 import {pickOrderSlice} from "../store/slices/pickOrderSlice.ts";
 
 const PickConfirm: FC = () => {
-    const {confirmHero} = useTypedSelector(state => state.pickedHeroes)
+    const {confirmHero,pickedHeroes} = useTypedSelector(state => state.pickedHeroes)
     const {pickOrder, pickQueue} = useTypedSelector(state => state.pickOrder)
     const {addPickedHero} = pickedHeroSlice.actions
     const {removePickQueue, increasePickOrder} = pickOrderSlice.actions
@@ -21,7 +21,7 @@ const PickConfirm: FC = () => {
     }
     function pickHero() {
         if (confirmHero === null) return
-
+        if (pickedHeroes.length === 24) return
         const pickedHero = {
             hero: confirmHero,
             pick: getPickOrder(),

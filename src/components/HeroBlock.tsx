@@ -9,13 +9,14 @@ const HeroBlock:FC<HeroBlockProps> = ({hero}) => {
     const {disabledHeroes} = useTypedSelector(state => state.pickedHeroes)
     const {searchedHero} = useTypedSelector(state => state.heroes)
     const {addConfirmHero} = pickedHeroSlice.actions
+    const blockClasses:string[] = []
     const dispatch = useTypedDispatch()
 
     function heroClick(hero:IHeroes) {
         if (disabledHeroes.includes(hero.id)) return
         dispatch(addConfirmHero(hero))
     }
-    const blockClasses:string[] = []
+
     if (disabledHeroes.includes(hero.id)) {
         blockClasses.push('heroDisabled')
     } else {
@@ -31,6 +32,7 @@ const HeroBlock:FC<HeroBlockProps> = ({hero}) => {
             <img src={hero.image}
                  className='image-container__image'
                  alt={hero.name}
+                 draggable={false}
             />
         </div>
     );

@@ -12,7 +12,6 @@ h1,h2,h3,h4,h5,h6 {
 }
 body {
     position: relative;
-    padding: 0 5px;
     margin: 0;
 }
 #root {
@@ -32,6 +31,7 @@ body {
     border: 1px solid black;
     cursor: inherit;
     border-radius: inherit;
+    user-select: none;
 }
 
 /*.image-container__image:hover {*/
@@ -62,6 +62,7 @@ body {
     position: relative;
     transition: 0.1s ease all;
     cursor: pointer;
+    user-select: none;
 }
 .attribute__image-container:hover {
     position: relative;
@@ -72,12 +73,12 @@ body {
     display: flex;
     flex-wrap: wrap;
     gap: 5px;
+    user-select: none;
 }
 .dota-picker {
     display: flex;
     min-height: 100%;
     flex:0 0;
-    user-select: none;
 }
 .dota-picker:active {
     outline: none;
@@ -96,6 +97,7 @@ body {
     font-size: 24px;
     background-color: #1e1e1e;
     gap: 10px;
+    user-select: none;
 }
 .picks-list {
     display: flex;
@@ -113,10 +115,12 @@ body {
     flex-direction: column;
     gap: 10px;
     padding: 2px;
+    user-select: none;
 }
 
 .heroes-list__attribute {
     flex: 0 1 25%;
+    user-select: none;
 }
 
 .pick__block {
@@ -138,6 +142,7 @@ body {
     display: flex;
     flex-direction: column;
     gap: 15px;
+    user-select: none;
 }
 .pick-side-dire {
     flex: 0 1 50%;
@@ -261,7 +266,7 @@ body {
     overflow: hidden;
 }
 .searchModal-text {
-
+    text-wrap: nowrap;
 }
 /*.searchModal-active {*/
 /*    display: flex;*/
