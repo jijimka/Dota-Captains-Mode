@@ -2,40 +2,40 @@ import {FC} from 'react';
 import {useTypedDispatch, useTypedSelector} from "../hooks/redux.ts";
 import {pickedHeroSlice} from "../store/slices/pickedHeroSlice.ts";
 import {pickOrderSlice} from "../store/slices/pickOrderSlice.ts";
+import {getPickOrder} from "../utils/getPickOrder.ts";
 
 const PickConfirm: FC = () => {
     const {confirmHero,pickedHeroes} = useTypedSelector(state => state.pickedHeroes)
-    const {pickOrder, pickQueue} = useTypedSelector(state => state.pickOrder)
+    const {pickOrder, pickQueue,selectedPick,skipPicks} = useTypedSelector(state => state.pickOrder)
     const {addPickedHero} = pickedHeroSlice.actions
-    const {removePickQueue, increasePickOrder} = pickOrderSlice.actions
+    const {removePickQueue, increasePickOrder, clearSelectedPick,addToSkipPicks} = pickOrderSlice.actions
     const dispatch = useTypedDispatch()
 
-    function getPickOrder(): number {
-        if (pickQueue.length !== 0) {
-            return pickQueue[0]
-        } else {
-            return pickOrder
-        }
 
-
-    }
     function pickHero() {
         if (confirmHero === null) return
         if (pickedHeroes.length === 24) return
         const pickedHero = {
             hero: confirmHero,
-            pick: getPickOrder(),
+            pick: getPickOrder(selectedPick,pickQueue,pickOrder),
         }
-        console.log(pickedHero, pickOrder)
         dispatch(addPickedHero(pickedHero))
-        if (pickQueue.length !== 0) {
+
+        // EDIT THIS SHIT
+        if (selectedPick !== null) {
+            dispatch(clearSelectedPick())
+            dispatch(addToSkipPicks(pickedHero.pick))
+            if (selectedPick === pickOrder) {
+                dispatch(increasePickOrder())
+            }
+        }else if (pickQueue.length !== 0) {
             dispatch(removePickQueue())
         } else {
             dispatch(increasePickOrder())
         }
 
     }
-
+    console.log(skipPicks,)
     if (confirmHero === null) return <div className='pick-confirm'></div>
 
     return (

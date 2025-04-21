@@ -1,29 +1,34 @@
-import {FC, useMemo} from 'react';
+import {FC, useMemo, useState} from 'react';
 import {useTypedDispatch, useTypedSelector} from "../hooks/redux.ts";
 import {pickOrderSlice} from "../store/slices/pickOrderSlice.ts";
 import {pickedHeroSlice} from "../store/slices/pickedHeroSlice.ts";
 import {IPickedHero} from "../types/IHeroes.ts";
+import {getPickBlockClasses} from "../utils/getPickBlockClasses.ts";
 interface PickBlockProps {
     orderNumber:number;
 }
 const PickBlock:FC<PickBlockProps> = ({orderNumber}) => {
     const dispatch = useTypedDispatch()
-    const picks = [8,9,13,14,15,16,17,18,23,24]
-    const dire = [2,3,5,6,9,12,13,16,17,20,21,24]
     const orderClasses = ['pick__block-order']
     const {pickedHeroes} = useTypedSelector(state => state.pickedHeroes)
-    const pickNumber = useTypedSelector(state => state.pickOrder.pickOrder)
-    const {pickQueue} = useTypedSelector(state => state.pickOrder)
-    const blockClasses:string[] = []
+    const {pickQueue,selectedPick,pickOrder} = useTypedSelector(state => state.pickOrder)
     const {removePickedHero} = pickedHeroSlice.actions
-    const {heroRemoved,sortPickQueue} = pickOrderSlice.actions
+    const {addToPickQueue,sortPickQueue,selectPick} = pickOrderSlice.actions
+    const [heroPicked,setHeroPicked] = useState<boolean>(false)
+    const blockClasses = getPickBlockClasses(orderNumber,pickOrder,selectedPick,pickQueue)
 
     const displayPickedHero = useMemo(() => {
+
         for (let i = 0; i < pickedHeroes.length; i++) {
             if (pickedHeroes[i].pick === orderNumber) {
+                setHeroPicked(true)
                 return (
                     <>
-                        <img onClick={() => deleteHero(pickedHeroes[i])} draggable={false} className='pick__block-image' src={pickedHeroes[i].hero.image} />
+                        <img onClick={() => deleteHero(pickedHeroes[i])}
+                             draggable={false}
+                             className='pick__block-image'
+                             src={pickedHeroes[i].hero.image}
+                        />
                     </>
                 )
             }
@@ -34,26 +39,17 @@ const PickBlock:FC<PickBlockProps> = ({orderNumber}) => {
 
     function deleteHero(hero:IPickedHero) {
         dispatch(removePickedHero(hero.hero))
-        dispatch(heroRemoved(hero.pick))
+        dispatch(addToPickQueue(hero.pick))
         dispatch(sortPickQueue())
+        setHeroPicked(false)
     }
-
-    if (!picks.includes(orderNumber)) {
-        blockClasses.push('pick__block-ban')
-    } else {
-        blockClasses.push('pick__block')
-    }
-    if (pickQueue[0] === orderNumber) {
-        blockClasses.push('pick-block__active')
-    } else if (pickNumber === orderNumber && pickQueue.length === 0) {
-        blockClasses.push('pick-block__active')
-    }
-    if (dire.includes(orderNumber)) {
-        orderClasses.push('direOrder')
+    function selectPickOrder() {
+        if (heroPicked) return
+        dispatch(selectPick(orderNumber))
     }
 
     return (
-        <div className='pick-side__block'>
+        <div onClick={selectPickOrder} className='pick-side__block'>
             <div className={blockClasses.join(' ')}>
                 {displayPickedHero}
             </div>

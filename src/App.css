@@ -268,6 +268,9 @@ body {
 .searchModal-text {
     text-wrap: nowrap;
 }
+.pick-block__selected {
+    border: 2px solid #006e6e;
+}
 /*.searchModal-active {*/
 /*    display: flex;*/
 /*    opacity: 100%;*/
