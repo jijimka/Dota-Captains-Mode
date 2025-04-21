@@ -1,15 +1,13 @@
 import './App.css'
 import {useEffect, useState,} from "react";
 import dotaHeroes from "../dotaHeroes.json"
-import {useTypedDispatch, useTypedSelector,} from "./hooks/redux.ts";
+import {useTypedDispatch} from "./hooks/redux.ts";
 import {sortAgiHeroes, sortIntHeroes, sortStrHeroes, sortUniHeroes} from "./utils/sortHeroesByAttribute.ts";
 import {heroesSlice} from "./store/slices/heroesSlice.ts";
 import AllHeroesList from "./components/AllHeroesList.tsx";
 import PickList from "./components/PickList.tsx";
 import {IHeroes} from "./types/IHeroes.ts";
 import SearchModal from "./components/UI/SearchModal/SearchModal.tsx";
-
-// import PickOrderBlock from "./components/PickOrderBlock.tsx";
 
 
 function App() {
@@ -37,6 +35,9 @@ function App() {
         if (event.key.length > 1) return
         setSearch(search + event.key)
     }
+
+
+
 
 
     useEffect(() => {

@@ -11,7 +11,7 @@ const SearchModal:FC<SearchModalProps> = ({search}) => {
 
         useEffect(() => {
             setModalTransition(false)
-            setModal(55)
+            setModal(45)
         },[search])
 
         useEffect(() => {
@@ -27,7 +27,7 @@ const SearchModal:FC<SearchModalProps> = ({search}) => {
             className='searchModal'
             style={{
                 opacity:`${useModalAnimation()}%`,
-                transition: modalTransition?'0.4s ease all':'',
+                transition: modalTransition?'0.4s ease-in all':'',
             }}
         >
             <div className='searchModal-text'>{search}</div>
