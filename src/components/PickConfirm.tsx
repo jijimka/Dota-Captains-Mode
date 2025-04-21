@@ -2,13 +2,12 @@ import {FC} from 'react';
 import {useTypedDispatch, useTypedSelector} from "../hooks/redux.ts";
 import {pickedHeroSlice} from "../store/slices/pickedHeroSlice.ts";
 import {pickOrderSlice} from "../store/slices/pickOrderSlice.ts";
-import {getPickOrder} from "../utils/getPickOrder.ts";
 
 const PickConfirm: FC = () => {
     const {confirmHero,pickedHeroes} = useTypedSelector(state => state.pickedHeroes)
-    const {pickOrder, pickQueue,selectedPick,skipPicks} = useTypedSelector(state => state.pickOrder)
+    const {pickQueue,selectedPick} = useTypedSelector(state => state.pickOrder)
     const {addPickedHero} = pickedHeroSlice.actions
-    const {removePickQueue, increasePickOrder, clearSelectedPick,addToSkipPicks} = pickOrderSlice.actions
+    const {removePickQueue, clearSelectedPick,removeSelectedPickQueue} = pickOrderSlice.actions
     const dispatch = useTypedDispatch()
 
 
@@ -17,25 +16,19 @@ const PickConfirm: FC = () => {
         if (pickedHeroes.length === 24) return
         const pickedHero = {
             hero: confirmHero,
-            pick: getPickOrder(selectedPick,pickQueue,pickOrder),
+            pick: selectedPick !== null?selectedPick:pickQueue[0],
         }
         dispatch(addPickedHero(pickedHero))
 
         // EDIT THIS SHIT
         if (selectedPick !== null) {
+            dispatch(removeSelectedPickQueue(selectedPick))
             dispatch(clearSelectedPick())
-            dispatch(addToSkipPicks(pickedHero.pick))
-            if (selectedPick === pickOrder) {
-                dispatch(increasePickOrder())
-            }
-        }else if (pickQueue.length !== 0) {
-            dispatch(removePickQueue())
         } else {
-            dispatch(increasePickOrder())
+            dispatch(removePickQueue())
         }
 
     }
-    console.log(skipPicks,)
     if (confirmHero === null) return <div className='pick-confirm'></div>
 
     return (

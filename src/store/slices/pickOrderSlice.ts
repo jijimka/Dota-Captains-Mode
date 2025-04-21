@@ -1,39 +1,41 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 
 interface pickOrderSliceProps {
-    pickOrder: number;
     pickQueue: number[];
     selectedPick: number | null;
-    skipPicks:number[],
+
 }
 
 const initialState: pickOrderSliceProps = {
-    pickOrder: 1,
-    pickQueue: [],
+    pickQueue: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24],
     selectedPick: null,
-    skipPicks:[],
 }
 export const pickOrderSlice = createSlice({
     name: 'pickOrderSlice',
     initialState,
     reducers: {
-        increasePickOrder: (state: pickOrderSliceProps) => {
-            state.pickOrder += 1
-        },
-        addToPickQueue: (state: pickOrderSliceProps, action: PayloadAction<number>) => {
+        addPickQueue: (state:pickOrderSliceProps,action:PayloadAction<number>) => {
             state.pickQueue.push(action.payload);
-        },
-        removePickQueue: (state: pickOrderSliceProps,) => {
-            state.pickQueue.shift()
-        },
-        clearAll: (state: pickOrderSliceProps) => {
-            state.pickQueue = [];
-            state.pickOrder = 1;
-        },
-        sortPickQueue: (state:pickOrderSliceProps) => {
-            state.pickQueue = state.pickQueue.sort((a,b) => {
+            state.pickQueue = state.pickQueue.sort((a, b) => {
                 return a-b
             })
+        },
+        removePickQueue: (state:pickOrderSliceProps) => {
+            state.pickQueue.shift()
+            state.pickQueue = state.pickQueue.sort((a, b) => {
+                return a-b
+            })
+        },
+        removeSelectedPickQueue: (state:pickOrderSliceProps,action:PayloadAction<number>) => {
+            state.pickQueue = state.pickQueue.filter((item) => {
+                return item !== action.payload;
+            })
+            state.pickQueue = state.pickQueue.sort((a, b) => {
+                return a-b
+            })
+        },
+        clearAll: (state: pickOrderSliceProps) => {
+            state.pickQueue = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24];
         },
         selectPick: (state:pickOrderSliceProps,action:PayloadAction<number>) => {
             state.selectedPick = action.payload
@@ -41,20 +43,6 @@ export const pickOrderSlice = createSlice({
         clearSelectedPick: (state:pickOrderSliceProps,) => {
             state.selectedPick = null;
         },
-        addToSkipPicks: (state:pickOrderSliceProps,action:PayloadAction<number>) => {
-            state.skipPicks.push(action.payload)
-            state.skipPicks.sort((a,b) => {
-                return a-b
-            })
-        },
-        removeSkipPick:(state:pickOrderSliceProps,action:PayloadAction<number>) => {
-            state.skipPicks = state.skipPicks.filter((item:number) => {
-                return item !== action.payload
-            })
-            state.skipPicks.sort((a,b) => {
-                return a-b
-            })
-        }
     }
 })
 export default pickOrderSlice.reducer
