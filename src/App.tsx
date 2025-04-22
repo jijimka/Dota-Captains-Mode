@@ -1,21 +1,23 @@
 import './App.css'
 import {useEffect, useState,} from "react";
 import dotaHeroes from "../dotaHeroes.json"
-import {useTypedDispatch} from "./hooks/redux.ts";
+import {useTypedDispatch,} from "./hooks/redux.ts";
 import {sortAgiHeroes, sortIntHeroes, sortStrHeroes, sortUniHeroes} from "./utils/sortHeroesByAttribute.ts";
 import {heroesSlice} from "./store/slices/heroesSlice.ts";
 import AllHeroesList from "./components/AllHeroesList.tsx";
 import PickList from "./components/PickList.tsx";
 import {IHeroes} from "./types/IHeroes.ts";
 import SearchModal from "./components/UI/SearchModal/SearchModal.tsx";
+import {pickedHeroSlice} from "./store/slices/pickedHeroSlice.ts";
 
 
 function App() {
     const {addIntHeroes, addStrHeroes, addUniHeroes, addAgiHeroes} = heroesSlice.actions
     const dispatch = useTypedDispatch();
     const [search, setSearch] = useState<string>('')
-    const {setSearchedHero,clearSearchedHero} = heroesSlice.actions;
-
+    const {setSearchedHero,clearSearchedHero,} = heroesSlice.actions;
+    const {addConfirmHero} = pickedHeroSlice.actions
+    const [sortedHeroes,setSortedHeroes] = useState<IHeroes[]>([])
     function sortHeroes() {
         dispatch(addAgiHeroes(sortAgiHeroes(dotaHeroes)))
         dispatch(addStrHeroes(sortStrHeroes(dotaHeroes)))
@@ -28,12 +30,17 @@ function App() {
             setSearch('')
             return
         }
-
+        if (event.key === 'Enter') {
+            if (sortedHeroes.length > 0) {
+                dispatch(addConfirmHero(sortedHeroes[0]))
+            }
+        }
         if (event.key === "Backspace") {
             setSearch(search.slice(0, search.length - 1))
         }
         if (event.key.length > 1) return
         setSearch(search + event.key)
+
     }
 
 
@@ -45,13 +52,13 @@ function App() {
             dispatch(clearSearchedHero())
             return
         }
-
         let heroes:IHeroes[] = []
         heroes = dotaHeroes.filter((item) => {
             return item.name_loc.toLowerCase().includes(search.toLowerCase())
         })
-
+        setSortedHeroes(heroes)
         const array:number[] = []
+
         heroes.map((item) => {
             array.push(item.id)
         })
