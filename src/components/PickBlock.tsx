@@ -45,7 +45,6 @@ const PickBlock:FC<PickBlockProps> = ({orderNumber}) => {
         if (heroPicked) return
         dispatch(selectPick(orderNumber))
     }
-    // asdfasdfasdfasdf
     return (
         <div onClick={selectPickOrder} className='pick-side__block'>
             <div className={blockClasses.join(' ')}>
