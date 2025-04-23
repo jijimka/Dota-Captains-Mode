@@ -35,7 +35,6 @@ const PickBlock:FC<PickBlockProps> = ({orderNumber}) => {
         return <></>
 
     },[pickedHeroes])
-    console.log(pickQueue)
     function deleteHero(hero:IPickedHero) {
         dispatch(removePickedHero(hero.hero))
         dispatch(addPickQueue(hero.pick))
