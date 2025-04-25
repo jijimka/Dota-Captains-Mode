@@ -8,10 +8,12 @@ const PickList = () => {
     const {clearPickedHeroes} = pickedHeroSlice.actions
     const {clearAll} = pickOrderSlice.actions
     const dispatch = useTypedDispatch();
+
     function clearPicks() {
         dispatch(clearPickedHeroes())
         dispatch(clearAll())
     }
+
     return (
         <div className='picks'>
             <h2 className='clear-button' onClick={clearPicks}>Очистить</h2>

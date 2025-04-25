@@ -1,4 +1,4 @@
-import  {FC} from 'react';
+import {FC} from 'react';
 import {IHeroes} from "../types/IHeroes.ts";
 import HeroBlock from "./HeroBlock.tsx";
 

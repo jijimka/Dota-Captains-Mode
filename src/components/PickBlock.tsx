@@ -4,18 +4,20 @@ import {pickOrderSlice} from "../store/slices/pickOrderSlice.ts";
 import {pickedHeroSlice} from "../store/slices/pickedHeroSlice.ts";
 import {IPickedHero} from "../types/IHeroes.ts";
 import {getPickBlockClasses} from "../utils/getPickBlockClasses.ts";
+
 interface PickBlockProps {
-    orderNumber:number;
+    orderNumber: number;
 }
-const PickBlock:FC<PickBlockProps> = ({orderNumber}) => {
+
+const PickBlock: FC<PickBlockProps> = ({orderNumber}) => {
     const dispatch = useTypedDispatch()
     const orderClasses = ['pick__block-order']
     const {pickedHeroes} = useTypedSelector(state => state.pickedHeroes)
-    const {pickQueue,selectedPick,} = useTypedSelector(state => state.pickOrder)
+    const {pickQueue, selectedPick,} = useTypedSelector(state => state.pickOrder)
     const {removePickedHero} = pickedHeroSlice.actions
-    const {selectPick,addPickQueue} = pickOrderSlice.actions
-    const [heroPicked,setHeroPicked] = useState<boolean>(false)
-    const blockClasses = getPickBlockClasses(orderNumber,selectedPick,pickQueue)
+    const {selectPick, addPickQueue} = pickOrderSlice.actions
+    const [heroPicked, setHeroPicked] = useState<boolean>(false)
+    const blockClasses = getPickBlockClasses(orderNumber, selectedPick, pickQueue)
 
     const displayPickedHero = useMemo(() => {
         for (let i = 0; i < pickedHeroes.length; i++) {
@@ -34,16 +36,19 @@ const PickBlock:FC<PickBlockProps> = ({orderNumber}) => {
         }
         return <></>
 
-    },[pickedHeroes])
-    function deleteHero(hero:IPickedHero) {
+    }, [pickedHeroes])
+
+    function deleteHero(hero: IPickedHero) {
         dispatch(removePickedHero(hero.hero))
         dispatch(addPickQueue(hero.pick))
         setHeroPicked(false)
     }
+
     function selectPickOrder() {
         if (heroPicked) return
         dispatch(selectPick(orderNumber))
     }
+
     return (
         <div onClick={selectPickOrder} className='pick-side__block'>
             <div className={blockClasses.join(' ')}>

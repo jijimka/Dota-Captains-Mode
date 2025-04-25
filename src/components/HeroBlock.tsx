@@ -2,26 +2,30 @@ import {FC} from 'react';
 import {IHeroes} from "../types/IHeroes.ts";
 import {useTypedDispatch, useTypedSelector} from "../hooks/redux.ts";
 import {pickedHeroSlice} from "../store/slices/pickedHeroSlice.ts";
+
 interface HeroBlockProps {
-    hero:IHeroes,
+    hero: IHeroes,
 }
-const HeroBlock:FC<HeroBlockProps> = ({hero}) => {
+
+const HeroBlock: FC<HeroBlockProps> = ({hero}) => {
     const {pickedHeroes} = useTypedSelector(state => state.pickedHeroes)
     const {searchedHero} = useTypedSelector(state => state.heroes)
     const {addConfirmHero} = pickedHeroSlice.actions
-    const blockClasses:string[] = []
+    const blockClasses: string[] = []
     const dispatch = useTypedDispatch()
 
-    function isHeroPicked():boolean {
+    function isHeroPicked(): boolean {
         return pickedHeroes.find((pickedHero) => pickedHero.hero.id === hero.id) !== undefined
     }
+
     function isHeroBanned() {
-        const picks = [8,9,13,14,15,16,17,18,23,24]
+        const picks = [8, 9, 13, 14, 15, 16, 17, 18, 23, 24]
         const foundHero = pickedHeroes.find((pickedHero) => pickedHero.hero.id === hero.id)
-        if (foundHero === undefined ) return false
+        if (foundHero === undefined) return false
         return !picks.includes(foundHero.pick)
     }
-    function heroClick(hero:IHeroes) {
+
+    function heroClick(hero: IHeroes) {
         if (isHeroPicked()) return
         dispatch(addConfirmHero(hero))
     }
@@ -32,10 +36,9 @@ const HeroBlock:FC<HeroBlockProps> = ({hero}) => {
         } else {
             blockClasses.push('heroDisabled')
         }
-    }  else {
+    } else {
         blockClasses.push('attribute__image-container')
     }
-
 
 
     if (searchedHero) {

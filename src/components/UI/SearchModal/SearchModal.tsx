@@ -1,5 +1,5 @@
 import {FC, useEffect, useState} from "react";
-
+import classes from './SearchModal.module.css'
 interface SearchModalProps {
     search:string
 }
@@ -24,13 +24,13 @@ const SearchModal:FC<SearchModalProps> = ({search}) => {
 
     return (
         <div
-            className='searchModal'
+            className={classes.searchModal}
             style={{
                 opacity:`${useModalAnimation()}%`,
                 transition: modalTransition?'0.4s ease-in all':'',
             }}
         >
-            <div className='searchModal-text'>{search}</div>
+            <div className={classes.searchModalText}>{search}</div>
         </div>
     );
 };
