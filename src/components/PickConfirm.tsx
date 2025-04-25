@@ -30,7 +30,7 @@ const PickConfirm: FC = () => {
         }
     }
 
-    if (confirmHero === null) return <div className='pick-confirm'></div>
+    if (confirmHero === null) return <div className='pick-confirm-empty'></div>
 
     return (
 
