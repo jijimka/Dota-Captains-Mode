@@ -2,6 +2,7 @@ import {FC} from 'react';
 import {IHeroes} from "../types/IHeroes.ts";
 import {useTypedDispatch, useTypedSelector} from "../hooks/redux.ts";
 import {pickedHeroSlice} from "../store/slices/pickedHeroSlice.ts";
+import HeroImage from "./UI/HeroImage/HeroImage.tsx";
 
 interface HeroBlockProps {
     hero: IHeroes,
@@ -50,11 +51,7 @@ const HeroBlock: FC<HeroBlockProps> = ({hero}) => {
     return (
 
         <div onClick={() => heroClick(hero)} className={blockClasses.join(' ')}>
-            <img src={hero.image}
-                 className='image-container__image'
-                 alt={hero.name}
-                 draggable={false}
-            />
+            <HeroImage hero={hero}/>
         </div>
     );
 };

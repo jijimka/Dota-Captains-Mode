@@ -2,6 +2,7 @@ import {FC} from 'react';
 import {useTypedDispatch, useTypedSelector} from "../hooks/redux.ts";
 import {pickedHeroSlice} from "../store/slices/pickedHeroSlice.ts";
 import {pickOrderSlice} from "../store/slices/pickOrderSlice.ts";
+import HeroImage from "./UI/HeroImage/HeroImage.tsx";
 
 const PickConfirm: FC = () => {
     const {confirmHero, pickedHeroes} = useTypedSelector(state => state.pickedHeroes)
@@ -37,8 +38,7 @@ const PickConfirm: FC = () => {
         <div onClick={pickHero} className='pick-confirm'>
             <div className='pick-confirm__hero'>
                 <div className='pick-confirm__hero-image'>
-                    <img className='image-container__image' draggable={false} src={confirmHero.image}
-                         alt={confirmHero.name}/>
+                    <HeroImage hero={confirmHero} />
                 </div>
                 <h2 className='pick-confirm__hero-name'>{confirmHero.name_english_loc}</h2>
             </div>

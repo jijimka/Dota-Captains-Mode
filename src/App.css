@@ -36,7 +36,6 @@ body {
     border-radius: inherit;
     user-select: none;
 }
-
 .attribute__image-container {
     flex: 0 1 100px;
     position: relative;
@@ -79,7 +78,6 @@ body {
     background-color: #1e1e1e;
     gap: 10px;
     user-select: none;
-    align-items: ;
 }
 .picks-list {
     display: flex;
