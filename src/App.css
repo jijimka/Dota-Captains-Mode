@@ -10,16 +10,21 @@ h1,h2,h3,h4,h5,h6 {
     border: 0;
 
 }
+html {
+    height: 100%;
+}
 body {
     position: relative;
+    padding: 0;
     margin: 0;
+    height: 100%;
 }
 #root {
     height: 100%;
     width: 100%;
     position: relative;
-}
 
+}
 
 
 .image-container__image {
@@ -74,6 +79,7 @@ body {
     background-color: #1e1e1e;
     gap: 10px;
     user-select: none;
+    align-items: ;
 }
 .picks-list {
     display: flex;
@@ -84,6 +90,8 @@ body {
     font-size: 28px;
     font-weight: bold;
     margin-bottom: 5px;
+    display: flex;
+    gap: 5px;
 }
 .all-heroes-list {
     display: flex;
