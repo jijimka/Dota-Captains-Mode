@@ -21,7 +21,7 @@ const PickSide: FC<PickSideProps> = ({side}) => {
             <h1 className='pick-side__title'>{side}</h1>
             <div className='pick-side__body'>
                 {getSide().map((block) =>
-                    <PickBlock orderNumber={block}/>
+                    <PickBlock key={block} orderNumber={block}/>
                 )}
             </div>
         </div>

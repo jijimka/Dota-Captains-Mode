@@ -5,17 +5,20 @@ import {IHeroes} from "../../../types/IHeroes.ts";
 import dotaHeroes from "../../../../dotaHeroes.json";
 import {heroesSlice} from "../../../store/slices/heroesSlice.ts";
 import SearchModal from "../SearchModal/SearchModal.tsx";
+
 interface SearchInputProps {
-    children:React.ReactNode,
+    children: React.ReactNode,
 }
-const SearchInput:FC<SearchInputProps> = ({children}) => {
+
+const SearchInput: FC<SearchInputProps> = ({children}) => {
+
     const dispatch = useTypedDispatch();
     const [search, setSearch] = useState<string>('')
     const {addConfirmHero} = pickedHeroSlice.actions
-    const [sortedHeroes,setSortedHeroes] = useState<IHeroes[]>([])
-    const {setSearchedHero,clearSearchedHero,} = heroesSlice.actions;
-    function searchHeroes(event: React.KeyboardEvent<HTMLDivElement>) {
+    const [sortedHeroes, setSortedHeroes] = useState<IHeroes[]>([])
+    const {setSearchedHero, clearSearchedHero,} = heroesSlice.actions;
 
+    function searchHeroes(event: React.KeyboardEvent<HTMLDivElement>) {
         if (event.ctrlKey && event.key.toLowerCase() === 'a' || event.key.toLowerCase() === 'ф') {
             setSearch('')
             return
@@ -31,17 +34,18 @@ const SearchInput:FC<SearchInputProps> = ({children}) => {
         if (event.key.length > 1) return
         setSearch(search + event.key)
     }
+
     useEffect(() => {
-        if (search.length <1) {
+        if (search.length < 1) {
             dispatch(clearSearchedHero())
             return
         }
-        let heroes:IHeroes[] = []
+        let heroes: IHeroes[] = []
         heroes = dotaHeroes.filter((item) => {
             return item.name_loc.toLowerCase().includes(search.toLowerCase())
         })
         setSortedHeroes(heroes)
-        const array:number[] = []
+        const array: number[] = []
 
         heroes.map((item) => {
             array.push(item.id)

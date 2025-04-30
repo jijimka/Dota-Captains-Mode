@@ -17,7 +17,7 @@ const AttributeList: FC<AttributeListProps> = ({heroList, attribute,icon}) => {
             <h1 className='attribute__title'>{attribute} <AttributeIcon src={icon} alt={attribute}/></h1>
             <div className='attribute__list'>
                 {heroList.map(hero =>
-                    <HeroBlock hero={hero}/>
+                    <HeroBlock key={hero.id} hero={hero}/>
                 )}
             </div>
         </div>

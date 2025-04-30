@@ -29,6 +29,7 @@ const PickBlock: FC<PickBlockProps> = ({orderNumber}) => {
                              draggable={false}
                              className='pick__block-image'
                              src={pickedHeroes[i].hero.image}
+                             alt={pickedHeroes[i].hero.name_english_loc}
                         />
                     </>
                 )
