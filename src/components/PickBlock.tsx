@@ -15,7 +15,7 @@ const PickBlock: FC<PickBlockProps> = ({orderNumber}) => {
     const {pickedHeroes} = useTypedSelector(state => state.pickedHeroes)
     const {pickQueue, selectedPick,} = useTypedSelector(state => state.pickOrder)
     const {removePickedHero} = pickedHeroSlice.actions
-    const {selectPick, addPickQueue} = pickOrderSlice.actions
+    const {selectPick, addPickQueue, clearSelectedPick} = pickOrderSlice.actions
     const [heroPicked, setHeroPicked] = useState<boolean>(false)
     const blockClasses = getPickBlockClasses(orderNumber, selectedPick, pickQueue)
 
@@ -48,6 +48,9 @@ const PickBlock: FC<PickBlockProps> = ({orderNumber}) => {
     function selectPickOrder() {
         if (heroPicked) return
         dispatch(selectPick(orderNumber))
+        if (orderNumber === pickQueue[0]) {
+            dispatch(clearSelectedPick())
+        }
     }
 
     return (
