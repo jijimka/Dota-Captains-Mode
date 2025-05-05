@@ -6,17 +6,17 @@ import {pickOrderSlice} from "../store/slices/pickOrderSlice.ts";
 
 const PickList = () => {
     const {clearPickedHeroes} = pickedHeroSlice.actions
-    const {clearAll} = pickOrderSlice.actions
+    const {clearPicks} = pickOrderSlice.actions
     const dispatch = useTypedDispatch();
 
-    function clearPicks() {
+    function clearAll() {
         dispatch(clearPickedHeroes())
-        dispatch(clearAll())
+        dispatch(clearPicks())
     }
 
     return (
         <div className='picks'>
-            <h2 className='clear-button' onClick={clearPicks}>Очистить</h2>
+            <h2 className='clear-button' onClick={clearAll}>Очистить</h2>
             <div className='picks-list'>
                 <PickSide side={'Radiant'}/>
                 <PickSide side={'Dire'}/>
