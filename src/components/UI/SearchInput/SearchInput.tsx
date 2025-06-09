@@ -1,10 +1,11 @@
 import React, {FC, useEffect, useState} from 'react';
-import {useTypedDispatch} from "../../../hooks/redux.ts";
+import {useTypedDispatch, useTypedSelector} from "../../../hooks/redux.ts";
 import {pickedHeroSlice} from "../../../store/slices/pickedHeroSlice.ts";
 import {IHeroes} from "../../../types/IHeroes.ts";
 import dotaHeroes from "../../../../dotaHeroes.json";
 import {heroesSlice} from "../../../store/slices/heroesSlice.ts";
 import SearchModal from "../SearchModal/SearchModal.tsx";
+import {isHeroPicked} from "../../../utils/isHeroPicked.ts";
 
 interface SearchInputProps {
     children: React.ReactNode,
@@ -14,7 +15,8 @@ const SearchInput: FC<SearchInputProps> = ({children}) => {
 
     const dispatch = useTypedDispatch();
     const [search, setSearch] = useState<string>('')
-    const {addConfirmHero} = pickedHeroSlice.actions
+    const {pickedHeroes} = useTypedSelector(state => state.pickedHeroes);
+    const {addConfirmHero,} = pickedHeroSlice.actions
     const [sortedHeroes, setSortedHeroes] = useState<IHeroes[]>([])
     const {setSearchedHero, clearSearchedHero,} = heroesSlice.actions;
 
@@ -24,7 +26,7 @@ const SearchInput: FC<SearchInputProps> = ({children}) => {
             return
         }
         if (event.key === 'Enter') {
-            if (sortedHeroes.length > 0) {
+            if (sortedHeroes.length > 0 && !isHeroPicked(pickedHeroes, sortedHeroes[0])) {
                 dispatch(addConfirmHero(sortedHeroes[0]))
             }
         }
@@ -52,6 +54,7 @@ const SearchInput: FC<SearchInputProps> = ({children}) => {
         })
         dispatch(setSearchedHero(array))
     }, [search]);
+
     return (
         <div
             tabIndex={0}
