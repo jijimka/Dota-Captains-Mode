@@ -1,12 +1,11 @@
 # Dota Captains Mode
 
-written on: TypeScript<br>
-Framework: React<br>
-State-manager: ReduxTK<br>
+written on: TypeScript, React, ReduxTK,
 
 ### Warning
 not optimized for notepads/mobiles and very stretched monitors, might be problems on these devices
 
-### Instruction
-You can search for hero just like in the game <br>
-You can select a cell to pick/ban a hero there <br>
+## Description
+Captains Mode from Dota 2, with search like in dota and selective/removable pick cells <br>
+in plans to add Immortal draft, and maybe other gamemodes/features (open to suggestions) <br>
+if you like my project please give it a star, and if you found some problems or improvements let me know, thanks 
