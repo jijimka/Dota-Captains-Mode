@@ -42,7 +42,7 @@ const PickConfirm: FC = () => {
                 </div>
                 <h2 className='pick-confirm__hero-name'>{confirmHero.name_english_loc}</h2>
             </div>
-            <h2 className='pick-confirm__text'>Выбрать этого героя</h2>
+            <h2 className='pick-confirm__text'>Choose this hero</h2>
         </div>
     );
 };

@@ -1,5 +1,6 @@
 import {FC} from 'react';
 import PickBlock from "./PickBlock.tsx";
+import {PickOrder} from "../models/PickOrder.ts";
 
 interface PickSideProps {
     side: 'Radiant' | 'Dire'
@@ -8,12 +9,7 @@ interface PickSideProps {
 const PickSide: FC<PickSideProps> = ({side}) => {
 
     function getSide(): number[] {
-        const radiant = [1, 4, 7, 8, 10, 11, 14, 15, 18, 19, 22, 23]
-        const dire = [2, 3, 5, 6, 9, 12, 13, 16, 17, 20, 21, 24]
-        if (side === 'Radiant') {
-            return radiant
-        }
-        return dire
+        return side === 'Radiant' ? PickOrder.radiant : PickOrder.dire
     }
 
     return (

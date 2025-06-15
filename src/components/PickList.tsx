@@ -16,7 +16,7 @@ const PickList = () => {
 
     return (
         <div className='picks'>
-            <h2 className='clear-button' onClick={clearAll}>Очистить</h2>
+            <h2 className='clear-button' onClick={clearAll}>Clear</h2>
             <div className='picks-list'>
                 <PickSide side={'Radiant'}/>
                 <PickSide side={'Dire'}/>
