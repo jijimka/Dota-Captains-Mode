@@ -245,6 +245,7 @@ body {
 .pick-confirm__hero {
     display: flex;
     gap: 5px;
+    align-items:center;
 }
 
 .pick-confirm__hero-image {
@@ -255,7 +256,8 @@ body {
 }
 
 .pick-confirm__hero-name {
-    font-size: 21px;
+    font-size: 24px;
+    letter-spacing: 1px;
     display: flex;
     align-items: center;
 }
@@ -274,7 +276,8 @@ body {
 
 .pick-confirm__text {
     font-size: 22px;
-    text-align: center;
+    display: flex;
+    align-items: center;
 }
 
 .pick-block__active {
