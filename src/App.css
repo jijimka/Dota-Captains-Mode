@@ -11,7 +11,10 @@ h1, h2, h3, h4, h5, h6 {
     border: 0;
 
 }
-
+h1 {
+    font-size: 3.2em;
+    line-height: 1.1;
+}
 html {
     height: 100%;
 }
@@ -27,7 +30,8 @@ body {
     height: 100%;
     width: 100%;
     position: relative;
-
+    color: rgba(255, 255, 255, 0.87);
+    background-color: #242424;
 }
 
 
