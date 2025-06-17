@@ -7,6 +7,7 @@ import {heroesSlice} from "./store/slices/heroesSlice.ts";
 import AllHeroesList from "./components/AllHeroesList.tsx";
 import PickList from "./components/PickList.tsx";
 import SearchInput from "./components/UI/SearchInput/SearchInput.tsx";
+import NavMenu from "./components/NavMenu.tsx";
 
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
     return (
         <>
             <SearchInput>
+                <NavMenu />
                 <AllHeroesList/>
                 <PickList/>
             </SearchInput>

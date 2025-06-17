@@ -113,8 +113,9 @@ body {
     /* Remove this line to make heroes line up vertical  */
     flex-direction: column;
     gap: 10px;
-    padding: 2px;
+    padding: 7px 2px 2px;
     user-select: none;
+    justify-content: center;
 }
 
 .heroes-list__attribute {
