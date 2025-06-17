@@ -1,10 +1,16 @@
 import PopUpMenu from "./UI/PopUpMenu/PopUpMenu.tsx";
+import {NavLink} from "react-router";
 
 const NavMenu = () => {
     return (
         <>
             <PopUpMenu>
-                asdf
+                <NavLink to={'/ImmortalDraft'}>
+                    Immortal Draft
+                </NavLink>
+                <NavLink to={'/Dota-Captains-Mode'}>
+                    Captains Mode
+                </NavLink>
             </PopUpMenu>
         </>
     );
