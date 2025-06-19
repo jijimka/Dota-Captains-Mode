@@ -1,6 +1,6 @@
 import {FC} from 'react';
 import PickBlock from "./PickBlock.tsx";
-import {PickOrder} from "../models/PickOrder.ts";
+import {PickOrder} from "../../models/PickOrder.ts";
 
 interface PickSideProps {
     side: 'Radiant' | 'Dire'

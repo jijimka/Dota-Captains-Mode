@@ -1,10 +1,10 @@
 import {FC,} from 'react';
-import {useTypedDispatch, useTypedSelector} from "../hooks/redux.ts";
-import {pickOrderSlice} from "../store/slices/pickOrderSlice.ts";
-import {pickedHeroSlice} from "../store/slices/pickedHeroSlice.ts";
-import {IPickedHero} from "../types/IHeroes.ts";
-import {getPickBlockClasses} from "../utils/getPickBlockClasses.ts";
-import {useDisplayPickedHero} from "../hooks/useDisplayPickedHero.tsx";
+import {useTypedDispatch, useTypedSelector} from "../../hooks/redux.ts";
+import {pickOrderSlice} from "../../store/slices/pickOrderSlice.ts";
+import {pickedHeroSlice} from "../../store/slices/pickedHeroSlice.ts";
+import {IPickedHero} from "../../types/IHeroes.ts";
+import {getPickBlockClasses} from "../../utils/getPickBlockClasses.ts";
+import {useDisplayPickedHero} from "../../hooks/useDisplayPickedHero.tsx";
 
 interface PickBlockProps {
     orderNumber: number;

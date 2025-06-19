@@ -1,7 +1,7 @@
 import {FC} from 'react';
-import {IHeroes} from "../types/IHeroes.ts";
+import {IHeroes} from "../../types/IHeroes.ts";
 import HeroBlock from "./HeroBlock.tsx";
-import AttributeIcon from "./UI/AttributeIcon/AttributeIcon.tsx";
+import AttributeIcon from "../UI/AttributeIcon/AttributeIcon.tsx";
 
 interface AttributeListProps {
     heroList: IHeroes[],

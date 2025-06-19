@@ -1,10 +1,10 @@
 import {FC} from 'react';
-import {IHeroes} from "../types/IHeroes.ts";
-import {useTypedDispatch, useTypedSelector} from "../hooks/redux.ts";
-import {pickedHeroSlice} from "../store/slices/pickedHeroSlice.ts";
-import HeroImage from "./UI/HeroImage/HeroImage.tsx";
-import {getHeroBlockClass,} from "../utils/getHeroBlockClass.ts";
-import {isHeroPicked} from "../utils/isHeroPicked.ts";
+import {IHeroes} from "../../types/IHeroes.ts";
+import {useTypedDispatch, useTypedSelector} from "../../hooks/redux.ts";
+import {pickedHeroSlice} from "../../store/slices/pickedHeroSlice.ts";
+import HeroImage from "../UI/HeroImage/HeroImage.tsx";
+import {getHeroBlockClass,} from "../../utils/getHeroBlockClass.ts";
+import {isHeroPicked} from "../../utils/isHeroPicked.ts";
 
 interface HeroBlockProps {
     hero: IHeroes,

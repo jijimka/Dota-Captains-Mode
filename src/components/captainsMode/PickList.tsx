@@ -1,8 +1,8 @@
 import PickSide from "./PickSide.tsx";
 import PickConfirm from "./PickConfirm.tsx";
-import {pickedHeroSlice} from "../store/slices/pickedHeroSlice.ts";
-import {useTypedDispatch} from "../hooks/redux.ts";
-import {pickOrderSlice} from "../store/slices/pickOrderSlice.ts";
+import {pickedHeroSlice} from "../../store/slices/pickedHeroSlice.ts";
+import {useTypedDispatch} from "../../hooks/redux.ts";
+import {pickOrderSlice} from "../../store/slices/pickOrderSlice.ts";
 
 const PickList = () => {
     const {clearPickedHeroes} = pickedHeroSlice.actions

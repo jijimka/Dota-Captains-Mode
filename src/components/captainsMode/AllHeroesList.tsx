@@ -1,7 +1,7 @@
 import {FC,} from 'react';
-import {useTypedSelector} from "../hooks/redux.ts";
+import {useTypedSelector} from "../../hooks/redux.ts";
 import AttributeList from "./AttributeList.tsx";
-import {AttributeIcons} from "../models/AttributeIcons.ts";
+import {AttributeIcons} from "../../models/AttributeIcons.ts";
 
 
 const AllHeroesList: FC = () => {

@@ -317,3 +317,51 @@ body {
 .pick-block__selected {
     border: 2px solid #006e6e;
 }
+.player-card {
+    display: flex;
+    flex-direction: column;
+    background-color: #181818;
+    flex: 0 0 8%;
+    height: 240px;
+    justify-content: space-between;
+    padding: 10px;
+}
+.player-card__image {
+    width: 100%;
+    height: 100%;
+
+}
+.player-card__image-div {
+    width: 100px;
+    height: 100px;
+}
+.player-card__title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-wrap: wrap;
+    font-size: 20px;
+}
+.player-card__role-icon {
+    width: 24px;
+    height: 24px;
+}
+.player-card__role {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.player-card__rating {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.player-card__role-list {
+    display: flex;
+
+}
+.player-list {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}

@@ -1,8 +1,8 @@
 import {FC} from 'react';
-import {useTypedDispatch, useTypedSelector} from "../hooks/redux.ts";
-import {pickedHeroSlice} from "../store/slices/pickedHeroSlice.ts";
-import {pickOrderSlice} from "../store/slices/pickOrderSlice.ts";
-import HeroImage from "./UI/HeroImage/HeroImage.tsx";
+import {useTypedDispatch, useTypedSelector} from "../../hooks/redux.ts";
+import {pickedHeroSlice} from "../../store/slices/pickedHeroSlice.ts";
+import {pickOrderSlice} from "../../store/slices/pickOrderSlice.ts";
+import HeroImage from "../UI/HeroImage/HeroImage.tsx";
 
 const PickConfirm: FC = () => {
     const {confirmHero, pickedHeroes} = useTypedSelector(state => state.pickedHeroes)
