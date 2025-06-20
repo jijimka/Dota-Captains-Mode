@@ -365,3 +365,24 @@ body {
     gap: 10px;
     justify-content: center;
 }
+.player-block {
+    width: 90px;
+    height: 60px;
+    border: 2px solid black;
+}
+.player-picks-list {
+    display: flex;
+    justify-content: space-around;
+}
+.player-picks-list__side {
+    display: flex;
+    gap: 10px;
+}
+.radiant-picks {
+    transform: skewX(8deg);
+
+}
+.dire-picks {
+    transform: skewX(-8deg);
+
+}

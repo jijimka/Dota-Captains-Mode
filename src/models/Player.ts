@@ -7,4 +7,7 @@ export class Player {
         this.mmr = mmr;
         this.role = role;
     }
+    isMmrNull() {
+        return this.mmr === null;
+    }
 }

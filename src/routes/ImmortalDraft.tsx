@@ -1,6 +1,7 @@
 import NavMenu from "../components/NavMenu.tsx";
 import PlayersList from "../components/immortalDraft/PlayersList.tsx";
 import {Player} from "../models/Player.ts";
+import PlayerPicksList from "../components/immortalDraft/PlayerPicksList.tsx";
 
 const ImmortalDraft = () => {
     const huyna:Player[] = []
@@ -11,6 +12,7 @@ const ImmortalDraft = () => {
     return (
         <div>
             <NavMenu/>
+            <PlayerPicksList/>
             <PlayersList players={huyna}/>
         </div>
     );

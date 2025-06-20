@@ -5,7 +5,7 @@ const NavMenu = () => {
     return (
         <>
             <PopUpMenu>
-                <NavLink to={'/ImmortalDraft'}>
+                <NavLink to={'/Dota-Captains-Mode/ImmortalDraft'}>
                     Immortal Draft
                 </NavLink>
                 <NavLink to={'/Dota-Captains-Mode'}>

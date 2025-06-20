@@ -30,7 +30,7 @@ function App() {
             <BrowserRouter>
                 <Routes>
                     <Route path='/Dota-Captains-Mode/' element={<CaptainsMode/>}/>
-                    <Route path='/ImmortalDraft' element={<ImmortalDraft/>}/>
+                    <Route path='/Dota-Captains-Mode/ImmortalDraft' element={<ImmortalDraft/>}/>
                 </Routes>
             </BrowserRouter>
         </>
