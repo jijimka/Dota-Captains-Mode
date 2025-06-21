@@ -47,7 +47,14 @@ body {
     background-color: #242424;
 }
 
-
+.ImmortalDraft {
+    width: 100%;
+    height: 100%;
+    background-color: #495C6A;
+    -webkit-box-shadow: 4px 4px 45px 100px rgba(0, 0, 0, 0.19) inset;
+    -moz-box-shadow: 4px 4px 45px 100px rgba(0, 0, 0, 0.19) inset;
+    box-shadow: 4px 4px 45px 130px rgba(0, 0, 0, 0.15) inset;
+}
 .image-container__image {
     width: 100%;
     height: 100%;
@@ -322,7 +329,7 @@ body {
     flex-direction: column;
     background-color: #181818;
     flex: 0 0 8%;
-    height: 240px;
+    min-height: 280px;
     justify-content: space-between;
     padding: 10px;
 }
@@ -369,6 +376,8 @@ body {
     width: 90px;
     height: 60px;
     border: 2px solid black;
+    background-color: #444C57;
+    box-shadow: 0 0 100px 100px rgb(255, 0, 0) inset;
 }
 .player-picks-list {
     display: flex;
@@ -380,9 +389,59 @@ body {
 }
 .radiant-picks {
     transform: skewX(8deg);
-
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0), 0 0 30px 1px rgba(0, 0, 0, 0.4) inset;
 }
 .dire-picks {
     transform: skewX(-8deg);
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0), 0 0 30px 1px rgba(0, 0, 0, 0.4) inset;
+
+
+}
+.player-card__pick-button {
+    background: #469F85;
+    display: flex;
+    justify-content: center;
+    padding: 7px 0;
+    font-size: 18px;
+    text-transform: uppercase;
+    font-weight: bold;
+    cursor: pointer;
+}
+.pick-box {
+    width: 40px;
+    height: 8px;
+    border-bottom-right-radius: 5px;
+    border-top-right-radius: 5px;
+}
+.pick-box__radiant {
+    border:1px solid #97FEFB
+}
+.pick-box__dire {
+    border:1px solid #A83806
+}
+.pick-box__active-radiant {
+    border: 1px solid #97FEFB;
+    background-color: #97fefb;
+    box-shadow: 0 0 100px 16px rgb(151, 254, 251);
+}
+.pick-box__active-dire {
+    background-color: #A83806;
+    box-shadow: 0 0 100px 16px rgb(168, 56, 6);
+}
+.pick-box__passed-radiant {
+    border: 1px solid #97FEFB;
+    background-color: #97fefb;
+}
+.pick-box__passed-dire {
+    background-color: #A83806;
+}
+.picks-bar {
+    height: 28%;
+    display: flex;
+    gap: 3px;
+    justify-content: center;
+    align-items: center;
+}
+.player-block-list {
 
 }

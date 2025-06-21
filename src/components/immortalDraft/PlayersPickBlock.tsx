@@ -20,7 +20,7 @@ const PlayersPickBlock: FC<PlayersPickBlockProps> = ({order,side}) => {
     }
 
     if (player === null) return (
-        <div>
+        <div className='player-block-list'>
             <div
                 className={['player-block', side === 'Radiant'?'radiant-picks':'dire-picks'].join(' ')}
                 style={styles}
@@ -28,9 +28,8 @@ const PlayersPickBlock: FC<PlayersPickBlockProps> = ({order,side}) => {
             </div>
         </div>
     )
-
     return (
-        <div>
+        <div className='player-block-list'>
             <div
                 className={['player-block', side === 'Radiant'?'radiant-picks':'dire-picks'].join(' ')}
                 style={styles}

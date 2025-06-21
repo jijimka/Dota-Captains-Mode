@@ -16,7 +16,10 @@ export const playerPicksSlice = createSlice({
     reducers: {
         addRadiantPlayer (state:playerPicksSliceProps,action:PayloadAction<Player>) {
             state.radiantPlayers.push(action.payload)
-        }
+        },
+        addDirePlayer (state:playerPicksSliceProps,action:PayloadAction<Player>) {
+            state.direPlayers.push(action.payload)
+        },
     }
 })
 export default playerPicksSlice.reducer

@@ -2,6 +2,7 @@ import NavMenu from "../components/NavMenu.tsx";
 import PlayersList from "../components/immortalDraft/PlayersList.tsx";
 import {Player} from "../models/Player.ts";
 import PlayerPicksList from "../components/immortalDraft/PlayerPicksList.tsx";
+import PicksOrderBar from "../components/immortalDraft/PicksOrderBar.tsx";
 
 const ImmortalDraft = () => {
     const huyna:Player[] = []
@@ -10,9 +11,10 @@ const ImmortalDraft = () => {
         huyna.push(aboba)
     }
     return (
-        <div>
+        <div className='ImmortalDraft'>
             <NavMenu/>
             <PlayerPicksList/>
+            <PicksOrderBar/>
             <PlayersList players={huyna}/>
         </div>
     );
