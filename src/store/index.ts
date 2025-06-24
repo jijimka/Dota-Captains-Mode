@@ -3,6 +3,7 @@ import heroesSlice from "./slices/heroesSlice.ts";
 import pickedHeroSlice from "./slices/pickedHeroSlice.ts";
 import pickOrderSlice from "./slices/pickOrderSlice.ts";
 import playerPicksSlice from "./slices/playerPicksSlice.ts";
+import playerPickOrderSlice from "./slices/playerPickOrderSlice.ts";
 
 
 const rootReducer = combineReducers({
@@ -10,6 +11,7 @@ const rootReducer = combineReducers({
     pickedHeroes: pickedHeroSlice,
     pickOrder: pickOrderSlice,
     playersPicks: playerPicksSlice,
+    playerPicksTurn: playerPickOrderSlice,
 })
 export const setupStore = () => configureStore({
     reducer: rootReducer,

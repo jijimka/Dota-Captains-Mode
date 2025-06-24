@@ -28,6 +28,8 @@ const PlayersPickBlock: FC<PlayersPickBlockProps> = ({order,side}) => {
             </div>
         </div>
     )
+
+
     return (
         <div className='player-block-list'>
             <div
@@ -35,10 +37,10 @@ const PlayersPickBlock: FC<PlayersPickBlockProps> = ({order,side}) => {
                 style={styles}
             >
                 <div className='player-block__rating'>
-                    {player.isMmrNull()?player.mmr : 'Not calibrated'}
+                    MMR {player.isMmrNull()?'Not calibrated':player.mmr}
                 </div>
             </div>
-            <div>
+            <div className='player-block__nickname'>
                 {player.nickname}
             </div>
         </div>

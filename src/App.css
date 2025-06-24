@@ -378,6 +378,9 @@ body {
     border: 2px solid black;
     background-color: #444C57;
     box-shadow: 0 0 100px 100px rgb(255, 0, 0) inset;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
 }
 .player-picks-list {
     display: flex;
@@ -397,16 +400,7 @@ body {
 
 
 }
-.player-card__pick-button {
-    background: #469F85;
-    display: flex;
-    justify-content: center;
-    padding: 7px 0;
-    font-size: 18px;
-    text-transform: uppercase;
-    font-weight: bold;
-    cursor: pointer;
-}
+
 .pick-box {
     width: 40px;
     height: 8px;
@@ -444,4 +438,14 @@ body {
 }
 .player-block-list {
 
+}
+.player-block__rating {
+    transform: none;
+    font-size: 12px;
+    display: flex;
+    justify-content: center;
+    flex-grow: 1;
+}
+.player-block__nickname {
+    text-align: center;
 }

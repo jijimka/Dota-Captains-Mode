@@ -1,29 +1,20 @@
 import {Player} from "../../models/Player.ts";
-import {FC} from "react";
+import {FC, useState} from "react";
 import image from '../../images/dota-2-rank-immortal-placed.png'
 import {RoleIcons} from "../../models/RoleIcons.ts";
-import {useTypedDispatch} from "../../hooks/redux.ts";
-import {playerPicksSlice} from "../../store/slices/playerPicksSlice.ts";
-import {PickTurns} from "../../models/PickTurns.ts";
+import PlayerPickButton from "../UI/PlayerPickButton/PlayerPickButton.tsx";
+import {useTypedSelector} from "../../hooks/redux.ts";
+
 interface PlayerCardProps {
     player: Player;
 }
 
 const PlayerCard: FC<PlayerCardProps> = ({player}) => {
     const roles = [RoleIcons.CARRY,RoleIcons.MID,RoleIcons.HARD,RoleIcons.SEMISUP,RoleIcons.FULLSUP]
-    const dispatch = useTypedDispatch()
-    const {addDirePlayer,addRadiantPlayer} = playerPicksSlice.actions
-    function pickPlayer() {
+    const radiantPlayers = useTypedSelector(state => state.playersPicks.radiantPlayers)
+    const direPlayers = useTypedSelector(state => state.playersPicks.direPlayers)
+    const [cardOff,setCardOff] = useState<boolean>(false)
 
-        if (PickTurns.getPickTurn()) {
-            dispatch(addRadiantPlayer(player))
-            PickTurns.increasePickTurn()
-        } else {
-            dispatch(addDirePlayer(player))
-            PickTurns.increasePickTurn()
-        }
-        console.log(PickTurns.turn)
-    }
     return (
         <div className='player-card'>
             <div className='player-card__title'>
@@ -48,9 +39,7 @@ const PlayerCard: FC<PlayerCardProps> = ({player}) => {
                     {player.mmr}
                 </div>
             </div>
-            <div onClick={pickPlayer} className='player-card__pick-button'>
-                pick
-            </div>
+            <PlayerPickButton buttonOff={cardOff} player={player}/>
         </div>
     );
 };
