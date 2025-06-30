@@ -1,0 +1,32 @@
+.playerForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.playerFormRoles {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.rolesCheckbox {
+    display: flex;
+    gap: 5px;
+}
+.formModal {
+    z-index: 1000;
+    top:0;
+    left:0;
+    bottom:0;
+    right:0;
+    position: absolute;
+    background-color: rgba(10, 10, 10, 0.75);
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.formActive {
+     display: flex;
+     opacity: 1;
+ }

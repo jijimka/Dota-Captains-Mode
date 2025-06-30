@@ -7,6 +7,7 @@ import {sortAgiHeroes, sortIntHeroes, sortStrHeroes, sortUniHeroes} from "./util
 import dotaHeroes from "../dotaHeroes.json";
 import {useEffect} from "react";
 import ImmortalDraft from "./routes/ImmortalDraft.tsx";
+import {PageRoutes} from "./models/PageRoutes.ts";
 
 
 function App() {
@@ -29,8 +30,8 @@ function App() {
         <>
             <BrowserRouter>
                 <Routes>
-                    <Route path='/Dota-Captains-Mode/' element={<CaptainsMode/>}/>
-                    <Route path='/Dota-Captains-Mode/ImmortalDraft' element={<ImmortalDraft/>}/>
+                    <Route path={PageRoutes.CAPTAINSMODEURL} element={<CaptainsMode/>}/>
+                    <Route path={PageRoutes.IMMORTALDRAFTURL} element={<ImmortalDraft/>}/>
                 </Routes>
             </BrowserRouter>
         </>

@@ -1,11 +1,9 @@
-import {Player} from "../../models/Player.ts";
 import {FC} from "react";
 import PlayerCard from "./PlayerCard.tsx";
+import {useTypedSelector} from "../../hooks/redux.ts";
 
-interface PlayerListProps {
-    players: Player[];
-}
-const PlayersList:FC<PlayerListProps> = ({players}) => {
+const PlayersList:FC = () => {
+    const players = useTypedSelector(state => state.playerList.playerList)
     return (
         <div className='player-list'>
             {players.map(player =>

@@ -357,15 +357,16 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    min-height: 45px;
 }
 .player-card__rating {
     display: flex;
     flex-direction: column;
     align-items: center;
+    min-height: 42px;
 }
 .player-card__role-list {
     display: flex;
-
 }
 .player-list {
     display: flex;
@@ -448,4 +449,7 @@ body {
 }
 .player-block__nickname {
     text-align: center;
+}
+.nav__text__active {
+    border-bottom: 1px solid white;
 }

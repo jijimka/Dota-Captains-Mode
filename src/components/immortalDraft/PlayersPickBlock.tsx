@@ -37,7 +37,7 @@ const PlayersPickBlock: FC<PlayersPickBlockProps> = ({order,side}) => {
                 style={styles}
             >
                 <div className='player-block__rating'>
-                    MMR {player.isMmrNull()?'Not calibrated':player.mmr}
+                    {player.isMmrNull()?'Not calibrated':`MMR ${player.mmr}`}
                 </div>
             </div>
             <div className='player-block__nickname'>

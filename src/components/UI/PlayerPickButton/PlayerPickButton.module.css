@@ -9,5 +9,6 @@
     cursor: pointer;
 }
 .pickButtonOff {
-    filter: contrast(0.1);
+    filter: contrast(0.2);
+    cursor: default;
 }
