@@ -16,7 +16,7 @@ const PlayerCard: FC<PlayerCardProps> = ({player}) => {
                 <div className='player-card__image-div'>
                     <img alt='immortal-icon' className='player-card__image' src={image}/>
                 </div>
-                <div>
+                <div className='player-card__nickname'>
                     {player.nickname}
                 </div>
             </div>

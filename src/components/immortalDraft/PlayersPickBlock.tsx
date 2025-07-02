@@ -2,6 +2,7 @@ import {FC} from 'react';
 import {useTypedSelector} from "../../hooks/redux.ts";
 import {PlayerColors} from "../../models/PlayerColors.ts";
 import {getPlayerFromList} from "../../utils/getPlayerFromList.ts";
+import {getNickname} from "../../utils/getNickname.ts";
 
 interface PlayersPickBlockProps {
     order: number;
@@ -25,6 +26,10 @@ const PlayersPickBlock: FC<PlayersPickBlockProps> = ({order,side}) => {
                 className={['player-block', side === 'Radiant'?'radiant-picks':'dire-picks'].join(' ')}
                 style={styles}
             >
+                <div className='player-block__rating'>
+                </div>
+            </div>
+            <div className='player-block__nickname'>
             </div>
         </div>
     )
@@ -41,7 +46,7 @@ const PlayersPickBlock: FC<PlayersPickBlockProps> = ({order,side}) => {
                 </div>
             </div>
             <div className='player-block__nickname'>
-                {player.nickname}
+                {getNickname(player.nickname)}
             </div>
         </div>
     );

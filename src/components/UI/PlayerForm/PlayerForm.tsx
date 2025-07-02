@@ -7,6 +7,8 @@ import * as yup from "yup";
 import {InferType} from "yup";
 import {useTypedDispatch, useTypedSelector} from "../../../hooks/redux.ts";
 import {playerListSlice} from "../../../store/slices/playerListSlice.ts";
+import FormInput from "../FormInput/FormInput.tsx";
+import FormCheckbox from "../FormCheckbox/FormCheckbox.tsx";
 
 
 const PlayerForm: FC = () => {
@@ -19,7 +21,7 @@ const PlayerForm: FC = () => {
         roles: yup.array().of(yup.number().min(1).max(5).required().nullable()).required()
     }).required()
 
-    const {register, handleSubmit,} = useForm<InferType<typeof validateScheme>>({
+    const {register, handleSubmit, formState: {errors}} = useForm<InferType<typeof validateScheme>>({
         resolver: yupResolver(validateScheme),
         defaultValues: {
             nickname: undefined,
@@ -31,48 +33,38 @@ const PlayerForm: FC = () => {
 
 
     const onSubmit: SubmitHandler<InferType<typeof validateScheme>> = (data) => {
+        console.log(data)
         const newPlayer = new Player(data.nickname, data.mmr, data.roles)
         dispatch(addPlayer(newPlayer))
+
     }
 
 
     if (players.length < 10) {
         formClasses.push(classes.formActive)
     }
-
+    console.log(errors)
     return (
         <div className={formClasses.join(' ')}>
             <form className={classes.playerForm} onSubmit={handleSubmit(onSubmit)}>
-                <label htmlFor='nickname'>Nickname</label>
-                <input {...register('nickname')} autoComplete={'off'} id='nickname'/>
-                <div className={classes.playerFormRoles}>
-                    <label>Preferred Role</label>
-                    <div className={classes.rolesCheckbox}>
-                        <label htmlFor='carry'>Carry</label>
-                        <input type='checkbox' value='1' id='carry' placeholder='1' {...register('roles')}/>
-                    </div>
-                    <div className={classes.rolesCheckbox}>
-                        <label htmlFor='midlane'>Midlane</label>
-                        <input type='checkbox' value='2' id='midlane' placeholder='2' {...register('roles')}/>
-                    </div>
-                    <div className={classes.rolesCheckbox}>
-                        <label htmlFor='offlane'>Offlane</label>
-                        <input type='checkbox' value='3' id='offlane' placeholder='3' {...register('roles')}/>
-                    </div>
-                    <div className={classes.rolesCheckbox}>
-                        <label htmlFor='softSupport'>Soft support</label>
-                        <input type='checkbox' value='4' id='softSupport' placeholder='4' {...register('roles')}/>
-                    </div>
-                    <div className={classes.rolesCheckbox}>
-                        <label htmlFor='support'>Support</label>
-                        <input type='checkbox' value='5' id='support' placeholder='5' {...register('roles')}/>
-                    </div>
+                <div className={classes.playerFormNickname}>
+                    <label className={classes.formLabel} htmlFor='nickname'>Nickname</label>
+                    <FormInput {...register('nickname')} autoComplete={'off'} id='nickname'/>
                 </div>
-                <label htmlFor='mmr'>MMR</label>
-                <input {...register('mmr')} autoComplete={'off'} id='mmr'/>
-                <button type='submit'>Create Player</button>
+                <div className={classes.playerFormRoles}>
+                    <label className={classes.formLabel}>Preferred Role</label>
+                    <FormCheckbox labelName={'Carry'} labelId={'carry'} value='1' {...register('roles')}/>
+                    <FormCheckbox labelName={'Midlane'} labelId={'midlane'} value='2' {...register('roles')}/>
+                    <FormCheckbox labelName={'Offlane'} labelId={'offlane'} value='3' {...register('roles')} />
+                    <FormCheckbox labelName={'soft support'} value='4' labelId={'softSupport'} {...register('roles')}/>
+                    <FormCheckbox labelName={'support'} labelId={'support'} value='5' {...register('roles')}/>
+                </div>
+                <div className={classes.playerFormMMR}>
+                    <label className={classes.formLabel} htmlFor='mmr'>MMR</label>
+                    <FormInput {...register('mmr')} autoComplete={'off'} id='mmr'/>
+                </div>
+                <button className={classes.formButton} type='submit'>Create Player</button>
             </form>
-            {}
         </div>
     );
 };
