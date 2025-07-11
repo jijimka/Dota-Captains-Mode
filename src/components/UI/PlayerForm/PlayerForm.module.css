@@ -15,25 +15,11 @@
     display: flex;
     gap: 5px;
 }
-.formModal {
-    z-index: 1000;
-    top:0;
-    left:0;
-    bottom:0;
-    right:0;
-    position: absolute;
-    background-color: rgba(10, 10, 10, 0.75);
-    display: none;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-.formActive {
-     display: flex;
-     opacity: 1;
- }
+
 .formLabel {
     font-size: 24px;
+    position: relative;
+    display: flex;
 }
 .formButton {
     background-color: #4C8655;
@@ -64,4 +50,24 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+.formControl {
+    display: flex;
+    gap: 25px;
+    position: absolute;
+    bottom: 25px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 20px;
+}
+.formControlButton {
+    cursor: pointer;
+    transition: 0.2s ease all;
+}
+.formControlButton:hover {
+    color: #4C8655;
+}
+.formError {
+    font-size: 20px;
+    color: red;
 }

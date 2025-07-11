@@ -2,7 +2,6 @@ import {FC} from 'react';
 import {useTypedDispatch, useTypedSelector} from "../../hooks/redux.ts";
 import {pickedHeroSlice} from "../../store/slices/pickedHeroSlice.ts";
 import {pickOrderSlice} from "../../store/slices/pickOrderSlice.ts";
-import HeroImage from "../UI/HeroImage/HeroImage.tsx";
 
 const PickConfirm: FC = () => {
     const {confirmHero, pickedHeroes} = useTypedSelector(state => state.pickedHeroes)
@@ -31,18 +30,26 @@ const PickConfirm: FC = () => {
         }
     }
 
-    if (confirmHero === null) return <div className='pick-confirm-empty'></div>
+    if (confirmHero === null) return (
+        <div className='pick-confirm-empty'>
+            <div className='pick-confirm__hero'>
+                <h2 className='pick-confirm__text'>Pick</h2>
+                <h2 className='pick-confirm__hero-name'></h2>
+            </div>
+        </div>
+    )
 
     return (
 
         <div onClick={pickHero} className='pick-confirm'>
-            <div className='pick-confirm__hero'>
-                <div className='pick-confirm__hero-image'>
-                    <HeroImage hero={confirmHero} />
-                </div>
-                <h2 className='pick-confirm__text'>Choose</h2>
+            <div className='pick-confirm__hero-image'>
+                <img draggable='false' alt={confirmHero.name_english_loc} src={confirmHero.image} />
+                <div className='image-fadeaway'></div>
             </div>
-            <h2 className='pick-confirm__hero-name'>{confirmHero.name_english_loc}</h2>
+            <div className='pick-confirm__hero'>
+                <h2 className='pick-confirm__text'>Pick</h2>
+                <h2 className='pick-confirm__hero-name'>{confirmHero.name_english_loc}</h2>
+            </div>
         </div>
     );
 };

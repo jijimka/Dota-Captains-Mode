@@ -9,7 +9,8 @@ export function getNickname(nickname:string) {
                 break;
             }
         }
+        return answer + '.' + '.' + '.'
     }
-    return answer + '.' + '.' + '.'
+    return answer;
 }
 

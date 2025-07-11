@@ -20,6 +20,10 @@ export const playerPicksSlice = createSlice({
         addDirePlayer (state:playerPicksSliceProps,action:PayloadAction<Player>) {
             state.direPlayers.push(action.payload)
         },
+        clearPlayers (state:playerPicksSliceProps) {
+            state.radiantPlayers = []
+            state.direPlayers = []
+        },
     }
 })
 export default playerPicksSlice.reducer

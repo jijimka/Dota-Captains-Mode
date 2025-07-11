@@ -3,6 +3,7 @@ import PlayersList from "../components/immortalDraft/PlayersList.tsx";
 import PlayerPicksList from "../components/immortalDraft/PlayerPicksList.tsx";
 import PicksOrderBar from "../components/immortalDraft/PicksOrderBar.tsx";
 import PlayerForm from "../components/UI/PlayerForm/PlayerForm.tsx";
+import ControlPanel from "../components/immortalDraft/ControlPanel.tsx";
 
 
 const ImmortalDraft = () => {
@@ -14,6 +15,7 @@ const ImmortalDraft = () => {
             <PlayerPicksList/>
             <PicksOrderBar/>
             <PlayersList/>
+            <ControlPanel/>
         </div>
     );
 };

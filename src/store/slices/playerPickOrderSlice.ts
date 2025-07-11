@@ -13,6 +13,9 @@ export const playerPickOrderSlice = createSlice({
         increasePickOrder(state:playerPickOrderSliceProps) {
             state.playerPickTurn++
         },
+        clearPickOrder(state:playerPickOrderSliceProps) {
+            state.playerPickTurn = 0
+        }
     }
 })
 export default playerPickOrderSlice.reducer

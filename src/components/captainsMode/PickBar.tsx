@@ -4,7 +4,7 @@ import {pickedHeroSlice} from "../../store/slices/pickedHeroSlice.ts";
 import {useTypedDispatch} from "../../hooks/redux.ts";
 import {pickOrderSlice} from "../../store/slices/pickOrderSlice.ts";
 
-const PickList = () => {
+const PickBar = () => {
     const {clearPickedHeroes} = pickedHeroSlice.actions
     const {clearPicks} = pickOrderSlice.actions
     const dispatch = useTypedDispatch();
@@ -26,4 +26,4 @@ const PickList = () => {
     );
 };
 
-export default PickList;
+export default PickBar;

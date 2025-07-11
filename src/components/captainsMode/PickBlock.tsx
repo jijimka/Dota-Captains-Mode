@@ -5,6 +5,7 @@ import {pickedHeroSlice} from "../../store/slices/pickedHeroSlice.ts";
 import {IPickedHero} from "../../types/IHeroes.ts";
 import {getPickBlockClasses} from "../../utils/getPickBlockClasses.ts";
 import {useDisplayPickedHero} from "../../hooks/useDisplayPickedHero.tsx";
+import {PickOrder} from "../../models/PickOrder.ts";
 
 interface PickBlockProps {
     orderNumber: number;
@@ -34,12 +35,16 @@ const PickBlock: FC<PickBlockProps> = ({orderNumber}) => {
         }
     }
 
+    if (PickOrder.dire.includes(orderNumber)) {
+        orderClasses.push('pick__block-order-dire')
+    }
+
     return (
         <div onClick={selectPickOrder} className='pick-side__block'>
             <div className={blockClasses.join(' ')}>
                 {displayPickedHero}
             </div>
-            <p className={orderClasses.join(' ')}>{orderNumber}</p>
+            <div className={orderClasses.join(' ')}>{orderNumber}</div>
         </div>
     );
 };

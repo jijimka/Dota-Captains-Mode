@@ -7,6 +7,7 @@
     text-transform: uppercase;
     font-weight: bold;
     cursor: pointer;
+    user-select: none;
 }
 .pickButtonOff {
     filter: contrast(0.2);

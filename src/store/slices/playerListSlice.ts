@@ -5,16 +5,19 @@ interface playerListSliceProps {
     playerList: Player[];
 }
 
-const initialState:playerListSliceProps = {
+const initialState: playerListSliceProps = {
     playerList: [],
 }
 export const playerListSlice = createSlice({
     name: 'playerListSlice',
     initialState,
     reducers: {
-        addPlayer: (state:playerListSliceProps, action:PayloadAction<Player>) => {
+        addPlayer(state: playerListSliceProps, action: PayloadAction<Player>) {
             state.playerList.push(action.payload);
-        }
+        },
+        clearPlayerList(state: playerListSliceProps) {
+            state.playerList = []
+        },
     }
 })
 export default playerListSlice.reducer

@@ -13,8 +13,8 @@ const AttributeList: FC<AttributeListProps> = ({heroList, attribute,icon}) => {
 
 
     return (
-        <div className='heroes-list__attribute'>
-            <h1 className='attribute__title'>{attribute} <AttributeIcon src={icon} alt={attribute}/></h1>
+        <div className={['heroes-list__attribute',attribute === 'Universal'?'universal':''].join(' ')}>
+            <h1 className='attribute__title'><AttributeIcon src={icon} alt={attribute}/> {attribute}</h1>
             <div className='attribute__list'>
                 {heroList.map(hero =>
                     <HeroBlock key={hero.id} hero={hero}/>

@@ -22,7 +22,6 @@ const HeroBlock: FC<HeroBlockProps> = ({hero}) => {
     }
 
     return (
-
         <div onClick={() => heroClick(hero)} className={getHeroBlockClass(pickedHeroes,hero,searchedHero).join(' ')}>
             <HeroImage hero={hero}/>
         </div>

@@ -25,6 +25,13 @@ const SearchInput: FC<SearchInputProps> = ({children}) => {
             setSearch('')
             return
         }
+        // blocks ctrl + backspace... because it refreshes page (goes to homepage which means just refresh)
+        if (event.ctrlKey && event.key.toLowerCase() === 'backspace') {
+            event.preventDefault()
+            event.stopPropagation()
+            return
+        }
+
         switch (event.key) {
             case 'Enter':
                 if (sortedHeroes.length > 0 && !isHeroPicked(pickedHeroes, sortedHeroes[0])) {
