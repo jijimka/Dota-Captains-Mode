@@ -25,16 +25,28 @@ const SearchInput: FC<SearchInputProps> = ({children}) => {
             setSearch('')
             return
         }
-        if (event.key === 'Enter') {
-            if (sortedHeroes.length > 0 && !isHeroPicked(pickedHeroes, sortedHeroes[0])) {
-                dispatch(addConfirmHero(sortedHeroes[0]))
-            }
+        // blocks ctrl + backspace... because it refreshes page (goes to homepage which means just refresh)
+        if (event.ctrlKey && event.key.toLowerCase() === 'backspace') {
+            event.preventDefault()
+            event.stopPropagation()
+            return
         }
-        if (event.key === "Backspace") {
-            setSearch(search.slice(0, search.length - 1))
+
+        switch (event.key) {
+            case 'Enter':
+                if (sortedHeroes.length > 0 && !isHeroPicked(pickedHeroes, sortedHeroes[0]) && pickedHeroes.length < 24) {
+                    dispatch(addConfirmHero(sortedHeroes[0]))
+                }
+                break
+            case 'Backspace':
+                setSearch(search.slice(0, search.length - 1))
+                break
+            default:
+                if (event.key.length > 1) break
+                setSearch(search + event.key)
+                break
         }
-        if (event.key.length > 1) return
-        setSearch(search + event.key)
+
     }
 
     useEffect(() => {

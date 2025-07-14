@@ -1,0 +1,17 @@
+.formInput {
+    background-color: black;
+    border: 1px solid gray;
+    font-size: 26px;
+    color: white;
+    border-radius: 3px;
+    padding: 2px 6px;
+    text-align: center;
+}
+
+.formInput:active {
+    outline: none;
+}
+
+.formInput:focus {
+    outline: none;
+}

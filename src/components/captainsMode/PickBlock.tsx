@@ -1,10 +1,11 @@
 import {FC,} from 'react';
-import {useTypedDispatch, useTypedSelector} from "../hooks/redux.ts";
-import {pickOrderSlice} from "../store/slices/pickOrderSlice.ts";
-import {pickedHeroSlice} from "../store/slices/pickedHeroSlice.ts";
-import {IPickedHero} from "../types/IHeroes.ts";
-import {getPickBlockClasses} from "../utils/getPickBlockClasses.ts";
-import {useDisplayPickedHero} from "../hooks/useDisplayPickedHero.tsx";
+import {useTypedDispatch, useTypedSelector} from "../../hooks/redux.ts";
+import {pickOrderSlice} from "../../store/slices/pickOrderSlice.ts";
+import {pickedHeroSlice} from "../../store/slices/pickedHeroSlice.ts";
+import {IPickedHero} from "../../types/IHeroes.ts";
+import {getPickBlockClasses} from "../../utils/getPickBlockClasses.ts";
+import {useDisplayPickedHero} from "../../hooks/useDisplayPickedHero.tsx";
+import {PickOrder} from "../../models/PickOrder.ts";
 
 interface PickBlockProps {
     orderNumber: number;
@@ -18,7 +19,7 @@ const PickBlock: FC<PickBlockProps> = ({orderNumber}) => {
     const {removePickedHero} = pickedHeroSlice.actions
     const {selectPick, addPickQueue, clearSelectedPick} = pickOrderSlice.actions
     const blockClasses = getPickBlockClasses(orderNumber, selectedPick, pickQueue)
-    const displayPickedHero = useDisplayPickedHero(pickedHeroes,orderNumber,deleteHero)
+    const displayPickedHero = useDisplayPickedHero(pickedHeroes, orderNumber, deleteHero)
 
 
     function deleteHero(hero: IPickedHero) {
@@ -34,12 +35,16 @@ const PickBlock: FC<PickBlockProps> = ({orderNumber}) => {
         }
     }
 
+    if (PickOrder.dire.includes(orderNumber)) {
+        orderClasses.push('pick__block-order-dire')
+    }
+
     return (
         <div onClick={selectPickOrder} className='pick-side__block'>
             <div className={blockClasses.join(' ')}>
                 {displayPickedHero}
             </div>
-            <p className={orderClasses.join(' ')}>{orderNumber}</p>
+            <div className={orderClasses.join(' ')}>{orderNumber}</div>
         </div>
     );
 };

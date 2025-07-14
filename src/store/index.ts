@@ -2,12 +2,18 @@ import {combineReducers, configureStore} from "@reduxjs/toolkit";
 import heroesSlice from "./slices/heroesSlice.ts";
 import pickedHeroSlice from "./slices/pickedHeroSlice.ts";
 import pickOrderSlice from "./slices/pickOrderSlice.ts";
+import playerPicksSlice from "./slices/playerPicksSlice.ts";
+import playerPickOrderSlice from "./slices/playerPickOrderSlice.ts";
+import playerListSlice from "./slices/playerListSlice.ts";
 
 
 const rootReducer = combineReducers({
     heroes: heroesSlice,
     pickedHeroes: pickedHeroSlice,
     pickOrder: pickOrderSlice,
+    playersPicks: playerPicksSlice,
+    playerPicksTurn: playerPickOrderSlice,
+    playerList: playerListSlice,
 })
 export const setupStore = () => configureStore({
     reducer: rootReducer,

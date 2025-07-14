@@ -1,10 +1,12 @@
 import {FC} from 'react';
 import {IHeroes} from "../../../types/IHeroes.ts";
 import classes from './HeroImage.module.css'
+
 interface HeroImageProps {
-    hero:IHeroes;
+    hero: IHeroes;
 }
-const HeroImage:FC<HeroImageProps> = ({hero}) => {
+
+const HeroImage: FC<HeroImageProps> = ({hero}) => {
     return (
         <>
             <img src={hero.image}

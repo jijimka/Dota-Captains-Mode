@@ -1,0 +1,31 @@
+.pickButton {
+    background: #469F85;
+    display: flex;
+    justify-content: center;
+    padding: 7px 0;
+    font-size: 18px;
+    text-transform: uppercase;
+    font-weight: bold;
+    cursor: pointer;
+    user-select: none;
+}
+
+.pickButtonOff {
+    filter: contrast(0.2);
+    background: #469F85;
+    display: flex;
+    justify-content: center;
+    padding: 7px 0;
+    font-size: 18px;
+    text-transform: uppercase;
+    font-weight: bold;
+    cursor: default;
+}
+
+.pickButton:hover {
+    filter: brightness(1.1);
+}
+
+.pickButtonOff:hover {
+    filter: contrast(0.2);
+}

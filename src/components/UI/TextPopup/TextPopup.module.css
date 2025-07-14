@@ -1,0 +1,27 @@
+.textPopup {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    cursor: help;
+    font-size: inherit;
+
+}
+
+.textPopupContent {
+    position: absolute;
+    bottom: 100%;
+    left: 100%;
+    /*border: 1px solid black;*/
+    /*border-radius: 3px;*/
+    background-color: #bebebe;
+    display: none;
+    color: black;
+    word-break: keep-all;
+    width: 250px;
+    justify-content: center;
+}
+
+.textPopupActive {
+    display: flex;
+    position: absolute;
+}

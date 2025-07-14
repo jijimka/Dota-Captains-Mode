@@ -1,12 +1,13 @@
 import './App.css'
-import {useEffect,} from "react";
-import dotaHeroes from "../dotaHeroes.json"
-import {useTypedDispatch,} from "./hooks/redux.ts";
-import {sortAgiHeroes, sortIntHeroes, sortStrHeroes, sortUniHeroes} from "./utils/sortHeroesByAttribute.ts";
+import {BrowserRouter, Route, Routes} from "react-router";
+import CaptainsMode from "./routes/CaptainsMode.tsx";
 import {heroesSlice} from "./store/slices/heroesSlice.ts";
-import AllHeroesList from "./components/AllHeroesList.tsx";
-import PickList from "./components/PickList.tsx";
-import SearchInput from "./components/UI/SearchInput/SearchInput.tsx";
+import {useTypedDispatch} from "./hooks/redux.ts";
+import {sortAgiHeroes, sortIntHeroes, sortStrHeroes, sortUniHeroes} from "./utils/sortHeroesByAttribute.ts";
+import dotaHeroes from "../dotaHeroes.json";
+import {useEffect} from "react";
+import ImmortalDraft from "./routes/ImmortalDraft.tsx";
+import {PageRoutes} from "./models/PageRoutes.ts";
 
 
 function App() {
@@ -27,10 +28,12 @@ function App() {
 
     return (
         <>
-            <SearchInput>
-                <AllHeroesList/>
-                <PickList/>
-            </SearchInput>
+            <BrowserRouter>
+                <Routes>
+                    <Route path={PageRoutes.CAPTAINSMODEURL} element={<CaptainsMode/>}/>
+                    <Route path={PageRoutes.IMMORTALDRAFTURL} element={<ImmortalDraft/>}/>
+                </Routes>
+            </BrowserRouter>
         </>
     )
 }
