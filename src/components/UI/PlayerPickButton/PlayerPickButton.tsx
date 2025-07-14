@@ -5,12 +5,14 @@ import {playerPicksSlice} from "../../../store/slices/playerPicksSlice.ts";
 import classes from './PlayerPickButton.module.css'
 import {getSidePickTurn} from "../../../utils/getSidePickTurn.ts";
 import {playerPickOrderSlice} from "../../../store/slices/playerPickOrderSlice.ts";
+
 interface PlayerPickButtonProps {
-    player:Player;
+    player: Player;
 }
-const PlayerPickButton:FC<PlayerPickButtonProps> = ({player}) => {
+
+const PlayerPickButton: FC<PlayerPickButtonProps> = ({player}) => {
     const dispatch = useTypedDispatch()
-    const {addRadiantPlayer,addDirePlayer} = playerPicksSlice.actions
+    const {addRadiantPlayer, addDirePlayer} = playerPicksSlice.actions
     const radiantPlayers = useTypedSelector(state => state.playersPicks.radiantPlayers)
     const direPlayers = useTypedSelector(state => state.playersPicks.direPlayers)
     const turn = useTypedSelector(state => state.playerPicksTurn.playerPickTurn)
@@ -19,6 +21,7 @@ const PlayerPickButton:FC<PlayerPickButtonProps> = ({player}) => {
     const buttonClasses = [
         classes.pickButton
     ]
+
     function pickPlayer() {
         if (buttonOff) return
         if (getSidePickTurn(turn)) {

@@ -1,5 +1,6 @@
-import {FC, MouseEventHandler, useState} from "react";
+import {FC, useState} from "react";
 import classes from './TextPopup.module.css'
+
 interface TextPopupProps {
     children?: React.ReactNode;
     content: string,
@@ -7,17 +8,20 @@ interface TextPopupProps {
 }
 
 const TextPopup: FC<TextPopupProps> = ({children, content}) => {
-    const [popupClasses,setPopupClasses] = useState<string[]>([classes.textPopupContent])
-    function mouseEnterFunc(event:React.MouseEvent<HTMLDivElement>) {
-        setPopupClasses([...popupClasses,classes.textPopupActive])
+    const [popupClasses, setPopupClasses] = useState<string[]>([classes.textPopupContent])
+
+    function mouseEnterFunc() {
+        setPopupClasses([...popupClasses, classes.textPopupActive])
     }
-    function mouseLeaveFunc(event:React.MouseEvent<HTMLDivElement>) {
+
+    function mouseLeaveFunc() {
         setPopupClasses([classes.textPopupContent])
     }
+
     return (
-        <div onMouseEnter={(event) => mouseEnterFunc(event)}
+        <div onMouseEnter={() => mouseEnterFunc()}
              className={classes.textPopup}
-             onMouseLeave={(event) => mouseLeaveFunc(event)}
+             onMouseLeave={() => mouseLeaveFunc()}
         >
             {children}
             <div className={popupClasses.join(' ')}>

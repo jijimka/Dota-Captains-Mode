@@ -1,7 +1,7 @@
 import PlayersPickBlock from "./PlayersPickBlock.tsx";
 
 const PlayerPicksList = () => {
-    const picksNumber = [0,1,2,3,4]
+    const picksNumber = [0, 1, 2, 3, 4]
     return (
         <div className="player-picks-list">
             <div className='player-picks-list__side'>

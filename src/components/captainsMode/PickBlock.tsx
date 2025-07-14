@@ -19,7 +19,7 @@ const PickBlock: FC<PickBlockProps> = ({orderNumber}) => {
     const {removePickedHero} = pickedHeroSlice.actions
     const {selectPick, addPickQueue, clearSelectedPick} = pickOrderSlice.actions
     const blockClasses = getPickBlockClasses(orderNumber, selectedPick, pickQueue)
-    const displayPickedHero = useDisplayPickedHero(pickedHeroes,orderNumber,deleteHero)
+    const displayPickedHero = useDisplayPickedHero(pickedHeroes, orderNumber, deleteHero)
 
 
     function deleteHero(hero: IPickedHero) {

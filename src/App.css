@@ -70,24 +70,22 @@ button:active {
     width: 100%;
     height: 100%;
     background-color: #495C6A;
-    box-shadow:
-            0 0 500px 100px rgba(0, 0, 0, 0.15) inset,
-            0 0 500px 200px rgba(0, 0, 0, 0.15) inset,
-            0 0 500px 300px rgba(0, 0, 0, 0.15) inset,
-            0 0 500px 200px rgba(0, 0, 0, 0.15) inset,
-            0 0 500px 100px rgba(0, 0, 0, 0.15) inset;
+    box-shadow: 0 0 500px 100px rgba(0, 0, 0, 0.15) inset,
+    0 0 500px 200px rgba(0, 0, 0, 0.15) inset,
+    0 0 500px 300px rgba(0, 0, 0, 0.15) inset,
+    0 0 500px 200px rgba(0, 0, 0, 0.15) inset,
+    0 0 500px 100px rgba(0, 0, 0, 0.15) inset;
 }
 
 .CaptainsMode {
     width: 100%;
     height: 100%;
     background-color: #495C6A;
-    box-shadow:
-            0 0 500px 100px rgba(0, 0, 0, 0.45) inset,
-            0 0 500px 200px rgba(0, 0, 0, 0.25) inset,
-            0 0 500px 300px rgba(0, 0, 0, 0.25) inset,
-            0 0 500px 200px rgba(0, 0, 0, 0.15) inset,
-            0 0 500px 100px rgba(0, 0, 0, 0.15) inset;
+    box-shadow: 0 0 500px 100px rgba(0, 0, 0, 0.45) inset,
+    0 0 500px 200px rgba(0, 0, 0, 0.25) inset,
+    0 0 500px 300px rgba(0, 0, 0, 0.25) inset,
+    0 0 500px 200px rgba(0, 0, 0, 0.15) inset,
+    0 0 500px 100px rgba(0, 0, 0, 0.15) inset;
 
 }
 
@@ -181,7 +179,7 @@ button:active {
 
 .pick__block {
     background-color: black;
-    border-radius: 10px;
+    border-radius: 7px;
     width: 100px;
     height: 60px;
     border: 1px solid gray;
@@ -190,7 +188,7 @@ button:active {
 .pick__block-ban {
     border: 1px solid gray;
     background-color: black;
-    border-radius: 10px;
+    border-radius: 7px;
     width: 60px;
     height: 33px;
     filter: brightness(45%);
@@ -260,12 +258,14 @@ button:active {
     display: flex;
     order: 3;
 }
+
 .pick__block-order-dire {
     margin-left: 0;
     margin-right: auto;
     display: flex;
     order: 1;
 }
+
 .pick__block-image {
     width: 100%;
     height: 100%;
@@ -321,6 +321,7 @@ button:active {
     left: 0;
     filter: opacity(0.9);
 }
+
 .image-fadeaway {
     position: absolute;
     top: 0;
@@ -328,6 +329,21 @@ button:active {
     width: 100%;
     height: 100%;
     background: linear-gradient(to right, rgba(255, 255, 255, 0) 40%, #323d4f 100%);
+}
+
+.pick-confirm__ban-layer {
+    display: none;
+    z-index: 10;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, rgba(100, 1, 1, 0.67) 0%, rgba(0, 0, 0, 0.25) 85%)
+}
+
+.ban-layer__active {
+    display: flex;
 }
 
 .pick-confirm__hero-image img {
@@ -357,6 +373,7 @@ button:active {
     box-shadow: 4px 4px 10px 1px rgba(0, 0, 0, 0.74);
     text-transform: uppercase;
 }
+
 .pick-confirm:hover {
     transition: 0.2s ease all;
     filter: brightness(1.1);
@@ -386,7 +403,8 @@ button:active {
 }
 
 .pick-block__active {
-    border: 1px solid #97fefb;
+    filter: brightness(1);
+    outline: 1px solid #97b8fe;
 }
 
 .clear-button {
@@ -406,7 +424,8 @@ button:active {
 }
 
 .pick-block__selected {
-    border: 1px solid #006e6e;
+    filter: brightness(1);
+    outline: 1px solid rgba(151, 184, 254, 0.6);
 }
 
 .player-card {
@@ -439,13 +458,6 @@ button:active {
     flex-grow: 1;
 }
 
-.player-card__role-icon {
-    width: 24px;
-    height: 24px;
-    user-select: none;
-
-}
-
 .player-card__role {
     display: flex;
     flex-direction: column;
@@ -461,7 +473,7 @@ button:active {
     padding: 0 0 10px;
 }
 
-.player-card__role-list {
+.role-list {
     display: flex;
 }
 
@@ -601,9 +613,6 @@ button:active {
     color: #D7EDEE;
 }
 
-.asdf {
-
-}
 .universal {
     flex: 0 0 210px;
 }

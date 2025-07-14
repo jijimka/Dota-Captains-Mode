@@ -6,14 +6,14 @@ import AttributeIcon from "../UI/AttributeIcon/AttributeIcon.tsx";
 interface AttributeListProps {
     heroList: IHeroes[],
     attribute: string,
-    icon:string
+    icon: string
 }
 
-const AttributeList: FC<AttributeListProps> = ({heroList, attribute,icon}) => {
+const AttributeList: FC<AttributeListProps> = ({heroList, attribute, icon}) => {
 
 
     return (
-        <div className={['heroes-list__attribute',attribute === 'Universal'?'universal':''].join(' ')}>
+        <div className={['heroes-list__attribute', attribute === 'Universal' ? 'universal' : ''].join(' ')}>
             <h1 className='attribute__title'><AttributeIcon src={icon} alt={attribute}/> {attribute}</h1>
             <div className='attribute__list'>
                 {heroList.map(hero =>

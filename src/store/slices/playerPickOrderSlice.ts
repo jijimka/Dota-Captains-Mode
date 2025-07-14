@@ -3,17 +3,18 @@ import {createSlice} from "@reduxjs/toolkit";
 interface playerPickOrderSliceProps {
     playerPickTurn: number,
 }
-const initialState:playerPickOrderSliceProps = {
-    playerPickTurn:0
+
+const initialState: playerPickOrderSliceProps = {
+    playerPickTurn: 0
 }
 export const playerPickOrderSlice = createSlice({
-    name:'playerPickOrderSlice',
+    name: 'playerPickOrderSlice',
     initialState,
-    reducers:{
-        increasePickOrder(state:playerPickOrderSliceProps) {
+    reducers: {
+        increasePickOrder(state: playerPickOrderSliceProps) {
             state.playerPickTurn++
         },
-        clearPickOrder(state:playerPickOrderSliceProps) {
+        clearPickOrder(state: playerPickOrderSliceProps) {
             state.playerPickTurn = 0
         }
     }

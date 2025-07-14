@@ -1,5 +1,3 @@
-
-
 export class PlayerColors {
     public static Blue = '#3375FF'
     public static Aquamarine = '#66FFBF'
@@ -12,9 +10,9 @@ export class PlayerColors {
     public static Green = '#008321'
     public static Brown = '#A46900'
 
-    static getColors(side:'Radiant' | 'Dire'):string[] {
-        const radiant = [this.Blue,this.Aquamarine,this.Purple,this.Yellow,this.Orange,]
-        const dire = [this.Pink,this.Olive,this.SkyBlue,this.Green,this.Brown]
+    static getColors(side: 'Radiant' | 'Dire'): string[] {
+        const radiant = [this.Blue, this.Aquamarine, this.Purple, this.Yellow, this.Orange,]
+        const dire = [this.Pink, this.Olive, this.SkyBlue, this.Green, this.Brown]
         return side === 'Radiant' ? radiant : dire
     }
 }

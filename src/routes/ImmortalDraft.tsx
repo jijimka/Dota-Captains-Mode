@@ -11,7 +11,7 @@ const ImmortalDraft = () => {
     return (
         <div className='ImmortalDraft'>
             <NavMenu/>
-            <PlayerForm />
+            <PlayerForm/>
             <PlayerPicksList/>
             <PicksOrderBar/>
             <PlayersList/>

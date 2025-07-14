@@ -7,6 +7,7 @@
     transform: translate(-50%, -50%);
     z-index: 10000;
 }
+
 .popUpMenu__content {
     transition: 0.2s ease-in-out all;
     position: absolute;
@@ -26,6 +27,7 @@
     padding: 5px;
     z-index: 10000;
 }
+
 .popUpMenu__button {
     position: absolute;
     top: 0;
@@ -44,15 +46,18 @@
     border-bottom-left-radius: 50%;
     z-index: 10000;
 }
+
 .active {
     transition: 0.2s ease all;
     transform: translate(-50%, 0%);
     display: flex;
 }
+
 .button__active {
     transform: rotate(180deg);
 }
+
 .button__text {
     transition: 0.2s ease all;
 
- }
+}

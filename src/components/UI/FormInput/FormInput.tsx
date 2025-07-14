@@ -1,4 +1,4 @@
-import { FC, InputHTMLAttributes,} from "react";
+import {FC, InputHTMLAttributes,} from "react";
 import classes from './FormInput.module.css'
 
 type FormInputProps = InputHTMLAttributes<HTMLInputElement>

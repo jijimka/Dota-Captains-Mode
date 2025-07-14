@@ -34,7 +34,7 @@ const SearchInput: FC<SearchInputProps> = ({children}) => {
 
         switch (event.key) {
             case 'Enter':
-                if (sortedHeroes.length > 0 && !isHeroPicked(pickedHeroes, sortedHeroes[0])) {
+                if (sortedHeroes.length > 0 && !isHeroPicked(pickedHeroes, sortedHeroes[0]) && pickedHeroes.length < 24) {
                     dispatch(addConfirmHero(sortedHeroes[0]))
                 }
                 break

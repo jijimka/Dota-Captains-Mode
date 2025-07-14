@@ -11,8 +11,8 @@ export class RoleIcons {
     public static SEMISUP = semiSupImg
     public static FULLSUP = fullSupImg
 
-    static getRoleIcons(number:number) {
-        const roles = [RoleIcons.CARRY,RoleIcons.MID,RoleIcons.HARD,RoleIcons.SEMISUP,RoleIcons.FULLSUP]
+    static getRoleIcons(number: number) {
+        const roles = [RoleIcons.CARRY, RoleIcons.MID, RoleIcons.HARD, RoleIcons.SEMISUP, RoleIcons.FULLSUP]
         return roles[number]
     }
 }

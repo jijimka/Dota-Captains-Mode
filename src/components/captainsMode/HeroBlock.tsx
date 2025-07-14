@@ -17,12 +17,14 @@ const HeroBlock: FC<HeroBlockProps> = ({hero}) => {
     const dispatch = useTypedDispatch()
 
     function heroClick(hero: IHeroes) {
-        if (isHeroPicked(pickedHeroes,hero)) return
+        if (isHeroPicked(pickedHeroes, hero)) return
+        if (pickedHeroes.length > 23) return
         dispatch(addConfirmHero(hero))
     }
 
     return (
-        <div onClick={() => heroClick(hero)} className={getHeroBlockClass(pickedHeroes,hero,searchedHero).join(' ')}>
+        <div onClick={() => heroClick(hero)}
+             className={getHeroBlockClass(pickedHeroes, hero, searchedHero).join(' ')}>
             <HeroImage hero={hero}/>
         </div>
     );

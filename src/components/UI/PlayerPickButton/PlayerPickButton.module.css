@@ -9,6 +9,7 @@
     cursor: pointer;
     user-select: none;
 }
+
 .pickButtonOff {
     filter: contrast(0.2);
     background: #469F85;
@@ -20,9 +21,11 @@
     font-weight: bold;
     cursor: default;
 }
+
 .pickButton:hover {
     filter: brightness(1.1);
 }
+
 .pickButtonOff:hover {
     filter: contrast(0.2);
 }

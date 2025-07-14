@@ -16,6 +16,7 @@
     pointer-events: none;
     overflow: hidden;
 }
+
 .searchModal-text {
     text-wrap: nowrap;
 }

@@ -9,11 +9,11 @@ interface PlayersPickBlockProps {
     side: 'Radiant' | 'Dire';
 }
 
-const PlayersPickBlock: FC<PlayersPickBlockProps> = ({order,side}) => {
+const PlayersPickBlock: FC<PlayersPickBlockProps> = ({order, side}) => {
 
     const radiantPicks = useTypedSelector(state => state.playersPicks.radiantPlayers)
     const direPicks = useTypedSelector(state => state.playersPicks.direPlayers)
-    const player = getPlayerFromList(side === 'Radiant'? radiantPicks : direPicks, order)
+    const player = getPlayerFromList(side === 'Radiant' ? radiantPicks : direPicks, order)
     const borderColor = PlayerColors.getColors(side)[order]
 
     const styles = {
@@ -23,7 +23,7 @@ const PlayersPickBlock: FC<PlayersPickBlockProps> = ({order,side}) => {
     if (player === null) return (
         <div className='player-block-list'>
             <div
-                className={['player-block', side === 'Radiant'?'radiant-picks':'dire-picks'].join(' ')}
+                className={['player-block', side === 'Radiant' ? 'radiant-picks' : 'dire-picks'].join(' ')}
                 style={styles}
             >
                 <div className='player-block__rating'>
@@ -38,11 +38,11 @@ const PlayersPickBlock: FC<PlayersPickBlockProps> = ({order,side}) => {
     return (
         <div className='player-block-list'>
             <div
-                className={['player-block', side === 'Radiant'?'radiant-picks':'dire-picks'].join(' ')}
+                className={['player-block', side === 'Radiant' ? 'radiant-picks' : 'dire-picks'].join(' ')}
                 style={styles}
             >
                 <div className='player-block__rating'>
-                    {player.isMmrNull()?'Not calibrated':`MMR ${player.mmr}`}
+                    {!player.mmr ? 'Not calibrated' : `MMR ${player.mmr}`}
                 </div>
             </div>
             <div className='player-block__nickname'>

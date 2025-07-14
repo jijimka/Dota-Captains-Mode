@@ -1,5 +1,4 @@
-
-export function getBoxClasses(boxSide:'radiant' | 'dire',boxNumber:number,turn:number) {
+export function getBoxClasses(boxSide: 'radiant' | 'dire', boxNumber: number, turn: number) {
     const boxClasses = [
         'pick-box',
     ]
