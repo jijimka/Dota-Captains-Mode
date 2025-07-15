@@ -173,7 +173,7 @@ button:active {
 }
 
 .heroes-list__attribute {
-    flex: 0 1 25%;
+    flex: 0 0 25%;
     user-select: none;
 }
 
@@ -615,4 +615,29 @@ button:active {
 
 .universal {
     flex: 0 0 210px;
+}
+
+
+
+
+@media screen and (min-width: 1990px) {
+    .heroes-list__attribute {
+        flex: 0 0 20%;
+    }
+    .universal {
+        flex: 0 0 210px;
+    }
+}
+@media screen and (min-width: 2410px) {
+    .heroes-list__attribute {
+        flex: 0 0 17%;
+    }
+    .universal {
+        flex: 0 0 210px;
+    }
+}
+@media screen and (max-width: 1575px) {
+    .all-heroes-list {
+        align-items: flex-start;
+    }
 }
