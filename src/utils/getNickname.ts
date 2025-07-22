@@ -1,4 +1,4 @@
-export function getNickname(nickname: string) {
+export function getNickname(nickname: string):[string,boolean] {
     let newNickname = nickname
     if (nickname.length > 10) {
         for (let i = 0; i < nickname.length; i++) {
@@ -7,8 +7,8 @@ export function getNickname(nickname: string) {
                 break;
             }
         }
-        return newNickname + '.' + '.' + '.'
+        return [newNickname + '.' + '.' + '.', true]
     }
-    return newNickname;
+    return [newNickname, false];
 }
 
