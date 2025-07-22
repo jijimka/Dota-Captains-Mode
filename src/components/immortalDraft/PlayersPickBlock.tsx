@@ -3,6 +3,7 @@ import {useTypedSelector} from "../../hooks/redux.ts";
 import {PlayerColors} from "../../models/PlayerColors.ts";
 import {getPlayerFromList} from "../../utils/getPlayerFromList.ts";
 import {getNickname} from "../../utils/getNickname.ts";
+import TextPopup from "../UI/TextPopup/TextPopup.tsx";
 
 interface PlayersPickBlockProps {
     order: number;
@@ -15,7 +16,6 @@ const PlayersPickBlock: FC<PlayersPickBlockProps> = ({order, side}) => {
     const direPicks = useTypedSelector(state => state.playersPicks.direPlayers)
     const player = getPlayerFromList(side === 'Radiant' ? radiantPicks : direPicks, order)
     const borderColor = PlayerColors.getColors(side)[order]
-
     const styles = {
         borderBottom: `5px solid ${borderColor}`
     }
@@ -33,7 +33,7 @@ const PlayersPickBlock: FC<PlayersPickBlockProps> = ({order, side}) => {
             </div>
         </div>
     )
-
+    const [playerNickname,isPlayerNicknameEdited] = getNickname(player.nickname)
 
     return (
         <div className='player-block-list'>
@@ -46,7 +46,11 @@ const PlayersPickBlock: FC<PlayersPickBlockProps> = ({order, side}) => {
                 </div>
             </div>
             <div className='player-block__nickname'>
-                {getNickname(player.nickname)}
+                {isPlayerNicknameEdited?
+                    <TextPopup content={player.nickname}>{playerNickname}</TextPopup>
+                    :
+                    <p>{player.nickname}</p>
+                }
             </div>
         </div>
     );

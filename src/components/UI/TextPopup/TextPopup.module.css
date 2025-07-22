@@ -17,8 +17,9 @@
     display: none;
     color: black;
     word-break: keep-all;
-    width: 250px;
+    max-width: 250px;
     justify-content: center;
+    z-index: 11;
 }
 
 .textPopupActive {
