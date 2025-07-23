@@ -4,7 +4,6 @@ import {PageRoutes} from "../models/PageRoutes.ts";
 
 const NavMenu = () => {
     const location = useLocation()
-    console.log(location)
     return (
         <>
             <PopUpMenu>

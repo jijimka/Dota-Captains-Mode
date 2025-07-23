@@ -10,7 +10,7 @@ import {playerListSlice} from "../../../store/slices/playerListSlice.ts";
 import FormInput from "../FormInput/FormInput.tsx";
 import FormCheckbox from "../FormCheckbox/FormCheckbox.tsx";
 import ModalWindow from "../ModalWindow/ModalWindow.tsx";
-import {getRandomPlayer} from "../../../utils/getRandomPlayer.tsx";
+import {getRandomPlayer} from "../../../utils/getRandomPlayer.ts";
 import {useDisplayError} from "../../../hooks/useDisplayError.tsx";
 import TextPopup from "../TextPopup/TextPopup.tsx";
 import RoleIcon from "../RoleIcon/RoleIcon.tsx";
