@@ -1,9 +1,9 @@
 import {FC} from 'react';
 import {useTypedSelector} from "../../hooks/redux.ts";
 import {PlayerColors} from "../../models/PlayerColors.ts";
-import {getPlayerFromList} from "../../utils/getPlayerFromList.ts";
-import {getNickname} from "../../utils/getNickname.ts";
+import {getPlayerFromList} from "../../utils/getPlayerFromList/getPlayerFromList.ts";
 import TextPopup from "../UI/TextPopup/TextPopup.tsx";
+import {getNickname} from "../../utils/getNickname/getNickname.ts";
 
 interface PlayersPickBlockProps {
     order: number;
@@ -20,7 +20,7 @@ const PlayersPickBlock: FC<PlayersPickBlockProps> = ({order, side}) => {
         borderBottom: `5px solid ${borderColor}`
     }
 
-    if (player === null) return (
+    if (!player) return (
         <div className='player-block-list'>
             <div
                 className={['player-block', side === 'Radiant' ? 'radiant-picks' : 'dire-picks'].join(' ')}
@@ -34,7 +34,6 @@ const PlayersPickBlock: FC<PlayersPickBlockProps> = ({order, side}) => {
         </div>
     )
     const [playerNickname,isPlayerNicknameEdited] = getNickname(player.nickname)
-
     return (
         <div className='player-block-list'>
             <div

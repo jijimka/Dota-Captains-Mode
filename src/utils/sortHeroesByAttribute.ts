@@ -41,6 +41,6 @@ export function sortUniHeroes(heroes: IHeroes[]): IHeroes[] {
     return uniHeroes
 }
 
-// export function sortHeroesByAttribute(heroes:IHeroes[]) {
-//
-// }
+export function sortHeroesByAttribute(heroes:IHeroes[]):IHeroes[][] {
+    return [sortStrHeroes(heroes),sortAgiHeroes(heroes),sortIntHeroes(heroes),sortUniHeroes(heroes)];
+}

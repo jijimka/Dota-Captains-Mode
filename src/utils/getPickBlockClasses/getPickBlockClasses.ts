@@ -1,4 +1,4 @@
-import {PickOrder} from "../models/PickOrder.ts";
+import {PickOrder} from "../../models/PickOrder";
 
 
 export function getPickBlockClasses(orderNumber: number, selectedPick: number | null, pickQueue: number[]): string[] {

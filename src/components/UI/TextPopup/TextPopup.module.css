@@ -20,6 +20,7 @@
     max-width: 250px;
     justify-content: center;
     z-index: 11;
+    padding: 1px 3px;
 }
 
 .textPopupActive {

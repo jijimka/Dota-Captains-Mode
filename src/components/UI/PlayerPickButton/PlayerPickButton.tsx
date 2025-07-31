@@ -3,8 +3,8 @@ import {Player} from "../../../models/Player.ts";
 import {useTypedDispatch, useTypedSelector} from "../../../hooks/redux.ts";
 import {playerPicksSlice} from "../../../store/slices/playerPicksSlice.ts";
 import classes from './PlayerPickButton.module.css'
-import {getSidePickTurn} from "../../../utils/getSidePickTurn.ts";
 import {playerPickOrderSlice} from "../../../store/slices/playerPickOrderSlice.ts";
+import {PickTurns} from "../../../models/PickTurns.ts";
 
 interface PlayerPickButtonProps {
     player: Player;
@@ -24,7 +24,7 @@ const PlayerPickButton: FC<PlayerPickButtonProps> = ({player}) => {
 
     function pickPlayer() {
         if (buttonOff) return
-        if (getSidePickTurn(turn)) {
+        if (PickTurns.pickOrder[turn] === 'radiant') {
             dispatch(addRadiantPlayer(player))
             dispatch(increaseTurn())
         } else {

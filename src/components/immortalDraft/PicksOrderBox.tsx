@@ -1,6 +1,6 @@
 import {FC} from "react";
-import {getBoxClasses} from "../../utils/getBoxClasses.ts";
 import {useTypedSelector} from "../../hooks/redux.ts";
+import {getBoxClasses} from "../../utils/getBoxClasses/getBoxClasses.ts";
 
 interface PicksOrderBoxProps {
     boxNumber: number,

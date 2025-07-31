@@ -1,6 +1,6 @@
-import {IHeroes, IPickedHero} from "../types/IHeroes.ts";
-import {isHeroPicked} from "./isHeroPicked.ts";
-import {isHeroBanned} from "./isHeroBanned.ts";
+import {IHeroes, IPickedHero} from "../../types/IHeroes";
+import {isHeroPicked} from "../isHeroPicked/isHeroPicked";
+import {isHeroBanned} from "../isHeroBanned/isHeroBanned";
 
 
 export function getHeroBlockClass(pickedHeroes: IPickedHero[], hero: IHeroes, searchedHero: number[] | null) {
