@@ -5,7 +5,7 @@ import {IHeroes} from "../../../types/IHeroes.ts";
 import dotaHeroes from "../../../../dotaHeroes.json";
 import {heroesSlice} from "../../../store/slices/heroesSlice.ts";
 import SearchModal from "../SearchModal/SearchModal.tsx";
-import {isHeroPicked} from "../../../utils/isHeroPicked.ts";
+import {isHeroPicked} from "../../../utils/isHeroPicked/isHeroPicked.ts";
 
 interface SearchInputProps {
     children: React.ReactNode,
