@@ -24,28 +24,7 @@
     display: flex;
 }
 
-.formButton {
-    background-color: #4C8655;
-    color: white;
-    font-size: 30px;
-    padding: 7px 10px;
-    width: 350px;
-    cursor: pointer;
-    letter-spacing: 1px;
-    box-shadow: 0 0 15px 1px #051A2B;
-    transition: 0.2s ease all
-}
 
-.formButton:hover {
-    box-shadow: 0 0 15px 1px rgba(255, 255, 255, 0.1);
-    filter: brightness(1.1);
-}
-
-.formButton:active {
-    color: #3C4143;
-    filter: brightness(1);
-    background-color: #9a9a9a;
-}
 
 .playerFormNickname {
     display: flex;

@@ -27,6 +27,9 @@ export const pickedHeroSlice = createSlice({
         },
         removePickedHero: (state: pickedHeroSliceProps, action: PayloadAction<IHeroes>) => {
             state.pickedHeroes = state.pickedHeroes.filter((value) => value.hero.id !== action.payload.id)
+        },
+        setPickedHeroes: (state: pickedHeroSliceProps, action: PayloadAction<IPickedHero[]>) => {
+            state.pickedHeroes = action.payload
         }
     }
 })

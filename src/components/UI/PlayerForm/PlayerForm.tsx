@@ -14,6 +14,7 @@ import {getRandomPlayer} from "../../../utils/getRandomPlayer/getRandomPlayer.ts
 import {useDisplayError} from "../../../hooks/useDisplayError.tsx";
 import TextPopup from "../TextPopup/TextPopup.tsx";
 import RoleIcon from "../RoleIcon/RoleIcon.tsx";
+import BigButton from "../BigButton/BigButton.tsx";
 
 type prefRoleListProps = {
     labelName: string,
@@ -98,7 +99,7 @@ const PlayerForm: FC = () => {
                     <label className={classes.formLabel} htmlFor='mmr'>MMR</label>
                     <FormInput {...register('mmr')} autoComplete={'off'} id='mmr'/>
                 </div>
-                <button className={classes.formButton} type='submit'>Create Player</button>
+                <BigButton type='submit'>Create Player</BigButton>
                 <div className={classes.formError}>{errorMsg}</div>
             </form>
             <div className={classes.formControl}>

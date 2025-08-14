@@ -21,11 +21,11 @@ const SearchInput: FC<SearchInputProps> = ({children}) => {
     const {setSearchedHero, clearSearchedHero,} = heroesSlice.actions;
 
     function searchHeroes(event: React.KeyboardEvent<HTMLDivElement>) {
+
         if (event.ctrlKey && event.key.toLowerCase() === 'a' || event.key.toLowerCase() === 'ф') {
             setSearch('')
             return
         }
-        // blocks ctrl + backspace... because it refreshes page (goes to homepage which means just refresh)
         if (event.ctrlKey && event.key.toLowerCase() === 'backspace') {
             event.preventDefault()
             event.stopPropagation()
