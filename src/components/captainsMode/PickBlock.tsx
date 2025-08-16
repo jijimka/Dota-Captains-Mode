@@ -38,7 +38,7 @@ const PickBlock: FC<PickBlockProps> = ({orderNumber}) => {
     if (PickOrder.dire.includes(orderNumber)) {
         orderClasses.push('pick__block-order-dire')
     }
-
+    console.log(PickOrder.radiantPicks.includes(selectedPick?selectedPick : pickQueue[0]),PickOrder.radiantPicks.includes(selectedPick??pickQueue[0]))
     return (
         <div onClick={selectPickOrder} className='pick-side__block'>
             <div className={blockClasses.join(' ')}>

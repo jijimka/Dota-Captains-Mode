@@ -1,28 +1,35 @@
-import {FC} from 'react';
+import {FC, useMemo} from 'react';
 import {useTypedSelector} from "../../hooks/redux.ts";
-import {getHeroFromId} from "../../utils/getHeroFromId/getHeroFromId.ts";
-import {ISynergy} from "../../types/ISynergy.ts";
+import {getHeroFromSynergyList} from "../../utils/getHeroFromSynergyList/getHeroFromSynergyList.ts";
+import {PickOrder} from "../../models/PickOrder.ts";
 interface HeroBlockFooterProps {
     heroId: number;
 }
-function getHero(list:ISynergy[],heroId:number):ISynergy | null {
-    const filteredList = list.filter((synergy) => {
-        return synergy.heroId === heroId
-    })
-    return filteredList[0]??null;
-}
+
 
 const HeroBlockFooter:FC<HeroBlockFooterProps> = ({heroId}) => {
-    const {advantageVs,advantageWith} = useTypedSelector(state => state.synergyData)
-    const thisAdvantageVs:number = getHero(advantageVs,heroId)?.synergy??0
-    const thisAdvantageWith:number = getHero(advantageWith,heroId)?.synergy??0
-    const overall:number = thisAdvantageVs + thisAdvantageWith
+    const {radiantAdvantageVs,radiantAdvantageWith,direAdvantageWith,direAdvantageVs} = useTypedSelector(state => state.synergyData)
+    const {pickQueue,selectedPick} = useTypedSelector(state => state.pickOrder)
 
-    console.log(thisAdvantageVs,thisAdvantageWith,heroId)
+    const synergyText = useMemo(() => {
+        let advantageVs
+        let advantageWith
+        let overall
+        if (PickOrder.radiantPicks.includes(selectedPick??pickQueue[0])) {
+            advantageVs = getHeroFromSynergyList(radiantAdvantageVs,heroId)?.synergy??0
+            advantageWith = getHeroFromSynergyList(radiantAdvantageWith,heroId)?.synergy??0
+            overall = (advantageVs + advantageWith).toFixed(1)
+        } else {
+            advantageVs = getHeroFromSynergyList(direAdvantageVs,heroId)?.synergy??0
+            advantageWith = getHeroFromSynergyList(direAdvantageWith,heroId)?.synergy??0
+            overall = (advantageVs + advantageWith).toFixed(1)
+        }
+        return `${advantageVs} / ${advantageWith} | ${overall}`
+    },[pickQueue,selectedPick,radiantAdvantageWith,direAdvantageWith])
 
     return (
         <div className='hero-block__footer'>
-            {`${thisAdvantageVs} / ${thisAdvantageWith} | ${overall}`  }
+            {synergyText}
         </div>
     );
 };

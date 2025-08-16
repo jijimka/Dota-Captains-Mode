@@ -1,4 +1,4 @@
 export interface ISynergy {
-    heroId:number;
+    heroId2:number;
     synergy:number;
 }

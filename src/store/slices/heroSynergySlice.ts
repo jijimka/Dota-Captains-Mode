@@ -3,19 +3,23 @@ import dotaHeroes from '../../../dotaHeroes.json'
 import {ISynergy} from "../../types/ISynergy.ts";
 
 interface heroSynergySliceProps {
-    advantageVs: ISynergy[],
-    advantageWith: ISynergy[]
+    radiantAdvantageVs: ISynergy[],
+    radiantAdvantageWith: ISynergy[],
+    direAdvantageVs: ISynergy[],
+    direAdvantageWith: ISynergy[],
 }
 
 const initialState:heroSynergySliceProps = {
-    advantageVs: [],
-    advantageWith: []
+    radiantAdvantageVs: [],
+    radiantAdvantageWith: [],
+    direAdvantageVs: [],
+    direAdvantageWith: [],
 }
 function makeArray(length:number):ISynergy[] {
     const arr:ISynergy[] = [];
     for (let i = 0; i < length; i++) {
         arr.push({
-            heroId:dotaHeroes[i].id,
+            heroId2:dotaHeroes[i].id,
             synergy:0
         })
     }
@@ -26,14 +30,22 @@ export const heroSynergySlice = createSlice({
     initialState,
     reducers: {
         initializeSynergyData: (state:heroSynergySliceProps) => {
-            state.advantageVs = makeArray(dotaHeroes.length)
-            state.advantageWith = makeArray(dotaHeroes.length)
+            state.radiantAdvantageVs = makeArray(dotaHeroes.length)
+            state.radiantAdvantageWith = makeArray(dotaHeroes.length)
+            state.direAdvantageVs = makeArray(dotaHeroes.length)
+            state.direAdvantageWith = makeArray(dotaHeroes.length)
         },
-        setAdvantageVsData: (state:heroSynergySliceProps,action:PayloadAction<ISynergy[]>) => {
-            state.advantageVs = action.payload
+        setRadiantAdvantageVsData: (state:heroSynergySliceProps,action:PayloadAction<ISynergy[]>) => {
+            state.radiantAdvantageVs = action.payload
         },
-        setAdvantageWithData: (state:heroSynergySliceProps,action:PayloadAction<ISynergy[]>) => {
-            state.advantageWith = action.payload
+        setRadiantAdvantageWithData: (state:heroSynergySliceProps,action:PayloadAction<ISynergy[]>) => {
+            state.radiantAdvantageWith = action.payload
+        },
+        setDireAdvantageVsData: (state:heroSynergySliceProps,action:PayloadAction<ISynergy[]>) => {
+            state.direAdvantageVs = action.payload
+        },
+        setDireAdvantageWithData: (state:heroSynergySliceProps,action:PayloadAction<ISynergy[]>) => {
+            state.direAdvantageWith = action.payload
         },
     }
 })
