@@ -4,7 +4,7 @@ import ModalWindow from "../UI/ModalWindow/ModalWindow.tsx";
 import {ChangeEvent, FC, useMemo, useState} from "react";
 import {useTypedDispatch} from "../../hooks/redux.ts";
 import {pickedHeroSlice} from "../../store/slices/pickedHeroSlice.ts";
-import {getPicks} from "../API/getPicks.ts";
+import {getPicks} from "../../API/getPicks.ts";
 import {pickOrderSlice} from "../../store/slices/pickOrderSlice.ts";
 
 interface FindMatchModalProps {

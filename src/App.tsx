@@ -8,12 +8,14 @@ import dotaHeroes from "../dotaHeroes.json";
 import {useEffect} from "react";
 import ImmortalDraft from "./routes/ImmortalDraft.tsx";
 import {PageRoutes} from "./models/PageRoutes.ts";
+import {useQuery} from "@apollo/client";
+import {GET_MATCHUPS} from "./API/STRATZ_QUERY.ts";
 
 
 function App() {
     const {addIntHeroes, addStrHeroes, addUniHeroes, addAgiHeroes} = heroesSlice.actions
     const dispatch = useTypedDispatch();
-
+    const {data} = useQuery(GET_MATCHUPS(5))
     function sortHeroes() {
         const [strHeroes, agiHeroes, intHeroes, uniHeroes] = sortHeroesByAttribute(dotaHeroes)
         dispatch(addStrHeroes(strHeroes))
@@ -22,7 +24,7 @@ function App() {
         dispatch(addUniHeroes(uniHeroes))
     }
 
-
+    console.log(data)
     useEffect(() => {
         sortHeroes()
     }, []);
