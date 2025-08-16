@@ -5,6 +5,7 @@ import {pickedHeroSlice} from "../../store/slices/pickedHeroSlice.ts";
 import HeroImage from "../UI/HeroImage/HeroImage.tsx";
 import {getHeroBlockClass,} from "../../utils/getHeroBlockClass/getHeroBlockClass.ts";
 import {isHeroPicked} from "../../utils/isHeroPicked/isHeroPicked.ts";
+import HeroBlockFooter from "./HeroBlockFooter.tsx";
 
 interface HeroBlockProps {
     hero: IHeroes,
@@ -21,11 +22,11 @@ const HeroBlock: FC<HeroBlockProps> = ({hero}) => {
         if (pickedHeroes.length > 23) return
         dispatch(addConfirmHero(hero))
     }
-
     return (
         <div onClick={() => heroClick(hero)}
              className={getHeroBlockClass(pickedHeroes, hero, searchedHero).join(' ')}>
             <HeroImage hero={hero}/>
+            <HeroBlockFooter heroId={hero.id}/>
         </div>
     );
 };

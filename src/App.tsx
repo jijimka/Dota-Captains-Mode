@@ -10,12 +10,14 @@ import ImmortalDraft from "./routes/ImmortalDraft.tsx";
 import {PageRoutes} from "./models/PageRoutes.ts";
 import {useQuery} from "@apollo/client";
 import {GET_MATCHUPS} from "./API/STRATZ_QUERY.ts";
+import {heroSynergySlice} from "./store/slices/heroSynergySlice.ts";
 
 
 function App() {
     const {addIntHeroes, addStrHeroes, addUniHeroes, addAgiHeroes} = heroesSlice.actions
+    const {initializeSynergyData} = heroSynergySlice.actions
     const dispatch = useTypedDispatch();
-    const {data} = useQuery(GET_MATCHUPS(5))
+    // const {data} = useQuery(GET_MATCHUPS(5))
     function sortHeroes() {
         const [strHeroes, agiHeroes, intHeroes, uniHeroes] = sortHeroesByAttribute(dotaHeroes)
         dispatch(addStrHeroes(strHeroes))
@@ -24,11 +26,10 @@ function App() {
         dispatch(addUniHeroes(uniHeroes))
     }
 
-    console.log(data)
     useEffect(() => {
         sortHeroes()
+        dispatch(initializeSynergyData())
     }, []);
-
     return (
         <>
             <BrowserRouter>

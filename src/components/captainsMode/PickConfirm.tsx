@@ -37,7 +37,7 @@ const PickConfirm: FC = () => {
     if (!confirmHero) return (
         <div className='pick-confirm-empty'>
             <div className='pick-confirm__hero'>
-                <h2 className='pick-confirm__text'>{isBanTurn() ? <>Ban</> : <>Pick</>}</h2>
+                <h2 className='pick-confirm__text'>{isBanTurn() ? 'Ban' : 'Pick'}</h2>
                 <h2 className='pick-confirm__hero-name'></h2>
             </div>
         </div>
@@ -51,7 +51,7 @@ const PickConfirm: FC = () => {
                 <div className='image-fadeaway'></div>
             </div>
             <div className='pick-confirm__hero'>
-                <h2 className='pick-confirm__text'>{isBanTurn() ? <>Ban</> : <>Pick</>}</h2>
+                <h2 className='pick-confirm__text'>{isBanTurn() ? 'Ban' : 'Pick'}</h2>
                 <h2 className='pick-confirm__hero-name'>{confirmHero.name_english_loc}</h2>
             </div>
         </div>
