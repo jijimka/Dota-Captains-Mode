@@ -6,3 +6,6 @@
     border-radius: inherit;
     user-select: none;
 }
+.gray__filter {
+    filter: grayscale(0.9) contrast(0.8);
+}

@@ -27,9 +27,9 @@ const HeroBlockFooter:FC<HeroBlockFooterProps> = ({heroId}) => {
             overall = +(advantageVs + advantageWith).toFixed(1)
         }
         if (overall < 0) {
-            synergyColor = `rgba(${(-overall)*12}, 0, 0, 0.55)`
+            synergyColor = `rgba(${(-overall)*13}, 0, 0, 0.55)`
         } else {
-            synergyColor = `rgba(0, ${(overall??0)*15}, 0, 0.55)`
+            synergyColor = `rgba(0, ${(overall??0)*13}, 0, 0.55)`
         }
         return [`${advantageVs} / ${advantageWith} | ${overall}`,synergyColor]
     },[pickQueue,selectedPick,radiantAdvantageWith,direAdvantageWith])

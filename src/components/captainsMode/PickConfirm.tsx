@@ -38,7 +38,7 @@ const PickConfirm: FC = () => {
         const vsArray: ISynergy[] = []
         const withArray: ISynergy[] = []
 
-        while (count < data.heroStats.matchUp[0].vs.length && count < data.heroStats.matchUp[0].with.length) {
+        while (count < data.heroStats.matchUp[0].vs.length || count < data.heroStats.matchUp[0].with.length) {
             const vsArrayElement: ISynergy | undefined = data.heroStats.matchUp[0].vs[count]
             const withArrayElement: ISynergy | undefined = data.heroStats.matchUp[0].with[count]
             if (vsArrayElement) {

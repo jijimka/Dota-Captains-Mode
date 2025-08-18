@@ -16,6 +16,7 @@ export const useDisplayPickedHero = (pickedHeroes: IPickedHero[], orderNumber: n
                     </>
                 )
             }
+
         }
         return <></>
 

@@ -4,13 +4,14 @@ import classes from './HeroImage.module.css'
 
 interface HeroImageProps {
     hero: IHeroes;
+    grayScale?:boolean;
 }
 
-const HeroImage: FC<HeroImageProps> = ({hero}) => {
+const HeroImage: FC<HeroImageProps> = ({hero,grayScale}) => {
     return (
         <>
             <img src={hero.image}
-                 className={classes.hero__image}
+                 className={[classes.hero__image,grayScale?classes.gray__filter:''].join(' ')}
                  alt={hero.name}
                  draggable={false}
             />
