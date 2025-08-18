@@ -637,7 +637,7 @@ button:active {
     align-items: center;
     font-size: 12px;
     user-select: none;
-    background-color: rgba(0, 0, 0, 0.45);
+    padding: 1px 0;
 }
 
 

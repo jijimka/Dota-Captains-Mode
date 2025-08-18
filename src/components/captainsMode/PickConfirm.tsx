@@ -1,4 +1,4 @@
-import {FC, useEffect} from 'react';
+import {FC, useEffect, useState} from 'react';
 import {useTypedDispatch, useTypedSelector} from "../../hooks/redux.ts";
 import {pickedHeroSlice} from "../../store/slices/pickedHeroSlice.ts";
 import {pickOrderSlice} from "../../store/slices/pickOrderSlice.ts";
@@ -9,11 +9,12 @@ import {heroSynergySlice} from "../../store/slices/heroSynergySlice.ts";
 import {ISynergy} from "../../types/ISynergy.ts";
 import {getSynergyValue} from "../../utils/getSynergyValue/getSynergyValue.ts";
 import {getHeroFromSynergyList} from "../../utils/getHeroFromSynergyList/getHeroFromSynergyList.ts";
-
 const PickConfirm: FC = () => {
     const {confirmHero, pickedHeroes} = useTypedSelector(state => state.pickedHeroes)
     const {pickQueue, selectedPick} = useTypedSelector(state => state.pickOrder)
     const {addPickedHero} = pickedHeroSlice.actions
+    const [radiantPicked, setRadiantPicked] = useState<boolean>(false)
+    const [pickCount,setPickCount] = useState<number>(0)
     const {
         radiantAdvantageVs,
         radiantAdvantageWith,
@@ -29,35 +30,43 @@ const PickConfirm: FC = () => {
     const {removePickQueue, clearSelectedPick, removeSelectedPickQueue} = pickOrderSlice.actions
     const dispatch = useTypedDispatch()
     const [getMatchup, {data, loading}] = useLazyQuery(GET_MATCHUPS())
-
     function isBanTurn() {
         return !PickOrder.picks.includes(selectedPick ? selectedPick : pickQueue[0])
     }
-
-
     function setSynergy() {
-        const isRadiantPick = !PickOrder.radiantPicks.includes(selectedPick ?? pickQueue[0])
-        const vsArray = data.heroStats.matchUp[0].vs.map((item: ISynergy) => {
-            const newSynergy = isRadiantPick ?
-                getSynergyValue(getHeroFromSynergyList(direAdvantageVs, item.heroId2)?.synergy ?? 0, item.synergy*-1)
-                :
-                getSynergyValue(getHeroFromSynergyList(radiantAdvantageVs, item.heroId2)?.synergy ?? 0, item.synergy*-1)
-            return {
-                ...item,
-                synergy: newSynergy
+        let count = 0
+        const vsArray: ISynergy[] = []
+        const withArray: ISynergy[] = []
+
+        while (count < data.heroStats.matchUp[0].vs.length && count < data.heroStats.matchUp[0].with.length) {
+            const vsArrayElement: ISynergy | undefined = data.heroStats.matchUp[0].vs[count]
+            const withArrayElement: ISynergy | undefined = data.heroStats.matchUp[0].with[count]
+            if (vsArrayElement) {
+                const newSynergy = radiantPicked ?
+                    getSynergyValue(getHeroFromSynergyList(direAdvantageVs, vsArrayElement.heroId2)?.synergy ?? 0, vsArrayElement.synergy * -1)
+                    :
+                    getSynergyValue(getHeroFromSynergyList(radiantAdvantageVs, vsArrayElement.heroId2)?.synergy ?? 0, vsArrayElement.synergy * -1)
+                const obj: ISynergy = {
+                    heroId2: vsArrayElement.heroId2,
+                    synergy: newSynergy,
+                }
+                vsArray.push(obj)
             }
-        })
-        const withArray = data.heroStats.matchUp[0].with.map((item: ISynergy) => {
-            const newSynergy = !isRadiantPick ?
-                getSynergyValue(getHeroFromSynergyList(radiantAdvantageWith, item.heroId2)?.synergy ?? 0, item.synergy)
-                :
-                getSynergyValue(getHeroFromSynergyList(direAdvantageWith, item.heroId2)?.synergy ?? 0, item.synergy)
-            return {
-                ...item,
-                synergy: newSynergy
+            if (withArrayElement) {
+                const newSynergy = radiantPicked ?
+                    getSynergyValue(getHeroFromSynergyList(radiantAdvantageWith, withArrayElement.heroId2)?.synergy ?? 0, withArrayElement.synergy)
+                    :
+                    getSynergyValue(getHeroFromSynergyList(direAdvantageWith, withArrayElement.heroId2)?.synergy ?? 0, withArrayElement.synergy)
+                const obj: ISynergy = {
+                    heroId2: withArrayElement.heroId2,
+                    synergy: newSynergy,
+                }
+                withArray.push(obj)
             }
-        })
-        if (isRadiantPick) {
+            count += 1
+        }
+
+        if (radiantPicked) {
             dispatch(setDireAdvantageVsData(vsArray))
             dispatch(setRadiantAdvantageWithData(withArray))
         } else {
@@ -65,7 +74,7 @@ const PickConfirm: FC = () => {
             dispatch(setDireAdvantageWithData(withArray))
         }
     }
-    console.log(radiantAdvantageVs,'radiant vs',radiantAdvantageWith,'radiant with',direAdvantageVs,'dire vs',direAdvantageWith,'dire with')
+
     function pickHero() {
         if (!confirmHero) return
         if (pickedHeroes.length === 24) return
@@ -74,9 +83,15 @@ const PickConfirm: FC = () => {
             hero: confirmHero,
             pick: selectedPick ? selectedPick : pickQueue[0],
         }
+        if (PickOrder.radiantPicks.includes(pickedHero.pick)) {
+            setRadiantPicked(true)
+        } else {
+            setRadiantPicked(false)
+        }
         if (!isBanTurn()) {
             const heroId = pickedHero.hero.id
             getMatchup({variables: {heroId}})
+            setPickCount(pickCount+1)
         }
         dispatch(addPickedHero(pickedHero))
 
@@ -92,7 +107,7 @@ const PickConfirm: FC = () => {
         if (!loading && data) {
             setSynergy()
         }
-    }, [data]);
+    }, [data,loading,pickCount]);
 
     if (!confirmHero) return (
         <div className='pick-confirm-empty'>

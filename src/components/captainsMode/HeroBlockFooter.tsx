@@ -11,24 +11,34 @@ const HeroBlockFooter:FC<HeroBlockFooterProps> = ({heroId}) => {
     const {radiantAdvantageVs,radiantAdvantageWith,direAdvantageWith,direAdvantageVs} = useTypedSelector(state => state.synergyData)
     const {pickQueue,selectedPick} = useTypedSelector(state => state.pickOrder)
 
-    const synergyText = useMemo(() => {
-        let advantageVs
-        let advantageWith
-        let overall
-        if (PickOrder.radiantPicks.includes(selectedPick??pickQueue[0])) {
+
+    const [synergyText,synergyColor] = useMemo(() => {
+        let advantageVs:number
+        let advantageWith:number
+        let overall:number
+        let synergyColor:string
+        if (PickOrder.radiant.includes(selectedPick??pickQueue[0])) {
             advantageVs = getHeroFromSynergyList(radiantAdvantageVs,heroId)?.synergy??0
             advantageWith = getHeroFromSynergyList(radiantAdvantageWith,heroId)?.synergy??0
-            overall = (advantageVs + advantageWith).toFixed(1)
+            overall = +(advantageVs + advantageWith).toFixed(1)
         } else {
             advantageVs = getHeroFromSynergyList(direAdvantageVs,heroId)?.synergy??0
             advantageWith = getHeroFromSynergyList(direAdvantageWith,heroId)?.synergy??0
-            overall = (advantageVs + advantageWith).toFixed(1)
+            overall = +(advantageVs + advantageWith).toFixed(1)
         }
-        return `${advantageVs} / ${advantageWith} | ${overall}`
+        if (overall < 0) {
+            synergyColor = `rgba(${(-overall)*12}, 0, 0, 0.55)`
+        } else {
+            synergyColor = `rgba(0, ${(overall??0)*15}, 0, 0.55)`
+        }
+        return [`${advantageVs} / ${advantageWith} | ${overall}`,synergyColor]
     },[pickQueue,selectedPick,radiantAdvantageWith,direAdvantageWith])
 
     return (
-        <div className='hero-block__footer'>
+        <div
+            className='hero-block__footer'
+            style={{backgroundColor:synergyColor}}
+        >
             {synergyText}
         </div>
     );
