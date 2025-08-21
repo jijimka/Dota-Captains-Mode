@@ -7,6 +7,7 @@ interface heroSynergySliceProps {
     radiantAdvantageWith: ISynergy[],
     direAdvantageVs: ISynergy[],
     direAdvantageWith: ISynergy[],
+    isSynergyActive:boolean,
 }
 
 const initialState:heroSynergySliceProps = {
@@ -14,6 +15,7 @@ const initialState:heroSynergySliceProps = {
     radiantAdvantageWith: [],
     direAdvantageVs: [],
     direAdvantageWith: [],
+    isSynergyActive:true,
 }
 function makeArray(length:number):ISynergy[] {
     const arr:ISynergy[] = [];
@@ -47,6 +49,9 @@ export const heroSynergySlice = createSlice({
         setDireAdvantageWithData: (state:heroSynergySliceProps,action:PayloadAction<ISynergy[]>) => {
             state.direAdvantageWith = action.payload
         },
+        setIsSynergyActive: (state:heroSynergySliceProps, action:PayloadAction<boolean>) =>{
+            state.isSynergyActive = action.payload
+        }
     }
 })
 export default heroSynergySlice.reducer

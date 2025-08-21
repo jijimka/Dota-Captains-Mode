@@ -1,17 +1,10 @@
-import {FC, useMemo,} from 'react';
+import {FC,} from 'react';
 import {useTypedDispatch, useTypedSelector} from "../../hooks/redux.ts";
 import {pickOrderSlice} from "../../store/slices/pickOrderSlice.ts";
-import {pickedHeroSlice} from "../../store/slices/pickedHeroSlice.ts";
-import {IHeroes, IPickedHero} from "../../types/IHeroes.ts";
 import {getPickBlockClasses} from "../../utils/getPickBlockClasses/getPickBlockClasses.ts";
 import {useDisplayPickedHero} from "../../hooks/useDisplayPickedHero.tsx";
 import {PickOrder} from "../../models/PickOrder.ts";
-import {getMvpHero} from "../../utils/getMvpHero/getMvpHero.ts";
-import {getHeroFromId} from "../../utils/getHeroFromId/getHeroFromId.ts";
-import dotaHeroes from '../../../dotaHeroes.json'
-import HeroImage from "../UI/HeroImage/HeroImage.tsx";
-import {getNearestPickNumber} from "../../utils/getNearestPickNumber/getNearestPickNumber.ts";
-import {isBanTurn} from "../../utils/isBanTurn/isBanTurn.ts";
+import {useDisplaySuggestedHero} from "../../hooks/useDisplaySuggestedHero.tsx";
 
 interface PickBlockProps {
     orderNumber: number;
@@ -20,26 +13,12 @@ interface PickBlockProps {
 const PickBlock: FC<PickBlockProps> = ({orderNumber}) => {
     const dispatch = useTypedDispatch()
     const orderClasses = ['pick__block-order']
-    const {pickedHeroes} = useTypedSelector(state => state.pickedHeroes)
     const {pickQueue, selectedPick,} = useTypedSelector(state => state.pickOrder)
-    const isThisBanTurn = isBanTurn(selectedPick, pickQueue)
-    const {
-        radiantAdvantageVs,
-        radiantAdvantageWith,
-        direAdvantageWith,
-        direAdvantageVs
-    } = useTypedSelector(state => state.synergyData)
-    const {removePickedHero} = pickedHeroSlice.actions
-    const {selectPick, addPickQueue, clearSelectedPick} = pickOrderSlice.actions
+    const {isSynergyActive} = useTypedSelector(state => state.synergyData)
+    const {selectPick,clearSelectedPick} = pickOrderSlice.actions
     const blockClasses = getPickBlockClasses(orderNumber, selectedPick, pickQueue)
-    const displayPickedHero = useDisplayPickedHero(pickedHeroes, orderNumber, deleteHero)
-    const isThisNextPick: boolean = selectedPick ? selectedPick === orderNumber : pickQueue[0] === orderNumber
-    const isThisRadiantSide: boolean = PickOrder.radiant.includes(orderNumber)
-
-    function deleteHero(hero: IPickedHero) {
-        dispatch(removePickedHero(hero.hero))
-        dispatch(addPickQueue(hero.pick))
-    }
+    const displayPickedHero = useDisplayPickedHero(orderNumber)
+    const displaySuggestedHero = useDisplaySuggestedHero(orderNumber)
 
     function selectPickOrder() {
         if (!pickQueue.includes(orderNumber)) return
@@ -49,35 +28,7 @@ const PickBlock: FC<PickBlockProps> = ({orderNumber}) => {
         }
     }
 
-    const displaySuggestedHero = useMemo(() => {
-        if (!isThisNextPick) return displayPickedHero
-        if (getNearestPickNumber(pickQueue) === 8) return displayPickedHero
-        if (isThisRadiantSide) {
-            const heroId: number = isThisBanTurn ?
-                getMvpHero(direAdvantageVs, direAdvantageWith, pickedHeroes)?.heroId2
-                :
-                getMvpHero(radiantAdvantageVs, radiantAdvantageWith,pickedHeroes)?.heroId2
-            const hero: IHeroes | null = getHeroFromId(dotaHeroes, heroId)
-            if (!hero) return
-            return (
-                <>
-                    <HeroImage hero={hero} grayScale={true}/>
-                </>
-            )
-        } else {
-            const heroId: number = isThisBanTurn ?
-                getMvpHero(radiantAdvantageVs, radiantAdvantageWith, pickedHeroes)?.heroId2
-                :
-                getMvpHero(direAdvantageVs, direAdvantageWith,pickedHeroes)?.heroId2
-            const hero: IHeroes | null = getHeroFromId(dotaHeroes, heroId)
-            if (!hero) return
-            return (
-                <>
-                    <HeroImage hero={hero} grayScale={true}/>
-                </>
-            )
-        }
-    }, [isThisNextPick, radiantAdvantageVs, radiantAdvantageWith, direAdvantageVs, direAdvantageWith, pickedHeroes])
+
 
     if (PickOrder.dire.includes(orderNumber)) {
         orderClasses.push('pick__block-order-dire')
@@ -85,7 +36,7 @@ const PickBlock: FC<PickBlockProps> = ({orderNumber}) => {
     return (
         <div onClick={selectPickOrder} className='pick-side__block'>
             <div className={blockClasses.join(' ')}>
-                {displaySuggestedHero}
+                {isSynergyActive?displaySuggestedHero:displayPickedHero}
             </div>
             <div className={orderClasses.join(' ')}>{orderNumber}</div>
         </div>

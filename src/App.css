@@ -213,6 +213,7 @@ button:active {
     align-items: center;
     gap: 5px;
     justify-content: center;
+    cursor: pointer;
 }
 
 .pick-side__body {
@@ -595,12 +596,16 @@ button:active {
 }
 
 .control-panel {
-    padding: 20px 0;
+    padding: 2px 0;
     display: flex;
     align-items: flex-end;
     justify-content: center;
-    flex-grow: 1;
-    font-size: 24px;
+    font-size: 20px;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+
 }
 
 .control-panel__button {
