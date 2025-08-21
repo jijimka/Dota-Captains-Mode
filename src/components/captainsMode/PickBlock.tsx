@@ -11,6 +11,7 @@ import {getHeroFromId} from "../../utils/getHeroFromId/getHeroFromId.ts";
 import dotaHeroes from '../../../dotaHeroes.json'
 import HeroImage from "../UI/HeroImage/HeroImage.tsx";
 import {getNearestPickNumber} from "../../utils/getNearestPickNumber/getNearestPickNumber.ts";
+import {isBanTurn} from "../../utils/isBanTurn/isBanTurn.ts";
 
 interface PickBlockProps {
     orderNumber: number;
@@ -21,6 +22,7 @@ const PickBlock: FC<PickBlockProps> = ({orderNumber}) => {
     const orderClasses = ['pick__block-order']
     const {pickedHeroes} = useTypedSelector(state => state.pickedHeroes)
     const {pickQueue, selectedPick,} = useTypedSelector(state => state.pickOrder)
+    const isThisBanTurn = isBanTurn(selectedPick, pickQueue)
     const {
         radiantAdvantageVs,
         radiantAdvantageWith,
@@ -46,12 +48,15 @@ const PickBlock: FC<PickBlockProps> = ({orderNumber}) => {
             dispatch(clearSelectedPick())
         }
     }
-    console.log(getNearestPickNumber(pickQueue))
+
     const displaySuggestedHero = useMemo(() => {
-        if (getNearestPickNumber(pickQueue) !== orderNumber) return displayPickedHero
+        if (!isThisNextPick) return displayPickedHero
         if (getNearestPickNumber(pickQueue) === 8) return displayPickedHero
         if (isThisRadiantSide) {
-            const heroId: number = getMvpHero(radiantAdvantageVs, radiantAdvantageWith,pickedHeroes)?.heroId2
+            const heroId: number = isThisBanTurn ?
+                getMvpHero(direAdvantageVs, direAdvantageWith, pickedHeroes)?.heroId2
+                :
+                getMvpHero(radiantAdvantageVs, radiantAdvantageWith,pickedHeroes)?.heroId2
             const hero: IHeroes | null = getHeroFromId(dotaHeroes, heroId)
             if (!hero) return
             return (
@@ -60,7 +65,10 @@ const PickBlock: FC<PickBlockProps> = ({orderNumber}) => {
                 </>
             )
         } else {
-            const heroId: number = getMvpHero(direAdvantageVs, direAdvantageWith,pickedHeroes)?.heroId2
+            const heroId: number = isThisBanTurn ?
+                getMvpHero(radiantAdvantageVs, radiantAdvantageWith, pickedHeroes)?.heroId2
+                :
+                getMvpHero(direAdvantageVs, direAdvantageWith,pickedHeroes)?.heroId2
             const hero: IHeroes | null = getHeroFromId(dotaHeroes, heroId)
             if (!hero) return
             return (
@@ -69,7 +77,7 @@ const PickBlock: FC<PickBlockProps> = ({orderNumber}) => {
                 </>
             )
         }
-    }, [isThisNextPick,radiantAdvantageVs, radiantAdvantageWith,direAdvantageVs, direAdvantageWith])
+    }, [isThisNextPick, radiantAdvantageVs, radiantAdvantageWith, direAdvantageVs, direAdvantageWith, pickedHeroes])
 
     if (PickOrder.dire.includes(orderNumber)) {
         orderClasses.push('pick__block-order-dire')
