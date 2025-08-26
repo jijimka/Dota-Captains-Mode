@@ -7,12 +7,48 @@ import {useLazyQuery} from "@apollo/client";
 import {GET_MATCHUPS} from "../../API/STRATZ_QUERY.ts";
 import {heroSynergySlice} from "../../store/slices/heroSynergySlice.ts";
 import {ISynergy} from "../../types/ISynergy.ts";
-import {getSynergyValue} from "../../utils/getSynergyValue/getSynergyValue.ts";
-import {getHeroFromSynergyList} from "../../utils/getHeroFromSynergyList/getHeroFromSynergyList.ts";
 import {isBanTurn} from "../../utils/isBanTurn/isBanTurn.ts";
+import {getNewSynergyArray} from "../../utils/getNewSynergyArray/getNewSynergyArray.ts";
+// let count = 0
+// const vsArray: ISynergy[] = []
+// const withArray: ISynergy[] = []
+//
+// while (count < data.heroStats.matchUp[0].vs.length || count < data.heroStats.matchUp[0].with.length) {
+//     const vsArrayElement: ISynergy | undefined = data.heroStats.matchUp[0].vs[count]
+//     const withArrayElement: ISynergy | undefined = data.heroStats.matchUp[0].with[count]
+//     if (vsArrayElement) {
+//         const newSynergy = radiantPicked ?
+//             incrementSynergyValue(getHeroFromSynergyList(direAdvantageVs, vsArrayElement.heroId2)?.synergy ?? 0, vsArrayElement.synergy * -1)
+//             :
+//             incrementSynergyValue(getHeroFromSynergyList(radiantAdvantageVs, vsArrayElement.heroId2)?.synergy ?? 0, vsArrayElement.synergy * -1)
+//         const obj: ISynergy = {
+//             heroId2: vsArrayElement.heroId2,
+//             synergy: newSynergy,
+//         }
+//         vsArray.push(obj)
+//     }
+//     if (withArrayElement) {
+//         const newSynergy = radiantPicked ?
+//             incrementSynergyValue(getHeroFromSynergyList(radiantAdvantageWith, withArrayElement.heroId2)?.synergy ?? 0, withArrayElement.synergy)
+//             :
+//             incrementSynergyValue(getHeroFromSynergyList(direAdvantageWith, withArrayElement.heroId2)?.synergy ?? 0, withArrayElement.synergy)
+//         const obj: ISynergy = {
+//             heroId2: withArrayElement.heroId2,
+//             synergy: newSynergy,
+//         }
+//         withArray.push(obj)
+//     }
+//     count += 1
+// }
+
+
+
+
 
 const PickConfirm: FC = () => {
     const [getMatchup, {data, loading}] = useLazyQuery(GET_MATCHUPS())
+    const newSynergyVsData = data?.heroStats?.matchUp[0]?.vs??null
+    const newSynergyWithData = data?.heroStats?.matchUp[0]?.with??null
     const {confirmHero, pickedHeroes} = useTypedSelector(state => state.pickedHeroes)
     const {pickQueue, selectedPick} = useTypedSelector(state => state.pickOrder)
     const {addPickedHero} = pickedHeroSlice.actions
@@ -35,38 +71,15 @@ const PickConfirm: FC = () => {
     const dispatch = useTypedDispatch()
 
     function setSynergy() {
-        let count = 0
-        const vsArray: ISynergy[] = []
-        const withArray: ISynergy[] = []
+        let vsArray:ISynergy[]
+        let withArray:ISynergy[]
 
-        while (count < data.heroStats.matchUp[0].vs.length || count < data.heroStats.matchUp[0].with.length) {
-            const vsArrayElement: ISynergy | undefined = data.heroStats.matchUp[0].vs[count]
-            const withArrayElement: ISynergy | undefined = data.heroStats.matchUp[0].with[count]
-            if (vsArrayElement) {
-                const newSynergy = radiantPicked ?
-                    getSynergyValue(getHeroFromSynergyList(direAdvantageVs, vsArrayElement.heroId2)?.synergy ?? 0, vsArrayElement.synergy * -1)
-                    :
-                    getSynergyValue(getHeroFromSynergyList(radiantAdvantageVs, vsArrayElement.heroId2)?.synergy ?? 0, vsArrayElement.synergy * -1)
-                const obj: ISynergy = {
-                    heroId2: vsArrayElement.heroId2,
-                    synergy: newSynergy,
-                }
-                vsArray.push(obj)
-            }
-            if (withArrayElement) {
-                const newSynergy = radiantPicked ?
-                    getSynergyValue(getHeroFromSynergyList(radiantAdvantageWith, withArrayElement.heroId2)?.synergy ?? 0, withArrayElement.synergy)
-                    :
-                    getSynergyValue(getHeroFromSynergyList(direAdvantageWith, withArrayElement.heroId2)?.synergy ?? 0, withArrayElement.synergy)
-                const obj: ISynergy = {
-                    heroId2: withArrayElement.heroId2,
-                    synergy: newSynergy,
-                }
-                withArray.push(obj)
-            }
-            count += 1
+        if (radiantPicked) {
+            [vsArray,withArray] = getNewSynergyArray(newSynergyVsData,newSynergyWithData,direAdvantageVs,radiantAdvantageWith)
+        } else {
+            [vsArray,withArray] = getNewSynergyArray(newSynergyVsData,newSynergyWithData,radiantAdvantageVs,direAdvantageWith)
+
         }
-
         if (radiantPicked) {
             dispatch(setDireAdvantageVsData(vsArray))
             dispatch(setRadiantAdvantageWithData(withArray))

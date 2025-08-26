@@ -47,7 +47,9 @@ export const useSynergyValue = (heroId:number) => {
                 direSynergyValue()
             }
         }
+
         return [advantageVs,advantageWith,overall]
+
     },[pickQueue, selectedPick, radiantAdvantageWith, direAdvantageWith])
     return value
 }

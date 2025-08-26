@@ -1,5 +1,4 @@
 import {useMemo} from "react";
-import {getNearestPickNumber} from "../utils/getNearestPickNumber/getNearestPickNumber.ts";
 import {getMvpHero} from "../utils/getMvpHero/getMvpHero.ts";
 import {IHeroes} from "../types/IHeroes.ts";
 import {getHeroFromId} from "../utils/getHeroFromId/getHeroFromId.ts";
@@ -9,6 +8,7 @@ import {useTypedSelector} from "./redux.ts";
 import {isBanTurn} from "../utils/isBanTurn/isBanTurn.ts";
 import {useDisplayPickedHero} from "./useDisplayPickedHero.tsx";
 import {PickOrder} from "../models/PickOrder.ts";
+import {isHaveAnyPicks} from "../utils/isHaveAnyPicks/isHaveAnyPicks.ts";
 
 export const useDisplaySuggestedHero = (orderNumber:number) => {
     const {pickedHeroes} = useTypedSelector(state => state.pickedHeroes)
@@ -26,7 +26,7 @@ export const useDisplaySuggestedHero = (orderNumber:number) => {
 
     const suggestedHero = useMemo(() => {
         if (!isThisNextPick) return displayPickedHero
-        if (getNearestPickNumber(pickQueue) === 8) return displayPickedHero
+        if (!isHaveAnyPicks(pickQueue)) return displayPickedHero
         if (isThisRadiantSide) {
             const heroId: number = isThisBanTurn ?
                 getMvpHero(direAdvantageVs, direAdvantageWith, pickedHeroes)?.heroId2
