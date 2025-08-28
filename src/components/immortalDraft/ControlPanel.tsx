@@ -1,23 +1,14 @@
-import {useTypedDispatch} from "../../hooks/redux.ts";
-import {playerPicksSlice} from "../../store/slices/playerPicksSlice.ts";
-import {playerListSlice} from "../../store/slices/playerListSlice.ts";
-import {playerPickOrderSlice} from "../../store/slices/playerPickOrderSlice.ts";
+import {FC} from "react";
 
-const ControlPanel = () => {
-    const dispatch = useTypedDispatch()
-    const {clearPlayers} = playerPicksSlice.actions;
-    const {clearPlayerList} = playerListSlice.actions;
-    const {clearPickOrder} = playerPickOrderSlice.actions
+interface ControlPanelProps {
+    children: React.ReactNode;
+}
 
-    function clearDraft() {
-        dispatch(clearPlayers())
-        dispatch(clearPickOrder())
-        dispatch(clearPlayerList())
-    }
+const ControlPanel: FC<ControlPanelProps> = ({children}) => {
 
     return (
         <div className='control-panel'>
-            <div className='control-panel__button' onClick={clearDraft}>Clear</div>
+            {children}
         </div>
     );
 };

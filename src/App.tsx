@@ -8,12 +8,13 @@ import dotaHeroes from "../dotaHeroes.json";
 import {useEffect} from "react";
 import ImmortalDraft from "./routes/ImmortalDraft.tsx";
 import {PageRoutes} from "./models/PageRoutes.ts";
+import {heroSynergySlice} from "./store/slices/heroSynergySlice.ts";
 
 
 function App() {
     const {addIntHeroes, addStrHeroes, addUniHeroes, addAgiHeroes} = heroesSlice.actions
+    const {initializeSynergyData} = heroSynergySlice.actions
     const dispatch = useTypedDispatch();
-
     function sortHeroes() {
         const [strHeroes, agiHeroes, intHeroes, uniHeroes] = sortHeroesByAttribute(dotaHeroes)
         dispatch(addStrHeroes(strHeroes))
@@ -22,11 +23,10 @@ function App() {
         dispatch(addUniHeroes(uniHeroes))
     }
 
-
     useEffect(() => {
         sortHeroes()
+        dispatch(initializeSynergyData())
     }, []);
-
     return (
         <>
             <BrowserRouter>

@@ -5,11 +5,12 @@ import {useTypedDispatch} from "../../hooks/redux.ts";
 import {pickOrderSlice} from "../../store/slices/pickOrderSlice.ts";
 import {useState} from "react";
 import FindMatchModal from "./FindMatchModal.tsx";
+import {heroSynergySlice} from "../../store/slices/heroSynergySlice.ts";
 
 const PickBar = () => {
     const {clearPickedHeroes} = pickedHeroSlice.actions
     const {refreshPickList} = pickOrderSlice.actions
-
+    const {initializeSynergyData} = heroSynergySlice.actions
     const [isFindMatchModalActive, setIsFindMatchModalActive] = useState<boolean>(false);
 
     const dispatch = useTypedDispatch();
@@ -17,6 +18,7 @@ const PickBar = () => {
     function clearAll() {
         dispatch(clearPickedHeroes())
         dispatch(refreshPickList())
+        dispatch(initializeSynergyData())
     }
 
     function findMatchButtonHandler() {
