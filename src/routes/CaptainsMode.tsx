@@ -1,7 +1,7 @@
 import NavMenu from "../components/NavMenu.tsx";
 import AllHeroesList from "../components/captainsMode/AllHeroesList.tsx";
 import PickBar from "../components/captainsMode/PickBar.tsx";
-import SearchInput from "../components/UI/SearchInput/SearchInput.tsx";
+import SearchInput from "../components/captainsMode/SearchInput.tsx";
 import ControlPanel from "../components/immortalDraft/ControlPanel.tsx";
 import FormCheckbox from "../components/UI/FormCheckbox/FormCheckbox.tsx";
 import {useTypedDispatch, useTypedSelector} from "../hooks/redux.ts";
