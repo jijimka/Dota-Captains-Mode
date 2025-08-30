@@ -1,11 +1,11 @@
 import React, {FC, useEffect, useState} from 'react';
-import {useTypedDispatch, useTypedSelector} from "../../../hooks/redux.ts";
-import {pickedHeroSlice} from "../../../store/slices/pickedHeroSlice.ts";
-import {IHeroes} from "../../../types/IHeroes.ts";
-import dotaHeroes from "../../../../dotaHeroes.json";
-import {heroesSlice} from "../../../store/slices/heroesSlice.ts";
-import SearchModal from "../SearchModal/SearchModal.tsx";
-import {isHeroPicked} from "../../../utils/isHeroPicked/isHeroPicked.ts";
+import {useTypedDispatch, useTypedSelector} from "../../hooks/redux.ts";
+import {pickedHeroSlice} from "../../store/slices/pickedHeroSlice.ts";
+import {IHeroes} from "../../types/IHeroes.ts";
+import dotaHeroes from "../../../dotaHeroes.json";
+import {heroesSlice} from "../../store/slices/heroesSlice.ts";
+import SearchModal from "../UI/SearchModal/SearchModal.tsx";
+import {isHeroPicked} from "../../utils/isHeroPicked/isHeroPicked.ts";
 
 interface SearchInputProps {
     children: React.ReactNode,
@@ -21,11 +21,6 @@ const SearchInput: FC<SearchInputProps> = ({children}) => {
     const {setSearchedHero, clearSearchedHero,} = heroesSlice.actions;
 
     function searchHeroes(event: React.KeyboardEvent<HTMLDivElement>) {
-
-        if (event.ctrlKey && event.key.toLowerCase() === 'a' || event.key.toLowerCase() === 'ф') {
-            setSearch('')
-            return
-        }
         if (event.ctrlKey && event.key.toLowerCase() === 'backspace') {
             event.preventDefault()
             event.stopPropagation()
@@ -33,6 +28,9 @@ const SearchInput: FC<SearchInputProps> = ({children}) => {
         }
 
         switch (event.key) {
+            case 'Escape':
+                setSearch('')
+                break;
             case 'Enter':
                 if (sortedHeroes.length > 0 && !isHeroPicked(pickedHeroes, sortedHeroes[0]) && pickedHeroes.length < 24) {
                     dispatch(addConfirmHero(sortedHeroes[0]))

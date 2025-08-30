@@ -15,6 +15,7 @@ function App() {
     const {addIntHeroes, addStrHeroes, addUniHeroes, addAgiHeroes} = heroesSlice.actions
     const {initializeSynergyData} = heroSynergySlice.actions
     const dispatch = useTypedDispatch();
+
     function sortHeroes() {
         const [strHeroes, agiHeroes, intHeroes, uniHeroes] = sortHeroesByAttribute(dotaHeroes)
         dispatch(addStrHeroes(strHeroes))

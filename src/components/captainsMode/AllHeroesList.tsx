@@ -1,6 +1,6 @@
 import {FC,} from 'react';
 import {useTypedSelector} from "../../hooks/redux.ts";
-import AttributeList from "./AttributeList.tsx";
+import AttributeBlock from "./AttributeBlock.tsx";
 import {AttributeIcons} from "../../models/AttributeIcons.ts";
 import {IHeroes} from "../../types/IHeroes.ts";
 
@@ -37,7 +37,7 @@ const AllHeroesList: FC = () => {
     return (
         <div className='all-heroes-list'>
             {attributesList.map(list =>
-                <AttributeList heroList={list.heroList} attribute={list.attribute} icon={list.icon}/>
+                <AttributeBlock heroList={list.heroList} attribute={list.attribute} icon={list.icon}/>
             )}
         </div>
     );
