@@ -6,6 +6,7 @@ import playerPicksSlice from "./slices/playerPicksSlice.ts";
 import playerPickOrderSlice from "./slices/playerPickOrderSlice.ts";
 import playerListSlice from "./slices/playerListSlice.ts";
 import heroSynergySlice from "./slices/heroSynergySlice.ts";
+import captainsModeSettings from "./slices/captainsModeSettings.ts";
 
 
 const rootReducer = combineReducers({
@@ -16,6 +17,7 @@ const rootReducer = combineReducers({
     playerPicksTurn: playerPickOrderSlice,
     playerList: playerListSlice,
     synergyData: heroSynergySlice,
+    settingsCM: captainsModeSettings
 })
 export const setupStore = () => configureStore({
     reducer: rootReducer,
