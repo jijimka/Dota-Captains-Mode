@@ -5,7 +5,39 @@
     cursor: inherit;
     border-radius: inherit;
     user-select: none;
+    flex:1;
+}
+.wrapper {
+    aspect-ratio: 5 / 3;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    flex:1;
 }
 .gray__filter {
     filter: grayscale(0.9) contrast(0.8);
+}
+.loadingDiv {
+    display:flex;
+    background-color: #1B232D;
+    border-radius: inherit;
+    user-select: none;
+    z-index: 1000;
+    flex: 1;
+}
+.loadingSpin {
+    display: inherit;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
 }
