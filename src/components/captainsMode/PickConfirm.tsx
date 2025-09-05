@@ -9,37 +9,7 @@ import {heroSynergySlice} from "../../store/slices/heroSynergySlice.ts";
 import {ISynergy} from "../../types/ISynergy.ts";
 import {isBanTurn} from "../../utils/isBanTurn/isBanTurn.ts";
 import {getNewSynergyArray} from "../../utils/getNewSynergyArray/getNewSynergyArray.ts";
-// let count = 0
-// const vsArray: ISynergy[] = []
-// const withArray: ISynergy[] = []
-//
-// while (count < data.heroStats.matchUp[0].vs.length || count < data.heroStats.matchUp[0].with.length) {
-//     const vsArrayElement: ISynergy | undefined = data.heroStats.matchUp[0].vs[count]
-//     const withArrayElement: ISynergy | undefined = data.heroStats.matchUp[0].with[count]
-//     if (vsArrayElement) {
-//         const newSynergy = radiantPicked ?
-//             incrementSynergyValue(getHeroFromSynergyList(direAdvantageVs, vsArrayElement.heroId2)?.synergy ?? 0, vsArrayElement.synergy * -1)
-//             :
-//             incrementSynergyValue(getHeroFromSynergyList(radiantAdvantageVs, vsArrayElement.heroId2)?.synergy ?? 0, vsArrayElement.synergy * -1)
-//         const obj: ISynergy = {
-//             heroId2: vsArrayElement.heroId2,
-//             synergy: newSynergy,
-//         }
-//         vsArray.push(obj)
-//     }
-//     if (withArrayElement) {
-//         const newSynergy = radiantPicked ?
-//             incrementSynergyValue(getHeroFromSynergyList(radiantAdvantageWith, withArrayElement.heroId2)?.synergy ?? 0, withArrayElement.synergy)
-//             :
-//             incrementSynergyValue(getHeroFromSynergyList(direAdvantageWith, withArrayElement.heroId2)?.synergy ?? 0, withArrayElement.synergy)
-//         const obj: ISynergy = {
-//             heroId2: withArrayElement.heroId2,
-//             synergy: newSynergy,
-//         }
-//         withArray.push(obj)
-//     }
-//     count += 1
-// }
+
 
 
 

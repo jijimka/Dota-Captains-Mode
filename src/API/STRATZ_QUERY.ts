@@ -17,3 +17,22 @@ export const GET_MATCHUPS = () => {
   }
 }`)
 }
+
+
+export const GET_MULTIPLE_MATCHUPS = () => {
+    return gql(`query MultipleHeroSynergys($heroIds: [Short] = [0]) {
+  heroStats {
+    matchUp(heroIds: $heroIds, take: 200) {
+      heroId
+      vs {
+        heroId2
+        synergy
+      }
+      with {
+        heroId2
+        synergy
+      }
+    }
+  }
+}`)
+}
