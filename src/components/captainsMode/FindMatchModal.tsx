@@ -78,7 +78,7 @@ const FindMatchModal: FC<FindMatchModalProps> = ({isFindMatchModalActive, setIsF
         let prevRadiantVsAdvantage = radiantAdvantageVs
         let prevRadiantWithAdvantage = radiantAdvantageWith
 
-        matchupsArray.forEach((matchUp,index:number) => {
+        matchupsArray.forEach((matchUp:any,index:number) => {
             const pick = fetchHeroes[index]
             const isRadiantPick = PickOrder.radiantPicks.includes(pick.pick)
             if (isRadiantPick) {

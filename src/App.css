@@ -608,11 +608,15 @@ button:active {
 }
 
 .control-panel__button {
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 0;
     display: flex;
     user-select: none;
     cursor: pointer;
     transition: 0.2s ease all;
-    color: gray;
+    color: white;
 }
 
 .control-panel__button:hover {
@@ -629,8 +633,6 @@ button:active {
 .find-match {
     display: flex;
     flex-direction: column;
-    gap: 20px;
-    align-items: center;
 }
 .hero-block__footer {
     display: flex;
@@ -643,6 +645,21 @@ button:active {
     user-select: none;
     padding: 1px 0;
 }
+.settings {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    user-select: none;
+
+}
+.settings__bttns {
+    justify-self: flex-end;
+}
+
+
+
+
+
 
 
 

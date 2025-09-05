@@ -1,0 +1,30 @@
+.controlPanel__bttn {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1001;
+    padding: 10px;
+    font-size: 20px;
+    cursor: pointer;
+    user-select: none;
+}
+.controlPanel__title {
+    font-size: 26px;
+    margin-bottom: 10px;
+}
+.controlPanel {
+    position: fixed;
+    top: 0;
+    left: -400px;
+    width: 250px;
+    height: 100%;
+    background-color: rgba(27, 35, 45, 0.93);
+    color: white;
+    padding: 40px 35px 40px 80px;
+    transition: left 0.3s ease;
+    z-index: 1000;
+}
+
+.controlPanel__active {
+    left: 0;
+}
