@@ -3,7 +3,6 @@ import PlayersList from "../components/immortalDraft/PlayersList.tsx";
 import PlayerPicksList from "../components/immortalDraft/PlayerPicksList.tsx";
 import PicksOrderBar from "../components/immortalDraft/PicksOrderBar.tsx";
 import PlayerForm from "../components/UI/PlayerForm/PlayerForm.tsx";
-import ControlPanel from "../components/immortalDraft/ControlPanel.tsx";
 import {useTypedDispatch} from "../hooks/redux.ts";
 import {playerPicksSlice} from "../store/slices/playerPicksSlice.ts";
 import {playerListSlice} from "../store/slices/playerListSlice.ts";
@@ -21,6 +20,7 @@ const ImmortalDraft = () => {
         dispatch(clearPickOrder())
         dispatch(clearPlayerList())
     }
+
     return (
         <div className='ImmortalDraft'>
             <NavMenu/>
@@ -28,9 +28,7 @@ const ImmortalDraft = () => {
             <PlayerPicksList/>
             <PicksOrderBar/>
             <PlayersList/>
-            <ControlPanel>
-                <div className='control-panel__button' onClick={clearDraft}>Clear</div>
-            </ControlPanel>
+            <div className='control-panel__button' onClick={clearDraft}>Clear</div>
         </div>
     );
 };
