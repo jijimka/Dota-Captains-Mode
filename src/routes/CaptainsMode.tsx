@@ -10,10 +10,14 @@ const CaptainsMode = () => {
     return (
         <div className="CaptainsMode">
             <SearchInput>
+                <div className='captainsMode__body'>
                 <NavMenu/>
                 <AllHeroesList/>
                 <PickBar/>
                 <CaptainsModeSettings/>
+                </div>
+                <AllHeroesList/>
+                <AllHeroesList/>
             </SearchInput>
         </div>
     );
