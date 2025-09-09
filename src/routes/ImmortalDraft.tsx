@@ -7,6 +7,7 @@ import {useTypedDispatch} from "../hooks/redux.ts";
 import {playerPicksSlice} from "../store/slices/playerPicksSlice.ts";
 import {playerListSlice} from "../store/slices/playerListSlice.ts";
 import {playerPickOrderSlice} from "../store/slices/playerPickOrderSlice.ts";
+import Background from "../components/UI/Background/Background.tsx";
 
 
 const ImmortalDraft = () => {
@@ -23,6 +24,7 @@ const ImmortalDraft = () => {
 
     return (
         <div className='ImmortalDraft'>
+            <Background lightVersion={true}/>
             <NavMenu/>
             <PlayerForm/>
             <PlayerPicksList/>
