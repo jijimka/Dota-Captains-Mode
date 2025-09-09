@@ -9,7 +9,7 @@ const CaptainsMode = () => {
 
     return (
         <div className="CaptainsMode">
-            <Background/>
+            <Background lightVersion={false}/>
             <SearchInput>
                 <div className='captainsMode__body'>
                 <NavMenu/>
@@ -17,8 +17,6 @@ const CaptainsMode = () => {
                 <PickBar/>
                 <CaptainsModeSettings/>
                 </div>
-                <AllHeroesList/>
-                <AllHeroesList/>
             </SearchInput>
         </div>
     );

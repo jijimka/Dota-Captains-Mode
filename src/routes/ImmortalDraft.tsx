@@ -24,7 +24,7 @@ const ImmortalDraft = () => {
 
     return (
         <div className='ImmortalDraft'>
-            <Background/>
+            <Background lightVersion={true}/>
             <NavMenu/>
             <PlayerForm/>
             <PlayerPicksList/>

@@ -1,5 +1,5 @@
 .searchModal {
-    position: absolute;
+    position: fixed;
     background-color: black;
     opacity: 1%;
     width: 100%;
