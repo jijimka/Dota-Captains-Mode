@@ -241,14 +241,22 @@ button:active {
     justify-content: center;
 
 }
-
-.pick-side-dire__title {
-    display: flex;
-    justify-content: center;
-    font-size: 22px;
-
+.pick-side__title-radiant {
+    color: rgba(151, 254, 251, 0.4);
 }
 
+.pick-side__title-dire {
+    color: rgba(225, 0, 0, 0.5);
+}
+.title__active-radiant {
+    color: #97FEFB;
+    text-shadow: #97FEFB 0 0 50px
+}
+
+.title__active-dire {
+    color: #e10000;
+    text-shadow: #e10000 0 0 50px
+}
 .pick__block-order {
     width: fit-content;
     margin-left: auto;
