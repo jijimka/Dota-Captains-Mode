@@ -17,5 +17,5 @@ export function getRandomPlayer(playerId: number): Player {
     }
 
     roles.sort((a, b) => a - b)
-    return new Player(`aboba ${playerId}`, getRandomNumber(maxMmr), roles)
+    return new Player(`Player ${playerId+1}`, getRandomNumber(maxMmr), roles)
 }

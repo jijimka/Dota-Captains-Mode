@@ -8,6 +8,7 @@ import {playerPicksSlice} from "../store/slices/playerPicksSlice.ts";
 import {playerListSlice} from "../store/slices/playerListSlice.ts";
 import {playerPickOrderSlice} from "../store/slices/playerPickOrderSlice.ts";
 import Background from "../components/UI/Background/Background.tsx";
+import SmallButton from "../components/UI/SmallButton/SmallButton.tsx";
 
 
 const ImmortalDraft = () => {
@@ -30,7 +31,9 @@ const ImmortalDraft = () => {
             <PlayerPicksList/>
             <PicksOrderBar/>
             <PlayersList/>
-            <div className='control-panel__button' onClick={clearDraft}>Clear</div>
+            <div className='control-panel'>
+                <SmallButton clickFunction={clearDraft}>Clear</SmallButton>
+            </div>
         </div>
     );
 };

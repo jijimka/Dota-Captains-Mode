@@ -4,6 +4,7 @@ import {pickedHeroSlice} from "../../store/slices/pickedHeroSlice.ts";
 import {useTypedDispatch} from "../../hooks/redux.ts";
 import {pickOrderSlice} from "../../store/slices/pickOrderSlice.ts";
 import {heroSynergySlice} from "../../store/slices/heroSynergySlice.ts";
+import SmallButton from "../UI/SmallButton/SmallButton.tsx";
 
 const PickBar = () => {
     const {clearPickedHeroes} = pickedHeroSlice.actions
@@ -24,7 +25,7 @@ const PickBar = () => {
     return (
         <div className='picks'>
             <div className='picks__buttons'>
-                <h2 className='picks-button' onClick={clearAll}>Clear</h2>
+                <SmallButton clickFunction={clearAll}>Clear</SmallButton>
             </div>
             <div className='picks__list'>
                 <PickSide side={'Radiant'}/>

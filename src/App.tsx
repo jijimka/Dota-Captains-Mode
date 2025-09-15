@@ -28,6 +28,7 @@ function App() {
         sortHeroes()
         dispatch(initializeSynergyData())
     }, []);
+
     return (
         <>
             <BrowserRouter>
