@@ -57,6 +57,9 @@ body {
 button {
     border: none;
     outline: none;
+    background-color: inherit;
+    color: inherit;
+    cursor: pointer;
 }
 
 button:active {
@@ -422,10 +425,6 @@ button:active {
     transition: 0.2s ease all
 }
 
-.picks-button:hover {
-    color: #00bdbd;
-}
-
 .not-searched {
     transition: 0.1s ease all;
     filter: brightness(20%);
@@ -601,18 +600,6 @@ button:active {
 }
 
 .control-panel {
-    padding: 2px 0;
-    display: flex;
-    justify-content: center;
-    font-size: 20px;
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    gap: 50px;
-}
-
-.control-panel__button {
     position: fixed;
     left: 50%;
     transform: translateX(-50%);
@@ -622,10 +609,6 @@ button:active {
     cursor: pointer;
     transition: 0.2s ease all;
     color: white;
-}
-
-.control-panel__button:hover {
-    color: #D7EDEE;
 }
 
 .universal {

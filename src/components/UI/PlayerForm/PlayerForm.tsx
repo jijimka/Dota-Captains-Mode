@@ -15,6 +15,7 @@ import {useDisplayError} from "../../../hooks/useDisplayError.tsx";
 import TextPopup from "../TextPopup/TextPopup.tsx";
 import RoleIcon from "../RoleIcon/RoleIcon.tsx";
 import BigButton from "../BigButton/BigButton.tsx";
+import SmallButton from "../SmallButton/SmallButton.tsx";
 
 type prefRoleListProps = {
     labelName: string,
@@ -72,7 +73,10 @@ const PlayerForm: FC = () => {
     function submitNewPlayer(player: Player): void {
         dispatch(addPlayer(player))
     }
-
+    function submitRandomPlayer() {
+        const randomPlayer = getRandomPlayer(players.length)
+        submitNewPlayer(randomPlayer)
+    }
     function autoFill() {
         for (let i = players.length; i < 10; i++) {
             submitNewPlayer(getRandomPlayer(i))
@@ -103,10 +107,12 @@ const PlayerForm: FC = () => {
                 <div className={classes.formError}>{errorMsg}</div>
             </form>
             <div className={classes.formControl}>
-                <div onClick={autoFill} className={classes.formControlButton}>Auto fill players</div>
-                <div onClick={() => submitNewPlayer(getRandomPlayer(players.length))}
-                     className={classes.formControlButton}>Add 1 random player
-                </div>
+                <SmallButton clickFunction={autoFill} className={classes.formControlButton}>Auto fill players</SmallButton>
+                <SmallButton clickFunction={submitRandomPlayer}
+                             className={classes.formControlButton}
+                >
+                    Add 1 random player
+                </SmallButton>
             </div>
         </ModalWindow>
     );

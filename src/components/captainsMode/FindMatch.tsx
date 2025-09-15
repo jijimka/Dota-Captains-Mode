@@ -1,5 +1,6 @@
 import {useState} from 'react';
 import FindMatchModal from "./FindMatchModal.tsx";
+import SmallButton from "../UI/SmallButton/SmallButton.tsx";
 
 const FindMatch = () => {
     const [isFindMatchModalActive, setIsFindMatchModalActive] = useState<boolean>(false);
@@ -9,12 +10,12 @@ const FindMatch = () => {
     }
 
     return (
-        <div className='find-match'>
-            <h2 className='picks-button' onClick={findMatchButtonHandler}>Get picks from match</h2>
+        <SmallButton clickFunction={findMatchButtonHandler}>
+            <h2 className='picks-button'>Get picks from match</h2>
             <FindMatchModal isFindMatchModalActive={isFindMatchModalActive}
                             setIsFindMatchModalActive={setIsFindMatchModalActive}
             />
-        </div>
+        </SmallButton>
     );
 };
 
