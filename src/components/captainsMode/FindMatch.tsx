@@ -10,12 +10,14 @@ const FindMatch = () => {
     }
 
     return (
-        <SmallButton clickFunction={findMatchButtonHandler}>
-            <h2 className='picks-button'>Get picks from match</h2>
+        <>
+            <SmallButton clickFunction={findMatchButtonHandler}>
+                <h2 className='picks-button'>Get picks from match</h2>
+            </SmallButton>
             <FindMatchModal isFindMatchModalActive={isFindMatchModalActive}
                             setIsFindMatchModalActive={setIsFindMatchModalActive}
             />
-        </SmallButton>
+        </>
     );
 };
 

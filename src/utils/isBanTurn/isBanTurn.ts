@@ -1,5 +1,5 @@
-import {PickOrder} from "../../models/PickOrder.ts";
+import {PickOrder} from "../../models/PickOrder";
 
-export function isBanTurn(selectedPick: number | null, pickQueue: number[]) {
-    return !PickOrder.picks.includes(selectedPick ? selectedPick : pickQueue[0])
+export function isBanTurn(pickNumber:number) {
+    return !PickOrder.picks.includes(pickNumber)
 }

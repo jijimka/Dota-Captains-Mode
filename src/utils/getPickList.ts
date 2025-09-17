@@ -1,7 +1,7 @@
-import {responsePicks} from "../../API/getPicks.ts";
-import {getHeroFromId} from "../getHeroFromId/getHeroFromId.ts";
-import heroList from "../../../dotaHeroes.json";
-import {IPickedHero} from "../../types/IHeroes.ts";
+import {responsePicks} from "../API/getPicks.ts";
+import {getHeroFromId} from "./getHeroFromId/getHeroFromId.ts";
+import heroList from "../../dotaHeroes.json";
+import {IPickedHero} from "../types/IHeroes.ts";
 
 
 

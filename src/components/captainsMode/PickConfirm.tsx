@@ -8,7 +8,7 @@ import {GET_MATCHUPS} from "../../API/STRATZ_QUERY.ts";
 import {heroSynergySlice} from "../../store/slices/heroSynergySlice.ts";
 import {ISynergy} from "../../types/ISynergy.ts";
 import {isBanTurn} from "../../utils/isBanTurn/isBanTurn.ts";
-import {getNewSynergyArray} from "../../utils/getNewSynergyArray/getNewSynergyArray.ts";
+import {getNewSynergyArray} from "../../utils/getNewSynergyArray.ts";
 
 
 
@@ -24,7 +24,7 @@ const PickConfirm: FC = () => {
     const {addPickedHero} = pickedHeroSlice.actions
     const [radiantPicked, setRadiantPicked] = useState<boolean>(false)
     const [pickCount, setPickCount] = useState<number>(0)
-    const isThisBanTurn: boolean = isBanTurn(selectedPick, pickQueue)
+    const isThisBanTurn: boolean = isBanTurn(selectedPick??pickQueue[0])
     const {
         radiantAdvantageVs,
         radiantAdvantageWith,

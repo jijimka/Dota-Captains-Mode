@@ -31,7 +31,7 @@ export const useSynergyValue = (heroId:number) => {
     }
 
     const value = useMemo(() => {
-        const isThisBanTurn = isBanTurn(selectedPick, pickQueue)
+        const isThisBanTurn = isBanTurn(selectedPick??pickQueue[0])
         const isRadiantTurn = PickOrder.radiant.includes(selectedPick ?? pickQueue[0])
 
         if (isRadiantTurn) {

@@ -1,4 +1,4 @@
-import {PickOrder} from "../../models/PickOrder.ts";
+import {PickOrder} from "../../models/PickOrder";
 
 export function isHaveAnyPicks(pickOrder:number[]) {
     let response = false
