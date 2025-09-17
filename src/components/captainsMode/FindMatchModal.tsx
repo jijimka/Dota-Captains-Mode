@@ -36,6 +36,7 @@ const FindMatchModal: FC<FindMatchModalProps> = ({isFindMatchModalActive, setIsF
     } = heroSynergySlice.actions
     const [fetchHeroes,setFetchHeroes] = useState<IPickedHero[]>([])
     const [fetchCounter,setFetchCounter] = useState<number>(0)
+    const {clearSelectedPick} = pickOrderSlice.actions
     const dispatch = useTypedDispatch()
     const {setPickedHeroes} = pickedHeroSlice.actions
     const {clearPicks, clearPickList} = pickOrderSlice.actions
@@ -102,6 +103,7 @@ const FindMatchModal: FC<FindMatchModalProps> = ({isFindMatchModalActive, setIsF
         getMultipleMatchups({variables: {heroIds}})
         dispatch(setPickedHeroes(importedPick))
         setIsFindMatchModalActive(false)
+        dispatch(clearSelectedPick())
     }
 
     async function getPicksFromId() {
