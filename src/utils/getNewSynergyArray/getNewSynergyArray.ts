@@ -31,7 +31,12 @@ export function getNewSynergyArray(newVsSynergyValueArray:ISynergy[],newWithSyne
         }
         count += 1
     }
-    vsArray.push(getMissingHero(newVsSynergyValueArray,oldVsSynergyValueArray))
-    withArray.push(getMissingHero(newWithSynergyValueArray,oldWithSynergyValueArray))
+    const vsArrayMissingHero = getMissingHero(newVsSynergyValueArray,oldVsSynergyValueArray)
+    const withArrayMissingHero = getMissingHero(newWithSynergyValueArray,oldWithSynergyValueArray)
+    if (vsArrayMissingHero && withArrayMissingHero) {
+        vsArray.push(vsArrayMissingHero)
+        withArray.push(withArrayMissingHero)
+    }
+
     return [vsArray, withArray]
 }
