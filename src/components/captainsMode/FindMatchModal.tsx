@@ -1,7 +1,7 @@
 import FormInput from "../UI/FormInput/FormInput.tsx";
 import BigButton from "../UI/BigButton/BigButton.tsx";
 import ModalWindow from "../UI/ModalWindow/ModalWindow.tsx";
-import {ChangeEvent, FC, useEffect, useMemo, useState} from "react";
+import {ChangeEvent, FC, FormEvent, useEffect, useMemo, useState} from "react";
 import {useTypedDispatch, useTypedSelector} from "../../hooks/redux.ts";
 import {pickedHeroSlice} from "../../store/slices/pickedHeroSlice.ts";
 import {getPicks} from "../../API/getPicks.ts";
@@ -10,10 +10,10 @@ import {useLazyQuery} from "@apollo/client";
 import {GET_MULTIPLE_MATCHUPS} from "../../API/STRATZ_QUERY.ts";
 import {IPickedHero} from "../../types/IHeroes.ts";
 import {getIdsFromPicksArray} from "../../utils/getIdsFromPicksArray/getIdsFromPicksArray.ts";
-import {getPicksFromDraftArray} from "../../utils/getPicksFromAllPicksArray/getPicksFromDraftArray.ts";
-import {getNewSynergyArray} from "../../utils/getNewSynergyArray.ts";
 import {PickOrder} from "../../models/PickOrder.ts";
 import {heroSynergySlice} from "../../store/slices/heroSynergySlice.ts";
+import {getPicksFromDraftArray} from "../../utils/getPicksFromAllPicksArray/getPicksFromDraftArray.ts";
+import {getNewSynergyArray} from "../../utils/getNewSynergyArray.ts";
 
 interface FindMatchModalProps {
     isFindMatchModalActive: boolean;
@@ -73,7 +73,6 @@ const FindMatchModal: FC<FindMatchModalProps> = ({isFindMatchModalActive, setIsF
     }
     function setSynergys() {
         const matchupsArray = data.heroStats.matchUp
-        console.log(matchupsArray)
         let prevDireVsAdvantage = direAdvantageVs
         let prevDireWithAdvantage = direAdvantageWith
         let prevRadiantVsAdvantage = radiantAdvantageVs
@@ -107,6 +106,7 @@ const FindMatchModal: FC<FindMatchModalProps> = ({isFindMatchModalActive, setIsF
     }
 
     async function getPicksFromId() {
+
         if (!matchIdValidation()) {
             return
         }
@@ -135,22 +135,27 @@ const FindMatchModal: FC<FindMatchModalProps> = ({isFindMatchModalActive, setIsF
         setMatchId(event.target.value)
         setMatchFindErrorMsg('')
     }
+    function matchSubmit(event:FormEvent<HTMLFormElement>) {
+        event.preventDefault()
+        getPicksFromId()
+    }
 
     useEffect(() => {
         if (!loading && data) {
             setSynergys()
         }
     }, [loading,data,fetchCounter]);
+
     return (
         <ModalWindow toggleModalFunc={offModal} isModalActive={isFindMatchModalActive}>
-            <div className='find-match'
-                 onClick={(event) => event.stopPropagation()}
+            <form className='find-match'
+                  onSubmit={(event=> matchSubmit(event))}
             >
                 <FormInput value={matchId} onChange={(event) => findMatchInput(event)}
                            placeholder='Match id'/>
-                <BigButton onClick={getPicksFromId}>Find match</BigButton>
+                <BigButton type='submit'>Find match</BigButton>
                 <div className='Error__message'>{ErrorMsg}</div>
-            </div>
+            </form>
         </ModalWindow>
     );
 };
