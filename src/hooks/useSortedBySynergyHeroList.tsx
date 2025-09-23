@@ -19,7 +19,7 @@ export const useSortedBySynergyHeroList = (heroList: IHeroes[]) => {
         isSynergyActive,
     } = useTypedSelector(state => state.synergyData)
     const {pickQueue, selectedPick} = useTypedSelector(state => state.pickOrder)
-    const isThisBanTurn = isBanTurn(selectedPick, pickQueue)
+    const isThisBanTurn = isBanTurn(selectedPick??pickQueue[0])
     const isRadiantSide = PickOrder.radiant.includes(selectedPick ?? pickQueue[0])
     const isSortActive = sortBy === SortList.synergy
     const sortedHeroes = useMemo(() => {

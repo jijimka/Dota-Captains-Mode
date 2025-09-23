@@ -1,6 +1,6 @@
 import axios from "axios";
-import {getPickList} from "../utils/getPickList/getPickList.ts";
-import {getPickListFromTurbo} from "../utils/getPickListFromTurbo/getPickListFromTurbo.tsx";
+import {getPickList} from "../utils/getPickList.ts";
+import {getPickListFromTurbo} from "../utils/getPickListFromTurbo.ts";
 
 export interface responsePicks {
     is_pick: boolean;

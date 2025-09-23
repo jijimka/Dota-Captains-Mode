@@ -1,8 +1,8 @@
-import {responsePicks} from "../../API/getPicks.ts";
-import {IPickedHero} from "../../types/IHeroes.ts";
-import {getHeroFromId} from "../getHeroFromId/getHeroFromId.ts";
-import heroList from "../../../dotaHeroes.json";
-import {PickOrder} from "../../models/PickOrder.ts";
+import {responsePicks} from "../API/getPicks.ts";
+import {IPickedHero} from "../types/IHeroes.ts";
+import {getHeroFromId} from "./getHeroFromId/getHeroFromId.ts";
+import heroList from "../../dotaHeroes.json";
+import {PickOrder} from "../models/PickOrder.ts";
 
 export function getPickListFromTurbo(pickList:responsePicks[]) {
     const picks: IPickedHero[] = []

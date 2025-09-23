@@ -9,7 +9,7 @@ import {useLazyQuery} from "@apollo/client";
 import {GET_MATCHUPS} from "../API/STRATZ_QUERY.ts";
 import {PickOrder} from "../models/PickOrder.ts";
 import {ISynergy} from "../types/ISynergy.ts";
-import {getNewSynergyArray} from "../utils/getNewSynergyArray/getNewSynergyArray.ts";
+import {getNewSynergyArray} from "../utils/getNewSynergyArray.ts";
 
 //<img onClick={() => deleteHero(pickedHeroes[i])}
 //                              draggable={false}

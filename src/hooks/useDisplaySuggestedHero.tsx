@@ -13,7 +13,7 @@ import {isHaveAnyPicks} from "../utils/isHaveAnyPicks/isHaveAnyPicks.ts";
 export const useDisplaySuggestedHero = (orderNumber:number) => {
     const {pickedHeroes} = useTypedSelector(state => state.pickedHeroes)
     const {pickQueue, selectedPick,} = useTypedSelector(state => state.pickOrder)
-    const isThisBanTurn = isBanTurn(selectedPick, pickQueue)
+    const isThisBanTurn = isBanTurn(selectedPick??pickQueue[0])
     const {
         radiantAdvantageVs,
         radiantAdvantageWith,

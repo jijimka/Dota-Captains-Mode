@@ -10,8 +10,8 @@ import {useLazyQuery} from "@apollo/client";
 import {GET_MULTIPLE_MATCHUPS} from "../../API/STRATZ_QUERY.ts";
 import {IPickedHero} from "../../types/IHeroes.ts";
 import {getIdsFromPicksArray} from "../../utils/getIdsFromPicksArray/getIdsFromPicksArray.ts";
-import {getPicksFromAllPicksArray} from "../../utils/getPicksFromAllPicksArray/getPicksFromAllPicksArray.ts";
-import {getNewSynergyArray} from "../../utils/getNewSynergyArray/getNewSynergyArray.ts";
+import {getPicksFromDraftArray} from "../../utils/getPicksFromAllPicksArray/getPicksFromDraftArray.ts";
+import {getNewSynergyArray} from "../../utils/getNewSynergyArray.ts";
 import {PickOrder} from "../../models/PickOrder.ts";
 import {heroSynergySlice} from "../../store/slices/heroSynergySlice.ts";
 
@@ -97,9 +97,9 @@ const FindMatchModal: FC<FindMatchModalProps> = ({isFindMatchModalActive, setIsF
     function setPicks(importedPick: IPickedHero[]) {
         setMatchFindErrorMsg('')
         setMatchId('')
-        const heroIds = getIdsFromPicksArray(getPicksFromAllPicksArray(importedPick))
+        const heroIds = getIdsFromPicksArray(getPicksFromDraftArray(importedPick))
         setFetchCounter(fetchCounter+1)
-        setFetchHeroes(getPicksFromAllPicksArray(importedPick))
+        setFetchHeroes(getPicksFromDraftArray(importedPick))
         getMultipleMatchups({variables: {heroIds}})
         dispatch(setPickedHeroes(importedPick))
         setIsFindMatchModalActive(false)

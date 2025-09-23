@@ -1,6 +1,6 @@
-import {ISynergy} from "../../types/ISynergy.ts";
-import {getHeroFromSynergyList} from "../getHeroFromSynergyList/getHeroFromSynergyList.ts";
-import {IPickedHero} from "../../types/IHeroes.ts";
+import {ISynergy} from "../../types/ISynergy";
+import {getHeroFromSynergyList} from "../getHeroFromSynergyList/getHeroFromSynergyList";
+import {IPickedHero} from "../../types/IHeroes";
 
 export function getMvpHero(vsArray: ISynergy[], withArray: ISynergy[],pickedHeroes:IPickedHero[]): ISynergy {
     const array:ISynergy[] = []
@@ -22,17 +22,3 @@ export function getMvpHero(vsArray: ISynergy[], withArray: ISynergy[],pickedHero
     }
     return sortedArray[0]
 }
-
-//export function getMvpHero(vsArray: ISynergy[], withArray: ISynergy[]): ISynergy {
-//     const array:ISynergy[] = []
-//     vsArray.forEach(heroVsSynergy => {
-//         const heroWithSynergy = getHeroFromSynergyList(withArray,heroVsSynergy.heroId2)
-//         const heroWithValue = heroWithSynergy?.synergy ? heroWithSynergy?.synergy : 0
-//         const obj:ISynergy = {
-//             heroId2:heroVsSynergy.heroId2,
-//             synergy: +(heroVsSynergy.synergy + heroWithValue).toFixed(1),
-//         }
-//         array.push(obj)
-//     })
-//     return array.sort((a,b) => b.synergy - a.synergy)[0]
-// }

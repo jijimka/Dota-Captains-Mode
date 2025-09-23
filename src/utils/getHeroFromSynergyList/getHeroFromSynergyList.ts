@@ -1,4 +1,4 @@
-import {ISynergy} from "../../types/ISynergy.ts";
+import {ISynergy} from "../../types/ISynergy";
 
 export function getHeroFromSynergyList(list:ISynergy[],heroId:number):ISynergy | null {
     for (let i = 0; i < list.length; i++) {
