@@ -14,6 +14,8 @@ import {PickOrder} from "../../models/PickOrder.ts";
 import {heroSynergySlice} from "../../store/slices/heroSynergySlice.ts";
 import {getPicksFromDraftArray} from "../../utils/getPicksFromAllPicksArray/getPicksFromDraftArray.ts";
 import {getNewSynergyArray} from "../../utils/getNewSynergyArray.ts";
+import {getTeams} from "../../API/getTeams.ts";
+import {captainsModeSettings} from "../../store/slices/captainsModeSettings.ts";
 
 interface FindMatchModalProps {
     isFindMatchModalActive: boolean;
@@ -34,6 +36,7 @@ const FindMatchModal: FC<FindMatchModalProps> = ({isFindMatchModalActive, setIsF
         setDireAdvantageWithData,
         setDireAdvantageVsData
     } = heroSynergySlice.actions
+    const {setTeamNames} = captainsModeSettings.actions
     const [fetchHeroes,setFetchHeroes] = useState<IPickedHero[]>([])
     const [fetchCounter,setFetchCounter] = useState<number>(0)
     const {clearSelectedPick} = pickOrderSlice.actions
@@ -111,10 +114,15 @@ const FindMatchModal: FC<FindMatchModalProps> = ({isFindMatchModalActive, setIsF
             return
         }
         let importedPick = await getPicks(matchId)
+        let teamNames = await getTeams(matchId)
         if (importedPick instanceof Error) {
             ErrorMsgHandler(importedPick)
             return
         }
+        if (!(teamNames instanceof Error)) {
+            dispatch(setTeamNames(teamNames))
+        }
+
         if (importedPick.length === 10) {
             dispatch(clearPicks())
         } else {

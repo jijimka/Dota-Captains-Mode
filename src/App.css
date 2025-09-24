@@ -149,7 +149,6 @@ button:active {
 
 .picks__list {
     display: flex;
-
 }
 
 .attribute__title {
@@ -242,7 +241,9 @@ button:active {
     display: flex;
     font-size: 22px;
     justify-content: center;
-
+    align-items: flex-end;
+    flex-grow: 1;
+    text-align: center;
 }
 .pick-side__title-radiant {
     color: rgba(151, 254, 251, 0.4);
@@ -257,9 +258,10 @@ button:active {
 }
 
 .title__active-dire {
-    color: #e10000;
-    text-shadow: #e10000 0 0 50px
+    color: #ff0000;
+    text-shadow: #ff0000 0 0 50px
 }
+
 .pick__block-order {
     width: fit-content;
     margin-left: auto;
@@ -614,10 +616,7 @@ button:active {
 .universal {
     flex: 0 0 210px;
 }
-.Error__message {
-    font-size: 20;
-    color: red;
-}
+
 .find-match {
     display: flex;
     flex-direction: column;
