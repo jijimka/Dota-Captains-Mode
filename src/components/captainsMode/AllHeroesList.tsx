@@ -36,8 +36,8 @@ const AllHeroesList: FC = () => {
     ]
     return (
         <div className='all-heroes-list'>
-            {attributesList.map(list =>
-                <AttributeBlock heroList={list.heroList} attribute={list.attribute} icon={list.icon}/>
+            {attributesList.map((list,index) =>
+                <AttributeBlock key={index} heroList={list.heroList} attribute={list.attribute} icon={list.icon}/>
             )}
         </div>
     );

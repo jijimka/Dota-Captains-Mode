@@ -24,6 +24,9 @@ export const captainsModeSettings = createSlice({
         },
         setRadiantFirst: (state:captainsModeSettingsProps, action: PayloadAction<boolean>) => {
             state.radiantFirst = action.payload
+        },
+        resetTeamNames: (state: captainsModeSettingsProps) => {
+            state.teamNames = ['Radiant', 'Dire']
         }
     }
 })

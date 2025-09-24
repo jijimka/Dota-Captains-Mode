@@ -10,6 +10,7 @@ interface PickSideProps {
 const PickSide: FC<PickSideProps> = ({side}) => {
     const {selectedPick, pickQueue} = useTypedSelector(state => state.pickOrder)
     const [radiant,dire] = useTypedSelector(state => state.settingsCM.teamNames)
+    const {radiantFirst} = useTypedSelector(state => state.settingsCM)
     function getTeamName() {
         return side === 'Radiant' ? radiant : dire
     }
@@ -23,16 +24,15 @@ const PickSide: FC<PickSideProps> = ({side}) => {
         if (!isRadiantTurn && side === 'Dire') {
             array.push('title__active-dire')
         }
-        if (getTeamName().length >= 13) {
-            array.push('pick-side__title-small')
-        }
-        console.log(getTeamName().length)
         return array
     }, [selectedPick, pickQueue,])
 
-
     function getSide(): number[] {
-        return side === 'Radiant' ? PickOrder.radiant : PickOrder.dire
+        if (side === 'Radiant') {
+            return radiantFirst? PickOrder.radiant : PickOrder.dire
+        } else {
+            return radiantFirst? PickOrder.dire : PickOrder.radiant
+        }
     }
 
     return (

@@ -1,4 +1,4 @@
-import {responsePicks} from "../API/getPicks.ts";
+import {responsePicks} from "../API/getImportedMatch.ts";
 import {IPickedHero} from "../types/IHeroes.ts";
 import {getHeroFromId} from "./getHeroFromId/getHeroFromId.ts";
 import heroList from "../../dotaHeroes.json";
