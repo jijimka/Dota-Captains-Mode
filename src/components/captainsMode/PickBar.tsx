@@ -5,12 +5,13 @@ import {useTypedDispatch} from "../../hooks/redux.ts";
 import {pickOrderSlice} from "../../store/slices/pickOrderSlice.ts";
 import {heroSynergySlice} from "../../store/slices/heroSynergySlice.ts";
 import SmallButton from "../UI/SmallButton/SmallButton.tsx";
+import {captainsModeSettings} from "../../store/slices/captainsModeSettings.ts";
 
 const PickBar = () => {
     const {clearPickedHeroes} = pickedHeroSlice.actions
     const {refreshPickList} = pickOrderSlice.actions
     const {initializeSynergyData} = heroSynergySlice.actions
-
+    const {resetTeamNames,setRadiantFirst} = captainsModeSettings.actions
 
     const dispatch = useTypedDispatch();
 
@@ -18,6 +19,8 @@ const PickBar = () => {
         dispatch(clearPickedHeroes())
         dispatch(refreshPickList())
         dispatch(initializeSynergyData())
+        dispatch(resetTeamNames())
+        dispatch(setRadiantFirst(true))
     }
 
 

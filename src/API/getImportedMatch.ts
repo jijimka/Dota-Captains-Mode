@@ -1,6 +1,4 @@
 import axios from "axios";
-import {getPickList} from "../utils/getPickList.ts";
-import {getPickListFromTurbo} from "../utils/getPickListFromTurbo.ts";
 
 export interface responsePicks {
     is_pick: boolean;
@@ -9,21 +7,16 @@ export interface responsePicks {
     order: number;
 }
 
-export async function getPicks(matchId: string) {
+export async function getImportedMatch(matchId: string) {
     const API_URL = 'https://api.opendota.com/api/matches/'
     let response
-    let pickList
     try {
         response = await axios.get(API_URL + matchId);
-        pickList = response.data.picks_bans
-        if (!pickList) {
-            throw new Error('No picks found.');
-        }
+        return response.data;
     } catch (error) {
         if (error instanceof Error){
             console.log(error)
             return error;
         }
     }
-    return pickList?.length === 10 ? getPickListFromTurbo(pickList) : getPickList(pickList)
 }

@@ -4,7 +4,7 @@ import ModalWindow from "../UI/ModalWindow/ModalWindow.tsx";
 import {ChangeEvent, FC, FormEvent, useEffect, useMemo, useState} from "react";
 import {useTypedDispatch, useTypedSelector} from "../../hooks/redux.ts";
 import {pickedHeroSlice} from "../../store/slices/pickedHeroSlice.ts";
-import {getPicks} from "../../API/getPicks.ts";
+import {getImportedMatch} from "../../API/getImportedMatch.ts";
 import {pickOrderSlice} from "../../store/slices/pickOrderSlice.ts";
 import {useLazyQuery} from "@apollo/client";
 import {GET_MULTIPLE_MATCHUPS} from "../../API/STRATZ_QUERY.ts";
@@ -14,6 +14,10 @@ import {PickOrder} from "../../models/PickOrder.ts";
 import {heroSynergySlice} from "../../store/slices/heroSynergySlice.ts";
 import {getPicksFromDraftArray} from "../../utils/getPicksFromAllPicksArray/getPicksFromDraftArray.ts";
 import {getNewSynergyArray} from "../../utils/getNewSynergyArray.ts";
+import {captainsModeSettings} from "../../store/slices/captainsModeSettings.ts";
+import {getPickListFromTurbo} from "../../utils/getPickListFromTurbo.ts";
+import {getPickList} from "../../utils/getPickList.ts";
+import {isFirstPickRadiant} from "../../utils/isFirstPickRadiant.ts";
 
 interface FindMatchModalProps {
     isFindMatchModalActive: boolean;
@@ -34,6 +38,7 @@ const FindMatchModal: FC<FindMatchModalProps> = ({isFindMatchModalActive, setIsF
         setDireAdvantageWithData,
         setDireAdvantageVsData
     } = heroSynergySlice.actions
+    const {setTeamNames,setRadiantFirst} = captainsModeSettings.actions
     const [fetchHeroes,setFetchHeroes] = useState<IPickedHero[]>([])
     const [fetchCounter,setFetchCounter] = useState<number>(0)
     const {clearSelectedPick} = pickOrderSlice.actions
@@ -110,11 +115,18 @@ const FindMatchModal: FC<FindMatchModalProps> = ({isFindMatchModalActive, setIsF
         if (!matchIdValidation()) {
             return
         }
-        let importedPick = await getPicks(matchId)
-        if (importedPick instanceof Error) {
-            ErrorMsgHandler(importedPick)
+        let importedMatch = await getImportedMatch(matchId)
+        if (importedMatch instanceof Error) {
+            ErrorMsgHandler(importedMatch)
             return
         }
+        let importedPick = importedMatch.picks_bans?.length === 10 ? getPickListFromTurbo(importedMatch.picks_bans) : getPickList(importedMatch.picks_bans)
+        let teamNames = [importedMatch.radiant_name,importedMatch.dire_name]
+        const radiantFirstPick = isFirstPickRadiant(importedMatch.picks_bans)
+        if (radiantFirstPick !== null) {
+            dispatch(setRadiantFirst(radiantFirstPick))
+        }
+        dispatch(setTeamNames(teamNames))
         if (importedPick.length === 10) {
             dispatch(clearPicks())
         } else {
