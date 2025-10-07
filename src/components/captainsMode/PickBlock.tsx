@@ -35,6 +35,7 @@ const PickBlock: FC<PickBlockProps> = ({orderNumber}) => {
     }
     return (
         <div onClick={selectPickOrder} className='pick-side__block'>
+                <div className='pick__block-order-inside'>{orderNumber}</div>
             <div className={blockClasses.join(' ')}>
                 {isSynergyActive?displaySuggestedHero:displayPickedHero}
             </div>

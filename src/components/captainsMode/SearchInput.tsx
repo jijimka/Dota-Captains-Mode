@@ -6,6 +6,7 @@ import dotaHeroes from "../../../dotaHeroes.json";
 import {heroesSlice} from "../../store/slices/heroesSlice.ts";
 import SearchModal from "../UI/SearchModal/SearchModal.tsx";
 import {isHeroPicked} from "../../utils/isHeroPicked/isHeroPicked.ts";
+import {useWindowSize} from "../../hooks/useWindowSize.tsx";
 
 interface SearchInputProps {
     children: React.ReactNode,
@@ -19,6 +20,11 @@ const SearchInput: FC<SearchInputProps> = ({children}) => {
     const {addConfirmHero,} = pickedHeroSlice.actions
     const [sortedHeroes, setSortedHeroes] = useState<IHeroes[]>([])
     const {setSearchedHero, clearSearchedHero,} = heroesSlice.actions;
+    const windowSize = useWindowSize()
+    let isMobile
+    if (windowSize.width && windowSize.height) {
+        isMobile = windowSize.width < 770
+    }
 
     function searchHeroes(event: React.KeyboardEvent<HTMLDivElement>) {
         if (event.ctrlKey && event.key.toLowerCase() === 'backspace') {
@@ -64,6 +70,8 @@ const SearchInput: FC<SearchInputProps> = ({children}) => {
         })
         dispatch(setSearchedHero(array))
     }, [search]);
+
+    if (isMobile) return <>{children}</>
 
     return (
         <div
