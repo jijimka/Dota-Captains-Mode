@@ -7,7 +7,7 @@ import SearchModal from "../UI/SearchModal/SearchModal.tsx";
 import {isHeroPicked} from "../../utils/isHeroPicked/isHeroPicked.ts";
 import {useWindowSize} from "../../hooks/useWindowSize.tsx";
 import {useSetSearchedHeroes} from "../../hooks/useSetSearchedHero.tsx";
-
+import dotaHeroes from '../../../dotaHeroes.json'
 interface SearchInputProps {
     children: React.ReactNode,
 }
@@ -59,6 +59,10 @@ const SearchInput: FC<SearchInputProps> = ({children}) => {
             dispatch(clearSearchedHero())
             return
         }
+        let heroes: IHeroes[] = []
+        heroes = dotaHeroes.filter((item:IHeroes) => {
+            return item.name_loc.toLowerCase().includes(search.toLowerCase())
+        })
         setSortedHeroes(heroes)
         dispatch(setSearchedHero(idArray))
     }, [search]);
