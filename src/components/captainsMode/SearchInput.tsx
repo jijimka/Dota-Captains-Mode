@@ -2,11 +2,10 @@ import React, {FC, useEffect, useState} from 'react';
 import {useTypedDispatch, useTypedSelector} from "../../hooks/redux.ts";
 import {pickedHeroSlice} from "../../store/slices/pickedHeroSlice.ts";
 import {IHeroes} from "../../types/IHeroes.ts";
+import dotaHeroes from "../../../dotaHeroes.json";
 import {heroesSlice} from "../../store/slices/heroesSlice.ts";
 import SearchModal from "../UI/SearchModal/SearchModal.tsx";
 import {isHeroPicked} from "../../utils/isHeroPicked/isHeroPicked.ts";
-import {useWindowSize} from "../../hooks/useWindowSize.tsx";
-import {useSetSearchedHeroes} from "../../hooks/useSetSearchedHero.tsx";
 
 interface SearchInputProps {
     children: React.ReactNode,
@@ -19,13 +18,7 @@ const SearchInput: FC<SearchInputProps> = ({children}) => {
     const {pickedHeroes} = useTypedSelector(state => state.pickedHeroes);
     const {addConfirmHero,} = pickedHeroSlice.actions
     const [sortedHeroes, setSortedHeroes] = useState<IHeroes[]>([])
-    const {idArray,heroes} = useSetSearchedHeroes(search)
     const {setSearchedHero, clearSearchedHero,} = heroesSlice.actions;
-    const windowSize = useWindowSize()
-    let isMobile
-    if (windowSize.width && windowSize.height) {
-        isMobile = windowSize.width <= 770
-    }
 
     function searchHeroes(event: React.KeyboardEvent<HTMLDivElement>) {
         if (event.ctrlKey && event.key.toLowerCase() === 'backspace') {
@@ -59,11 +52,18 @@ const SearchInput: FC<SearchInputProps> = ({children}) => {
             dispatch(clearSearchedHero())
             return
         }
+        let heroes: IHeroes[] = []
+        heroes = dotaHeroes.filter((item) => {
+            return item.name_loc.toLowerCase().includes(search.toLowerCase())
+        })
         setSortedHeroes(heroes)
-        dispatch(setSearchedHero(idArray))
-    }, [search]);
+        const array: number[] = []
 
-    if (isMobile) return <>{children}</>
+        heroes.map((item) => {
+            array.push(item.id)
+        })
+        dispatch(setSearchedHero(array))
+    }, [search]);
 
     return (
         <div

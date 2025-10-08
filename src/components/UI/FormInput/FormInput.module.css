@@ -7,9 +7,7 @@
     padding: 2px 6px;
     text-align: center;
 }
-.formInput::placeholder {
-    color: rgba(124, 124, 124, 0.61);
-}
+
 .formInput:active {
     outline: none;
 }
