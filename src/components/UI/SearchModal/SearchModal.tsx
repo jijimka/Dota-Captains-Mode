@@ -13,7 +13,7 @@ const SearchModal: FC<SearchModalProps> = ({search}) => {
 
         useEffect(() => {
             setModalTransition(false)
-            // how dark modal will be
+            // opacity of modal when activated or how dark modal will be
             setModal(45)
         }, [search])
 
