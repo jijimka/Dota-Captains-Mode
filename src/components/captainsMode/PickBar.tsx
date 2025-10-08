@@ -6,14 +6,26 @@ import {pickOrderSlice} from "../../store/slices/pickOrderSlice.ts";
 import {heroSynergySlice} from "../../store/slices/heroSynergySlice.ts";
 import SmallButton from "../UI/SmallButton/SmallButton.tsx";
 import {captainsModeSettings} from "../../store/slices/captainsModeSettings.ts";
+import FormInput from "../UI/FormInput/FormInput.tsx";
+import {useMemo, useState} from "react";
+import {useWindowSize} from "../../hooks/useWindowSize.tsx";
+import {useSetSearchedHeroes} from "../../hooks/useSetSearchedHero.tsx";
+import {heroesSlice} from "../../store/slices/heroesSlice.ts";
 
 const PickBar = () => {
     const {clearPickedHeroes} = pickedHeroSlice.actions
     const {refreshPickList} = pickOrderSlice.actions
     const {initializeSynergyData} = heroSynergySlice.actions
-    const {resetTeamNames,setRadiantFirst} = captainsModeSettings.actions
-
+    const {resetTeamNames, setRadiantFirst} = captainsModeSettings.actions
+    const [searchValue, setSearchValue] = useState<string>('')
+    const {idArray} = useSetSearchedHeroes(searchValue)
+    const {setSearchedHero,clearSearchedHero} = heroesSlice.actions
     const dispatch = useTypedDispatch();
+    const windowSize = useWindowSize()
+    let isMobile
+    if (windowSize.width && windowSize.height) {
+        isMobile = windowSize.width < 771
+    }
 
     function clearAll() {
         dispatch(clearPickedHeroes())
@@ -22,13 +34,25 @@ const PickBar = () => {
         dispatch(resetTeamNames())
         dispatch(setRadiantFirst(true))
     }
-
-
+    useMemo(() => {
+        searchValue.length > 0 ? dispatch(setSearchedHero(idArray)) : dispatch(clearSearchedHero())
+    },[searchValue])
 
     return (
         <div className='picks'>
             <div className='picks__buttons'>
                 <SmallButton clickFunction={clearAll}>Clear</SmallButton>
+                <div>
+                    <FormInput
+                        name='hero search mobile'
+                        value={searchValue}
+                        onChange={(event) => setSearchValue(event.target.value)}
+                        placeholder='Search hero'
+                        style={{display:`${isMobile ? 'block' : 'none'}`}}
+                        autoComplete='off'
+                    />
+
+                </div>
             </div>
             <div className='picks__list'>
                 <PickSide side={'Radiant'}/>
