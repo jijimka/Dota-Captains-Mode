@@ -1,5 +1,5 @@
 {
   "rewrites":  [
-    {"source": "/(.*)", "destination": "/Dota-Captain-Mode"}
+    {"source": "/(.*)", "destination": "/"}
   ]
 }
