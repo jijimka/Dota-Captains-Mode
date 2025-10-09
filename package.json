@@ -1,5 +1,6 @@
 {
   "name": "dotadraft",
+  "homepage": "https://jijimka.github.io/Dota-Captains-Mode/",
   "private": true,
   "version": "0.0.0",
   "scripts": {
@@ -7,13 +8,15 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "test": "jest"
+    "test": "jest",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "@apollo/client": "^3.13.9",
     "@hookform/resolvers": "^5.1.1",
     "@reduxjs/toolkit": "^2.6.1",
     "axios": "^1.8.4",
+    "gh-pages": "^6.3.0",
     "graphql": "^16.11.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
