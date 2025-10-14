@@ -1,8 +1,8 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
-// https://vite.dev/config/
+
 export default defineConfig({
   plugins: [react()],
-  base: "/Dota-Captains-Mode/",
+  base: process.env.VITE_BASE_PATH || "/Dota-Captains-Mode",
 })
