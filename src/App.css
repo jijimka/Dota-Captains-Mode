@@ -33,14 +33,9 @@ h1 {
     line-height: 1.1;
 }
 
-html {
+body, html {
     width: 100%;
-    height: 100%;
-}
-
-body {
-    width: 100%;
-    position: relative;
+    position: absolute;
     padding: 0;
     margin: 0;
     height: 100%;
@@ -74,6 +69,9 @@ button:active {
     height: 100%;
 }
 .CaptainsMode {
+    width: 100%;
+    margin: 0;
+    padding: 0;
     height: 100%;
 }
 .image-container__image {
@@ -132,7 +130,7 @@ button:active {
     box-sizing: border-box;
     display: flex;
     position: fixed;
-    top: 0;
+    bottom: 0;
     right: 0;
     flex-direction: column;
     height: 100%;
@@ -145,6 +143,7 @@ button:active {
     gap: 10px;
     user-select: none;
     justify-content: space-between;
+    z-index: 1000;
 }
 
 .picks__list {
@@ -181,6 +180,7 @@ button:active {
     width: 100px;
     height: 60px;
     border: 1px solid gray;
+    position: relative;
 }
 
 .pick__block-ban {
@@ -190,6 +190,7 @@ button:active {
     width: 60px;
     height: 33px;
     filter: brightness(45%);
+    position: relative;
 }
 
 .pick-side {
@@ -213,6 +214,7 @@ button:active {
     gap: 5px;
     justify-content: center;
     cursor: pointer;
+    position: relative;
 }
 
 .pick-side__body {
@@ -643,11 +645,83 @@ button:active {
 .settings__bttns {
     justify-self: flex-end;
 }
+.pick__block-order-inside {
+    display: none;
+    position: absolute;
+    font-size: 16px;
+    top: 3px;
+    right: 3px;
+    z-index: 1000;
+    background-color: rgba(0, 0, 0, 0.75);
+    padding: 1px 5px;
+    filter: brightness(100%);
+}
+.mobile-hero-search {
+    display: none;
+}
 
 
 
-
-
+@media screen and (max-width: 770px) {
+    .picks {
+        bottom: 0;
+        width: 100%;
+        height: auto;
+        border-radius: 0;
+        flex: 0 0;
+    }
+    .picks__list {
+        flex-direction: column;
+    }
+    .pick-side__body {
+        gap: 2px;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .pick__block-order {
+        display: none;
+    }
+    .pick-side__block {
+        display: flex;
+        flex-direction: column;
+    }
+    .all-heroes-list {
+        flex-direction: column;
+        width: 100%;
+        align-items: center;
+        flex: 1 1 100%;
+    }
+    .captainsMode__body {
+        width: 100%;
+        padding: 0 0 445px 0;
+    }
+    .pick__block {
+        background-color: black;
+        border-radius: 7px;
+        width: 80px;
+        height: 50px;
+        border: 1px solid #00b7b7;
+    }
+    .pick__block-ban {
+        background-color: black;
+        border-radius: 7px;
+        width: 80px;
+        height: 50px;
+        border: 1px solid gray;
+    }
+    .pick__block-order-inside {
+        display: block;
+    }
+    .image-fadeaway {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 101%;
+        height: 100%;
+        background: linear-gradient(to right, rgba(255, 255, 255, 0) 40%, #323d4f 100%);
+    }
+}
 
 
 
