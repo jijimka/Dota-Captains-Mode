@@ -19,7 +19,7 @@ const SearchInput: FC<SearchInputProps> = ({children}) => {
     const {pickedHeroes} = useTypedSelector(state => state.pickedHeroes);
     const {addConfirmHero,} = pickedHeroSlice.actions
     const [sortedHeroes, setSortedHeroes] = useState<IHeroes[]>([])
-    const {idArray,heroes} = useSetSearchedHeroes(search)
+    const {idArray} = useSetSearchedHeroes(search)
     const {setSearchedHero, clearSearchedHero,} = heroesSlice.actions;
     const windowSize = useWindowSize()
     let isMobile
