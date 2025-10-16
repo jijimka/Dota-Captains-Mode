@@ -1,4 +1,3 @@
-import NavMenu from "../components/NavMenu.tsx";
 import AllHeroesList from "../components/captainsMode/AllHeroesList.tsx";
 import PickBar from "../components/captainsMode/PickBar.tsx";
 import SearchInput from "../components/captainsMode/SearchInput.tsx";
