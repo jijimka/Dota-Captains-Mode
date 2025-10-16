@@ -12,7 +12,6 @@ const CaptainsMode = () => {
             <Background lightVersion={false}/>
             <SearchInput>
                 <div className='captainsMode__body'>
-                <NavMenu/>
                 <AllHeroesList/>
                 <PickBar/>
                 <CaptainsModeSettings/>

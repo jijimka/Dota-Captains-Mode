@@ -26,7 +26,9 @@ const PickBar = () => {
     if (windowSize.width && windowSize.height) {
         isMobile = windowSize.width < 771
     }
-
+    function clearSearch() {
+        setSearchValue('')
+    }
     function clearAll() {
         dispatch(clearPickedHeroes())
         dispatch(refreshPickList())
@@ -41,17 +43,16 @@ const PickBar = () => {
     return (
         <div className='picks'>
             <div className='picks__buttons'>
-                <SmallButton clickFunction={clearAll}>Clear</SmallButton>
-                <div>
+                <SmallButton clickFunction={clearAll}>Clear picks</SmallButton>
+                <div className='picks__buttons-mobile' style={{display:`${isMobile ? 'flex' : 'none'}`}}>
                     <FormInput
                         name='hero search mobile'
                         value={searchValue}
                         onChange={(event) => setSearchValue(event.target.value)}
                         placeholder='Search hero'
-                        style={{display:`${isMobile ? 'block' : 'none'}`}}
                         autoComplete='off'
                     />
-
+                    <SmallButton clickFunction={clearSearch}>Clear</SmallButton>
                 </div>
             </div>
             <div className='picks__list'>
