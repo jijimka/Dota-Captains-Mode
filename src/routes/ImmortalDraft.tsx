@@ -1,4 +1,3 @@
-import NavMenu from "../components/NavMenu.tsx";
 import PlayersList from "../components/immortalDraft/PlayersList.tsx";
 import PlayerPicksList from "../components/immortalDraft/PlayerPicksList.tsx";
 import PicksOrderBar from "../components/immortalDraft/PicksOrderBar.tsx";
@@ -9,6 +8,8 @@ import {playerListSlice} from "../store/slices/playerListSlice.ts";
 import {playerPickOrderSlice} from "../store/slices/playerPickOrderSlice.ts";
 import Background from "../components/UI/Background/Background.tsx";
 import SmallButton from "../components/UI/SmallButton/SmallButton.tsx";
+import ControlPanel from "../components/UI/ControlPanel/ControlPanel.tsx";
+import Title from "../components/UI/Title/Title.tsx";
 
 
 const ImmortalDraft = () => {
@@ -26,7 +27,9 @@ const ImmortalDraft = () => {
     return (
         <div className='ImmortalDraft'>
             <Background lightVersion={true}/>
-            <NavMenu/>
+            <ControlPanel>
+                <Title>Settings</Title>
+            </ControlPanel>
             <PlayerForm/>
             <PlayerPicksList/>
             <PicksOrderBar/>

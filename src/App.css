@@ -644,7 +644,6 @@ button:active {
     flex-direction: column;
     gap: 10px;
     user-select: none;
-
 }
 .settings__bttns {
     justify-self: flex-end;
@@ -663,6 +662,12 @@ button:active {
 .mobile-hero-search {
     display: none;
 }
+.settings__nav {
+    display: flex;
+    flex-direction: column;
+}
+
+
 
 
 /* MOBILE STYLE */

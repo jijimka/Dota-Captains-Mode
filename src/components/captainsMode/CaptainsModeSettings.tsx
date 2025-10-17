@@ -5,6 +5,7 @@ import {useTypedDispatch, useTypedSelector} from "../../hooks/redux.ts";
 import {heroSynergySlice} from "../../store/slices/heroSynergySlice.ts";
 import {captainsModeSettings} from "../../store/slices/captainsModeSettings.ts";
 import {SortList} from "../../models/SortList.ts";
+import Title from "../UI/Title/Title.tsx";
 
 const CaptainsModeSettings = () => {
     const {isSynergyActive} = useTypedSelector(state => state.synergyData)
@@ -27,6 +28,7 @@ const CaptainsModeSettings = () => {
     return (
         <ControlPanel title='Settings'>
             <div className='settings'>
+                <Title>Settings</Title>
                 <FormCheckbox onChange={() => synergyCheckboxHandler()} labelId={'picks-tooltip'}>
                     Disable picks tooltip
                 </FormCheckbox>
@@ -34,6 +36,7 @@ const CaptainsModeSettings = () => {
                     Disable sorting by synergy
                 </FormCheckbox>
                 <FindMatch/>
+
             </div>
         </ControlPanel>
     );
